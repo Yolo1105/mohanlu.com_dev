@@ -21,15 +21,6 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
   const [systemInfoHistory, setSystemInfoHistory] = useState<string | string[]>(
     [],
   );
-  const [floatingIcons, setFloatingIcons] = useState<
-    {
-      src: string;
-      left: number;
-      top: number;
-      rotation: number;
-      id: number;
-    }[]
-  >([]);
 
   const {
     history,
@@ -41,185 +32,16 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
     setLastCommandIndex,
   } = useHistory([]);
 
-  const availableIcons = [
-    '/icons/aarch64/aarch64-plain.svg',
-    '/icons/akka/akka-plain.svg',
-    '/icons/android/android-plain.svg',
-    '/icons/androidstudio/androidstudio-plain.svg',
-    '/icons/angular/angular-plain.svg',
-    '/icons/angularjs/angularjs-plain.svg',
-    '/icons/angularmaterial/angularmaterial-plain.svg',
-    '/icons/ansible/ansible-plain.svg',
-    '/icons/antdesign/antdesign-plain.svg',
-    '/icons/apache/apache-plain.svg',
-    '/icons/apacheairflow/apacheairflow-plain.svg',
-    '/icons/apl/apl-plain.svg',
-    '/icons/appwrite/appwrite-plain.svg',
-    '/icons/archlinux/archlinux-plain.svg',
-    '/icons/arduino/arduino-plain.svg',
-    '/icons/argocd/argocd-plain.svg',
-    '/icons/astro/astro-plain.svg',
-    '/icons/axios/axios-plain.svg',
-    '/icons/azure/azure-plain.svg',
-    '/icons/azuredevops/azuredevops-plain.svg',
-    '/icons/azuresqldatabase/azuresqldatabase-plain.svg',
-    '/icons/babel/babel-plain.svg',
-    '/icons/backbonejs/backbonejs-plain.svg',
-    '/icons/bash/bash-plain.svg',
-    '/icons/beats/beats-plain.svg',
-    '/icons/bootstrap/bootstrap-plain.svg',
-    '/icons/bower/bower-plain.svg',
-    '/icons/browserstack/browserstack-plain.svg',
-    '/icons/bulma/bulma-plain.svg',
-    '/icons/bun/bun-plain.svg',
-    '/icons/c/c-plain.svg',
-    '/icons/cairo/cairo-plain.svg',
-    '/icons/cakephp/cakephp-plain.svg',
-    '/icons/capacitor/capacitor-plain.svg',
-    '/icons/cassandra/cassandra-plain.svg',
-    '/icons/centos/centos-plain.svg',
-    '/icons/ceylon/ceylon-plain.svg',
-    '/icons/chrome/chrome-plain.svg',
-    '/icons/circleci/circleci-plain.svg',
-    '/icons/clarity/clarity-plain.svg',
-    '/icons/clion/clion-plain.svg',
-    '/icons/clojurescript/clojurescript-plain.svg',
-    '/icons/cloudflare/cloudflare-plain.svg',
-    '/icons/cloudflareworkers/cloudflareworkers-plain.svg',
-    '/icons/cmake/cmake-plain.svg',
-    '/icons/codecov/codecov-plain.svg',
-    '/icons/codeigniter/codeigniter-plain.svg',
-    '/icons/confluence/confluence-plain.svg',
-    '/icons/cosmosdb/cosmosdb-plain.svg',
-    '/icons/couchdb/couchdb-plain.svg',
-    '/icons/cplusplus/cplusplus-plain.svg',
-    '/icons/csharp/csharp-plain.svg',
-    '/icons/css3/css3-plain.svg',
-    '/icons/cucumber/cucumber-plain.svg',
-    '/icons/cypressio/cypressio-plain.svg',
-    '/icons/d3js/d3js-plain.svg',
-    '/icons/dart/dart-plain.svg',
-    '/icons/datagrip/datagrip-plain.svg',
-    '/icons/dataspell/dataspell-plain.svg',
-    '/icons/dbeaver/dbeaver-plain.svg',
-    '/icons/debian/debian-plain.svg',
-    '/icons/devicon/devicon-plain.svg',
-    '/icons/discordjs/discordjs-plain.svg',
-    '/icons/django/django-plain.svg',
-    '/icons/djangorest/djangorest-plain.svg',
-    '/icons/docker/docker-plain.svg',
-    '/icons/doctrine/doctrine-plain.svg',
-    '/icons/dot-net/dot-net-plain.svg',
-    '/icons/dotnetcore/dotnetcore-plain.svg',
-    '/icons/eclipse/eclipse-plain.svg',
-    '/icons/elasticsearch/elasticsearch-plain.svg',
-    '/icons/eleventy/eleventy-plain.svg',
-    '/icons/elixir/elixir-plain.svg',
-    '/icons/elm/elm-plain.svg',
-    '/icons/embeddedc/embeddedc-plain.svg',
-    '/icons/ember/ember-plain.svg',
-    '/icons/envoy/envoy-plain.svg',
-    '/icons/erlang/erlang-plain.svg',
-    '/icons/eslint/eslint-plain.svg',
-    '/icons/fastapi/fastapi-plain.svg',
-    '/icons/fastify/fastify-plain.svg',
-    '/icons/fedora/fedora-plain.svg',
-    '/icons/figma/figma-plain.svg',
-    '/icons/firebase/firebase-plain.svg',
-    '/icons/flutter/flutter-plain.svg',
-    '/icons/foundation/foundation-plain.svg',
-    '/icons/fsharp/fsharp-plain.svg',
-    '/icons/gazebo/gazebo-plain.svg',
-    '/icons/gcc/gcc-plain.svg',
-    '/icons/gentoo/gentoo-plain.svg',
-    '/icons/git/git-plain.svg',
-    '/icons/githubactions/githubactions-plain.svg',
-    '/icons/gitlab/gitlab-plain.svg',
-    '/icons/gitpod/gitpod-plain.svg',
-    '/icons/go/go-plain.svg',
-    '/icons/godot/godot-plain.svg',
-    '/icons/goland/goland-plain.svg',
-    '/icons/googlecloud/googlecloud-plain.svg',
-    '/icons/grafana/grafana-plain.svg',
-    '/icons/graphql/graphql-plain.svg',
-    '/icons/groovy/groovy-plain.svg',
-    '/icons/grpc/grpc-plain.svg',
-    '/icons/hadoop/hadoop-plain.svg',
-    '/icons/hardhat/hardhat-plain.svg',
-    '/icons/haskell/haskell-plain.svg',
-    '/icons/heroku/heroku-plain.svg',
-    '/icons/hibernate/hibernate-plain.svg',
-    '/icons/homebrew/homebrew-plain.svg',
-    '/icons/html5/html5-plain.svg',
-    '/icons/hugo/hugo-plain.svg',
-    '/icons/insomnia/insomnia-plain.svg',
-    '/icons/intellij/intellij-plain.svg',
-    '/icons/java/java-plain.svg',
-    '/icons/javascript/javascript-plain.svg',
-    '/icons/jekyll/jekyll-plain.svg',
-    '/icons/jenkins/jenkins-plain.svg',
-    '/icons/jest/jest-plain.svg',
-    '/icons/jira/jira-plain.svg',
-    '/icons/jquery/jquery-plain.svg',
-    '/icons/json/json-plain.svg',
-    '/icons/julia/julia-plain.svg',
-    '/icons/junit/junit-plain.svg',
-    '/icons/jupyter/jupyter-plain.svg',
-    '/icons/keras/keras-plain.svg',
-    '/icons/kibana/kibana-plain.svg',
-    '/icons/kotlin/kotlin-plain.svg',
-    '/icons/ktor/ktor-plain.svg',
-    '/icons/kubernetes/kubernetes-plain.svg',
-    '/icons/linux/linux-plain.svg',
-    '/icons/llvm/llvm-plain.svg',
+  const [currentTime, setCurrentTime] = useState('正在获取当前时间...');
+  const [osInfo, setOsInfo] = useState('Detecting operating system...');
+  const [browserInfo, setBrowserInfo] = useState(
+    'Detecting browser information...',
+  );
+  const [ipAddress, setIpAddress] = useState('Loading IP address...');
+  const [latency, setLatency] = useState('Calculating network latency...');
+  const [greeting, setGreeting] = useState('加载中...');
 
-    '/icons/logstash/logstash-plain.svg',
-    '/icons/lua/lua-plain.svg',
-    '/icons/materialui/materialui-plain.svg',
-    '/icons/matlab/matlab-plain.svg',
-    '/icons/matplotlib/matplotlib-plain.svg',
-    '/icons/maven/maven-plain.svg',
-    '/icons/mongodb/mongodb-plain.svg',
-    '/icons/nano/nano-plain.svg',
-    '/icons/neo4j/neo4j-plain.svg',
-    '/icons/neovim/neovim-plain.svg',
-    '/icons/netlify/netlify-plain.svg',
-    '/icons/networkx/networkx-plain.svg',
-    '/icons/nextjs/nextjs-plain.svg',
-    '/icons/nodejs/nodejs-plain.svg',
-    '/icons/numpy/numpy-plain.svg',
-    '/icons/nuxtjs/nuxtjs-plain.svg',
-    '/icons/oauth/oauth-plain.svg',
-    '/icons/objectivec/objectivec-plain.svg',
-    '/icons/opencv/opencv-plain.svg',
-    '/icons/opengl/opengl-plain.svg',
-    '/icons/pandas/pandas-plain.svg',
-    '/icons/php/php-plain.svg',
-    '/icons/postgresql/postgresql-plain.svg',
-    '/icons/postman/postman-plain.svg',
-    '/icons/powershell/powershell-plain.svg',
-    '/icons/pytest/pytest-plain.svg',
-    '/icons/python/python-plain.svg',
-    '/icons/r/r-plain.svg',
-    '/icons/reactrouter/reactrouter-plain.svg',
-    '/icons/redis/redis-plain.svg',
-    '/icons/rollup/rollup-plain.svg',
-    '/icons/ruby/ruby-plain.svg',
-    '/icons/rust/rust-plain.svg',
-    '/icons/scikitlearn/scikitlearn-plain.svg',
-    '/icons/svelte/svelte-plain.svg',
-    '/icons/swift/swift-plain.svg',
-    '/icons/tensorflow/tensorflow-plain.svg',
-    '/icons/terraform/terraform-plain.svg',
-    '/icons/typescript/typescript-plain.svg',
-    '/icons/ubuntu/ubuntu-plain.svg',
-    '/icons/vuejs/vuejs-plain.svg',
-    '/icons/webpack/webpack-plain.svg',
-    '/icons/xcode/xcode-plain.svg',
-    '/icons/yaml/yaml-plain.svg',
-  ];
-
-  const init = React.useCallback(() => setHistory(banner()), []);
+  const init = React.useCallback(() => setHistory(banner()), [setHistory]); // Fixed dependency
   const initSystemInfo = React.useCallback(async () => {
     try {
       // Pass an empty array as default arguments
@@ -241,55 +63,6 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
       inputRef.current.focus({ preventScroll: true });
     }
   }, [history]);
-
-  useEffect(() => {
-    const spawnIcons = () => {
-      // Remove icons that have moved out of the screen
-      setFloatingIcons((prevIcons) =>
-        prevIcons.filter((icon) => {
-          const iconElement = document.getElementById(
-            `floating-icon-${icon.id}`,
-          );
-          return iconElement && iconElement.getBoundingClientRect().top > -100;
-        }),
-      );
-
-      // Spawn new icons if there are few icons
-      if (floatingIcons.length < 5) {
-        const newIcon = {
-          src: availableIcons[
-            Math.floor(Math.random() * availableIcons.length)
-          ],
-          left: Math.random() * 100, // Spread across the full width
-          top: 100, // Start from bottom of screen
-          rotation: Math.random() * 360,
-          id: Date.now(), // Unique identifier
-        };
-        setFloatingIcons((prevIcons) => [...prevIcons, newIcon]);
-      }
-    };
-
-    // Spawn initial icons
-    if (floatingIcons.length === 0) {
-      for (let i = 0; i < 3; i++) {
-        const newIcon = {
-          src: availableIcons[
-            Math.floor(Math.random() * availableIcons.length)
-          ],
-          left: Math.random() * 100,
-          top: 100,
-          rotation: Math.random() * 360,
-          id: Date.now() + i,
-        };
-        setFloatingIcons((prevIcons) => [...prevIcons, newIcon]);
-      }
-    }
-
-    // Spawn icons periodically
-    const iconInterval = setInterval(spawnIcons, 2000);
-
-    return () => clearInterval(iconInterval);
-  }, [floatingIcons]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const containerRect = e.currentTarget.getBoundingClientRect();
@@ -318,21 +91,6 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
         <div id="stars2"></div>
         <div id="stars3"></div>
       </div>
-
-      {/* Floating Icons */}
-      {floatingIcons.map((icon, index) => (
-        <Image
-          key={index}
-          src={icon.src}
-          alt={`icon-${index}`}
-          className="floating-icon"
-          style={{
-            left: `${icon.left}vw`,
-            top: `${icon.top}vh`,
-            transform: `rotate(${icon.rotation}deg)`,
-          }}
-        />
-      ))}
 
       <Sidebar />
 
@@ -543,7 +301,10 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
                   };
 
             // Update Section Title
-            document.getElementById('section-title')!.innerText = text.greeting;
+            const sectionTitle = document.getElementById('section-title');
+            if (sectionTitle) {
+              sectionTitle.textContent = text.greeting;
+            }
 
             // Initialize Dynamic Information
             const initializeInfo = () => {
@@ -552,9 +313,11 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
               const updateTime = () => {
                 const currentTime = new Date().toLocaleString();
                 if (currentTime !== lastTime) {
-                  document.getElementById(
-                    'currentTime',
-                  )!.innerHTML = `<span style="font-weight: bold;">${text.currentTime}</span> ${currentTime}"`;
+                  const currentTimeElement =
+                    document.getElementById('currentTime');
+                  if (currentTimeElement) {
+                    currentTimeElement.innerHTML = `<span style="font-weight: bold;">${text.currentTime}</span> ${currentTime}`;
+                  }
                   lastTime = currentTime;
                 }
               };
@@ -577,9 +340,10 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
               else if (/iPhone|iPad|iPod/i.test(userAgent))
                 deviceType = lang === 'zh' ? 'iOS 设备' : 'iOS Device';
 
-              document.getElementById(
-                'os-info',
-              )!.innerHTML = `<span style="font-weight: bold;">${text.os}</span> ${deviceType} (${platform})"`;
+              const osInfoElement = document.getElementById('os-info');
+              if (osInfoElement) {
+                osInfoElement.innerHTML = `<span style="font-weight: bold;">${text.os}</span> ${deviceType} (${platform})`;
+              }
 
               // Browser Info
               const browser = userAgent.includes('Chrome')
@@ -592,24 +356,30 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
                 ? '未知浏览器'
                 : 'Unknown Browser';
 
-              document.getElementById(
-                'browser-info',
-              )!.innerHTML = `<span style="font-weight: bold;">${text.browser}</span> ${browser}"`;
+              const browserInfoElement =
+                document.getElementById('browser-info');
+              if (browserInfoElement) {
+                browserInfoElement.innerHTML = `<span style="font-weight: bold;">${text.browser}</span> ${browser}`;
+              }
 
               // IP Address
               fetch('https://api.ipify.org?format=json')
                 .then((response) => response.json())
                 .then((data) => {
-                  document.getElementById(
-                    'ip-address',
-                  )!.innerHTML = `<span style="font-weight: bold;">${text.ip}</span> ${data.ip}"`;
+                  const ipAddressElement =
+                    document.getElementById('ip-address');
+                  if (ipAddressElement) {
+                    ipAddressElement.innerHTML = `<span style="font-weight: bold;">${text.ip}</span> ${data.ip}`;
+                  }
                 })
                 .catch(() => {
-                  document.getElementById(
-                    'ip-address',
-                  )!.innerHTML = `<span style="font-weight: bold;">${
-                    text.ip
-                  }</span> ${lang === 'zh' ? '无法获取' : 'Unable to fetch'}`;
+                  const ipAddressElement =
+                    document.getElementById('ip-address');
+                  if (ipAddressElement) {
+                    ipAddressElement.innerHTML = `<span style="font-weight: bold;">${
+                      text.ip
+                    }</span> ${lang === 'zh' ? '无法获取' : 'Unable to fetch'}`;
+                  }
                 });
 
               // Latency
@@ -618,18 +388,20 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
                 fetch('https://www.google.com', { mode: 'no-cors' })
                   .then(() => {
                     const latency = Date.now() - startTime;
-                    document.getElementById(
-                      'latency',
-                    )!.innerHTML = `<span style="font-weight: bold;">${text.latency}</span> ${latency}ms"`;
+                    const latencyElement = document.getElementById('latency');
+                    if (latencyElement) {
+                      latencyElement.innerHTML = `<span style="font-weight: bold;">${text.latency}</span> ${latency}ms`;
+                    }
                   })
                   .catch(() => {
-                    document.getElementById(
-                      'latency',
-                    )!.innerHTML = `<span style="font-weight: bold;">${
-                      text.latency
-                    }</span> ${
-                      lang === 'zh' ? '无法测量' : 'Unable to measure'
-                    }`;
+                    const latencyElement = document.getElementById('latency');
+                    if (latencyElement) {
+                      latencyElement.innerHTML = `<span style="font-weight: bold;">${
+                        text.latency
+                      }</span> ${
+                        lang === 'zh' ? '无法测量' : 'Unable to measure'
+                      }`;
+                    }
                   });
               };
               updateLatency();
