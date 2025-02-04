@@ -7,6 +7,7 @@ import { useHistory } from '../components/history/hook';
 import { History } from '../components/history/History';
 import { banner } from '../utils/bin';
 import { sumfetch } from '../utils/bin';
+import Image from 'next/image';
 
 interface IndexPageProps {
   inputRef: React.MutableRefObject<HTMLInputElement>;
@@ -225,7 +226,6 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
       const result = await sumfetch([]);
       setSystemInfoHistory(result);
     } catch (error) {
-      console.error('Error fetching system info:', error);
       setSystemInfoHistory(['Error loading system information']);
     }
   }, []);
@@ -321,7 +321,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
 
       {/* Floating Icons */}
       {floatingIcons.map((icon, index) => (
-        <img
+        <Image
           key={index}
           src={icon.src}
           alt={`icon-${index}`}
@@ -414,15 +414,8 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
                   <h1 className="text-white font-bold text-4xl">
                     Welcome to my site!
                   </h1>
-                  <span className="text-white text-sm ">/console.log(`</span>
-                  <span className="text-white text-sm">
-                    =================================
-                  </span>
                   <span className="text-white text-sm">
                     Developer Profile: Mohan Lu
-                  </span>
-                  <span className="text-white text-sm">
-                    =================================
                   </span>
                   <span className="text-white text-sm ">
                     📧 CONTACT: ml7612@nyu.edu | +1 347-616-0606
@@ -436,7 +429,6 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
                   <span className="text-white text-sm">
                     🐙 GitHub: https://github.com/Yolo1105
                   </span>
-                  <span className="text-white text-sm">`);</span>
                 </div>
               </div>
             </div>
@@ -508,19 +500,6 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
                   <span style={{ fontWeight: 'bold' }}>网络延迟：</span>
                   <span>Calculating network latency...</span>
                 </p>
-
-                {/* Empty line before ASCII */}
-                <p style={{ minHeight: '1rem' }}></p>
-
-                {/* ASCII Art */}
-                <p
-                  id="ascii-art"
-                  style={{
-                    whiteSpace: 'pre',
-                  }}
-                >
-                  (\\(\\ ( -.-) o_(")(")
-                </p>
               </div>
             </div>
           </div>
@@ -553,9 +532,6 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
                     browser: '浏览器信息：',
                     ip: 'IP 地址：',
                     latency: '网络延迟：',
-                    ascii: `(\\(\\  
-( -.-)  
-o_(")(")`,
                   }
                 : {
                     greeting: `${getGreeting()}`,
@@ -564,9 +540,6 @@ o_(")(")`,
                     browser: 'echo "🌍 Browser: ......... ',
                     ip: 'echo "📡 IP Address: ......... ',
                     latency: 'echo "📶 Network: ......... ',
-                    ascii: `(\\(\\  
-( -.-)  
-o_(")(")`,
                   };
 
             // Update Section Title
@@ -661,9 +634,6 @@ o_(")(")`,
               };
               updateLatency();
               setInterval(updateLatency, 1000);
-
-              // ASCII Art
-              document.getElementById('ascii-art')!.innerText = text.ascii;
             };
 
             initializeInfo();

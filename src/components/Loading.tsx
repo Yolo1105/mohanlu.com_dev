@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 interface LoadingProps {
   onLoadingComplete?: () => void;
@@ -374,7 +375,7 @@ const Loading: React.FC<LoadingProps> = ({ onLoadingComplete }) => {
 
       {/* Floating Icons */}
       {icons.map((icon, index) => (
-        <img
+        <Image
           key={index}
           src={icon.src}
           alt={`icon-${index}`}
