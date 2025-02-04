@@ -148,7 +148,7 @@ const Loading: React.FC<LoadingProps> = ({ onLoadingComplete }) => {
       '/icons/kubernetes/kubernetes-plain.svg',
       '/icons/linux/linux-plain.svg',
       '/icons/llvm/llvm-plain.svg',
-      '/icons/lodash/lodash-plain.svg',
+
       '/icons/logstash/logstash-plain.svg',
       '/icons/lua/lua-plain.svg',
       '/icons/materialui/materialui-plain.svg',
@@ -374,7 +374,7 @@ const Loading: React.FC<LoadingProps> = ({ onLoadingComplete }) => {
       <div id="stars3"></div>
 
       {/* Floating Icons */}
-      {icons.map((icon, index) => (
+      {/* {icons.map((icon, index) => (
         <Image
           key={index}
           src={icon.src}
@@ -386,6 +386,29 @@ const Loading: React.FC<LoadingProps> = ({ onLoadingComplete }) => {
             transform: `rotate(${icon.rotation}deg)`,
           }}
         />
+      ))} */}
+
+      {icons.map((icon, index) => (
+        <div
+          key={index}
+          className="floating-icon"
+          style={{
+            position: 'absolute',
+            left: `${icon.left}vw`,
+            top: `${icon.top}vh`,
+            transform: `rotate(${icon.rotation}deg)`,
+            width: '50px', // Adjust based on your design
+            height: '50px', // Adjust based on your design
+          }}
+        >
+          <Image
+            src={icon.src}
+            alt={`icon-${index}`}
+            layout="responsive"
+            width={1}
+            height={1}
+          />
+        </div>
       ))}
 
       <div className="term">

@@ -172,7 +172,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
     '/icons/kubernetes/kubernetes-plain.svg',
     '/icons/linux/linux-plain.svg',
     '/icons/llvm/llvm-plain.svg',
-    '/icons/lodash/lodash-plain.svg',
+
     '/icons/logstash/logstash-plain.svg',
     '/icons/lua/lua-plain.svg',
     '/icons/materialui/materialui-plain.svg',
