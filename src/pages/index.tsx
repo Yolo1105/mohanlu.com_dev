@@ -206,9 +206,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
               加载中...
             </h2>
 
-            {/* Dynamic Information Section */}
             <div className="flex">
-              {/* Line Numbers */}
               <div
                 style={{
                   color: 'rgba(255, 255, 255, 0.5)',
@@ -224,9 +222,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
                 <p style={{ minHeight: '1.5rem' }}></p>
               </div>
 
-              {/* Main Information */}
               <div className="flex-grow">
-                {/* Bash Header Section */}
                 {[
                   '#!/bin/bash',
                   'echo "============================="',
