@@ -414,7 +414,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
                   <h1 className="text-white font-bold text-4xl">
                     Welcome to my site!
                   </h1>
-                  <span className="text-white text-sm ">console.log(`</span>
+                  <span className="text-white text-sm ">/console.log(`</span>
                   <span className="text-white text-sm">
                     =================================
                   </span>
