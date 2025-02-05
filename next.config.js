@@ -4,9 +4,9 @@ const isProd = process.env.NODE_ENV === 'production';
 module.exports = {
   reactStrictMode: true,
   images: {
-    unoptimized: true,
+    loader: 'custom', // Use a custom loader
+    unoptimized: true, // Disable optimization for static builds
   },
-  assetPrefix: isProd ? '/mohanlu.com_dev/' : '', // Set asset prefix for GitHub Pages
-  trailingSlash: true, // Ensures all paths have a trailing slash (important for static exports)
-  output: 'export', // Required to generate static files
+  assetPrefix: './', // Required for GitHub Pages
+  trailingSlash: true, // Ensures proper routing
 };
