@@ -1,15 +1,10 @@
 #!/bin/sh
-# This script installs LiveTerm.
 #
-# Found a bug? Report it here: https://github.com/Cveinnt/LiveTerm/issues
 
 set -e -u
 
-eval "git clone 'https://github.com/Cveinnt/LiveTerm.git'"
 
-cd LiveTerm
 
-echo "LiveTerm cloned! Installing dependencies..."
 
 if command -v yarn >/dev/null 2>&1 ; then
   yarn install
@@ -44,10 +39,8 @@ cat <<-'EOM'
 ░░░░░░░░░░░ ░░░░░    ░░░░░     ░░░░░░     ░░░░░     ░░░░░░  ░░░░░     ░░░░░ ░░░ ░░░░░ 
                                                                                 
 
-LiveTerm has been downloaded to the current directory.
 You can start developing it with:
 
-cd LiveTerm && yarn dev
 
 This will open a local port at http://localhost:3000, 
 where you can preview your website. To apply changes, edit:
