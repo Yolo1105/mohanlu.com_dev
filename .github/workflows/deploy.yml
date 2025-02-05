@@ -23,10 +23,10 @@ jobs:
         run: yarn install
 
       - name: Build the Project
-        run: yarn build
+        run: yarn build && yarn export
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: dist # Change to 'build' or 'out' if that's your output directory
+          folder: out # Use the correct output directory
