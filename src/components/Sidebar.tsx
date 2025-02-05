@@ -1,9 +1,10 @@
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const NavbarAndSidebar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<number | null>(null)
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
+  const [typewriterText, setTypewriterText] = useState("")
 
   const toggleSidebarItem = (index: number) => {
     if (activeSection === index) {
@@ -14,6 +15,39 @@ const NavbarAndSidebar: React.FC = () => {
     }
   }
 
+  useEffect(() => {
+    const texts = [">_MohanLu", ">_Developer", ">_Innovator"]
+    let currentIndex = 0
+    let isDeleting = false
+    let text = ""
+    let typingSpeed = 150
+
+    const type = () => {
+      const fullText = texts[currentIndex]
+
+      if (isDeleting) {
+        text = fullText.substring(0, text.length - 1)
+      } else {
+        text = fullText.substring(0, text.length + 1)
+      }
+
+      setTypewriterText(text)
+
+      if (!isDeleting && text === fullText) {
+        isDeleting = true
+        typingSpeed = 100
+      } else if (isDeleting && text === "") {
+        isDeleting = false
+        currentIndex = (currentIndex + 1) % texts.length
+        typingSpeed = 150
+      }
+
+      setTimeout(type, typingSpeed)
+    }
+
+    type()
+  }, [])
+
   const navbarStyle: React.CSSProperties = {
     position: "fixed",
     top: 0,
@@ -23,11 +57,11 @@ const NavbarAndSidebar: React.FC = () => {
     backgroundColor: "#0b0b0b",
     color: "white",
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
-    padding: "0 10px",
+    padding: "0 20px",
     zIndex: 1100,
-    boxShadow: "2 6px 15px rgba(0, 0, 0, 1)",
+    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
     borderBottom: "1.5px solid #2d2d30",
   }
 
@@ -48,8 +82,6 @@ const NavbarAndSidebar: React.FC = () => {
   }
 
   const logoStyle: React.CSSProperties = {
-    position: "absolute",
-    left: "10px",
     fontSize: "1.2rem",
     fontWeight: "bold",
     color: "white",
@@ -58,20 +90,21 @@ const NavbarAndSidebar: React.FC = () => {
   const footerStyle: React.CSSProperties = {
     position: "fixed",
     bottom: 0,
-    left: "50px",
-    width: "calc(100% - 50px)",
+    left: 0,
+    width: "100%",
+    height: "30px",
     color: "white",
-    textAlign: "right",
-    padding: "5px 10px",
-    fontSize: "0.8rem",
-    zIndex: 1000,
+    display: "flex",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    padding: "0 10px",
+    zIndex: 1100,
     backgroundColor: "#0b0b0b",
-    boxShadow: "0 -3px 6px rgba(0,0,0,0.3)",
+    boxShadow: "0 -2px 6px rgba(0,0,0,0.3)",
     borderTop: "1px solid #2d2d30",
   }
 
   const navItemStyle: React.CSSProperties = {
-    position: "relative",
     margin: "0 10px",
     fontSize: "0.875rem",
     fontWeight: "bold",
@@ -104,23 +137,27 @@ const NavbarAndSidebar: React.FC = () => {
   return (
     <>
       <header style={navbarStyle} className="navbar">
-        <div style={logoStyle}>&gt;_MohanLu</div>
-        {navItems.map((item, index) => (
-          <div
-            key={index}
-            style={navItemStyle}
-            className={`
-              group relative nav-item nav-item-${index + 1} 
-              flex items-center cursor-pointer
-            `}
-            onClick={() => toggleSidebarItem(index)}
-          >
-            <span className="block transition-all duration-300 ease-in-out group-hover:opacity-0">{item}</span>
-            <span className="absolute left-0 top-0 block opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 whitespace-nowrap">
-              cd {item}
-            </span>
-          </div>
-        ))}
+        <div style={logoStyle} className="typewriter">
+          {typewriterText}
+        </div>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          {navItems.map((item, index) => (
+            <div
+              key={index}
+              style={navItemStyle}
+              className={`
+                group relative nav-item nav-item-${index + 1} 
+                flex items-center cursor-pointer
+              `}
+              onClick={() => toggleSidebarItem(index)}
+            >
+              <span className="block transition-all duration-300 ease-in-out group-hover:opacity-0">{item}</span>
+              <span className="absolute left-0 top-0 block opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 whitespace-nowrap">
+                cd {item}
+              </span>
+            </div>
+          ))}
+        </div>
       </header>
 
       <div style={sidebarStyle} className="sidebar">

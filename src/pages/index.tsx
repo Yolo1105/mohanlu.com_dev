@@ -1,176 +1,146 @@
-import Head from 'next/head';
-import React, { useEffect, useState } from 'react';
-import config from '../../config.json';
-import Sidebar from '../components/Sidebar';
-import { Input } from '../components/input';
-import { useHistory } from '../components/history/hook';
-import { History } from '../components/history/History';
-import { banner } from '../utils/bin';
-import { sumfetch } from '../utils/bin';
+import Head from "next/head"
+import React, { useEffect, useState, useCallback } from "react"
+import config from "../../config.json"
+import Sidebar from "../components/Sidebar"
+import { Input } from "../components/input"
+import { useHistory } from "../components/history/hook"
+import { History } from "../components/history/History"
+import { banner } from "../utils/bin"
+import { sumfetch } from "../utils/bin"
 
 interface IndexPageProps {
-  inputRef: React.MutableRefObject<HTMLInputElement>;
+  inputRef: React.MutableRefObject<HTMLInputElement>
 }
 
 const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
-  const containerRef = React.useRef(null);
-  const [dividerPosition, setDividerPosition] = useState(50);
-  const [isDragging, setIsDragging] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [systemInfoHistory, setSystemInfoHistory] = useState<string | string[]>(
-    [],
-  );
-  const [sectionTitle, setSectionTitle] = useState('加载中...');
+  const containerRef = React.useRef<HTMLDivElement>(null)
+  const [systemInfoHistory, setSystemInfoHistory] = useState<string | string[]>([])
+  const [sectionTitle, setSectionTitle] = useState("加载中...")
   const [systemInfo, setSystemInfo] = useState({
-    currentTime: '正在获取当前时间...',
-    osInfo: 'Detecting operating system...',
-    browserInfo: 'Detecting browser information...',
-    ipAddress: 'Loading IP address...',
-    latency: 'Calculating network latency...',
-  });
+    currentTime: "正在获取当前时间...",
+    osInfo: "Detecting operating system...",
+    browserInfo: "Detecting browser information...",
+    ipAddress: "Loading IP address...",
+    latency: "Calculating network latency...",
+  })
 
-  const {
-    history,
-    command,
-    lastCommandIndex,
-    setCommand,
-    setHistory,
-    clearHistory,
-    setLastCommandIndex,
-  } = useHistory([]);
+  const { history, command, lastCommandIndex, setCommand, setHistory, clearHistory, setLastCommandIndex } = useHistory(
+    [],
+  )
 
-  const init = React.useCallback(() => setHistory(banner()), [setHistory]);
+  const init = useCallback(() => setHistory(banner()), [setHistory])
 
-  const initSystemInfo = React.useCallback(async () => {
+  const initSystemInfo = useCallback(async () => {
     try {
-      const result = await sumfetch([]);
-      setSystemInfoHistory(result);
+      const result = await sumfetch([])
+      setSystemInfoHistory(result)
     } catch (error) {
-      setSystemInfoHistory(['Error loading system information']);
+      setSystemInfoHistory(["Error loading system information"])
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    init();
-    initSystemInfo();
-  }, [init, initSystemInfo]);
+    init()
+    initSystemInfo()
+  }, [init, initSystemInfo])
 
   useEffect(() => {
     if (inputRef.current) {
-      inputRef.current.scrollIntoView();
-      inputRef.current.focus({ preventScroll: true });
+      inputRef.current.scrollIntoView()
+      inputRef.current.focus({ preventScroll: true })
     }
-  }, [history, inputRef]); // Added inputRef to dependencies
+  }, [inputRef])
 
   useEffect(() => {
-    const lang = navigator.language.includes('zh') ? 'zh' : 'en';
+    const lang = navigator.language.includes("zh") ? "zh" : "en"
 
     const getGreeting = () => {
-      const hour = new Date().getHours();
-      if (hour < 6) return lang === 'zh' ? '凌晨好！' : 'Good early morning!';
-      if (hour < 12) return lang === 'zh' ? '早上好！' : 'Good morning!';
-      if (hour < 14) return lang === 'zh' ? '中午好！' : 'Good noon!';
-      if (hour < 18) return lang === 'zh' ? '下午好！' : 'Good afternoon!';
-      if (hour < 22) return lang === 'zh' ? '晚上好！' : 'Good evening!';
-      return lang === 'zh' ? '深夜好！' : 'Good night!';
-    };
+      const hour = new Date().getHours()
+      if (hour < 6) return lang === "zh" ? "凌晨好！" : "Good early morning!"
+      if (hour < 12) return lang === "zh" ? "早上好！" : "Good morning!"
+      if (hour < 14) return lang === "zh" ? "中午好！" : "Good noon!"
+      if (hour < 18) return lang === "zh" ? "下午好！" : "Good afternoon!"
+      if (hour < 22) return lang === "zh" ? "晚上好！" : "Good evening!"
+      return lang === "zh" ? "深夜好！" : "Good night!"
+    }
 
-    setSectionTitle(getGreeting());
+    setSectionTitle(getGreeting())
 
     const updateSystemInfo = () => {
-      const currentTime = new Date().toLocaleString();
-      const platform = navigator.platform;
-      const userAgent = navigator.userAgent;
+      const currentTime = new Date().toLocaleString()
+      const platform = navigator.platform
+      const userAgent = navigator.userAgent
 
-      let deviceType = lang === 'zh' ? '未知设备' : 'Unknown Device';
-      if (/Windows/i.test(userAgent))
-        deviceType = lang === 'zh' ? 'Windows 电脑' : 'Windows PC';
-      else if (/Mac/i.test(userAgent))
-        deviceType = lang === 'zh' ? 'Mac 电脑' : 'Mac PC';
-      else if (/Linux/i.test(userAgent))
-        deviceType = lang === 'zh' ? 'Linux 设备' : 'Linux Device';
-      else if (/Android/i.test(userAgent))
-        deviceType = lang === 'zh' ? 'Android 手机' : 'Android Phone';
-      else if (/iPhone|iPad|iPod/i.test(userAgent))
-        deviceType = lang === 'zh' ? 'iOS 设备' : 'iOS Device';
+      let deviceType = lang === "zh" ? "未知设备" : "Unknown Device"
+      if (/Windows/i.test(userAgent)) deviceType = lang === "zh" ? "Windows 电脑" : "Windows PC"
+      else if (/Mac/i.test(userAgent)) deviceType = lang === "zh" ? "Mac 电脑" : "Mac PC"
+      else if (/Linux/i.test(userAgent)) deviceType = lang === "zh" ? "Linux 设备" : "Linux Device"
+      else if (/Android/i.test(userAgent)) deviceType = lang === "zh" ? "Android 手机" : "Android Phone"
+      else if (/iPhone|iPad|iPod/i.test(userAgent)) deviceType = lang === "zh" ? "iOS 设备" : "iOS Device"
 
-      const browser = userAgent.includes('Chrome')
-        ? 'Google Chrome'
-        : userAgent.includes('Firefox')
-        ? 'Mozilla Firefox'
-        : userAgent.includes('Safari') && !userAgent.includes('Chrome')
-        ? 'Apple Safari'
-        : lang === 'zh'
-        ? '未知浏览器'
-        : 'Unknown Browser';
+      const browser = userAgent.includes("Chrome")
+        ? "Google Chrome"
+        : userAgent.includes("Firefox")
+          ? "Mozilla Firefox"
+          : userAgent.includes("Safari") && !userAgent.includes("Chrome")
+            ? "Apple Safari"
+            : lang === "zh"
+              ? "未知浏览器"
+              : "Unknown Browser"
 
       setSystemInfo((prev) => ({
         ...prev,
         currentTime,
         osInfo: `${deviceType} (${platform})`,
         browserInfo: browser,
-      }));
-    };
+      }))
+    }
 
     const updateLatency = async () => {
-      const startTime = Date.now();
+      const startTime = Date.now()
       try {
-        await fetch('https://www.google.com', { mode: 'no-cors' });
-        const latency = Date.now() - startTime;
+        await fetch("https://www.google.com", { mode: "no-cors" })
+        const latency = Date.now() - startTime
         setSystemInfo((prev) => ({
           ...prev,
           latency: `${latency}ms`,
-        }));
+        }))
       } catch {
         setSystemInfo((prev) => ({
           ...prev,
-          latency: lang === 'zh' ? '无法测量' : 'Unable to measure',
-        }));
+          latency: lang === "zh" ? "无法测量" : "Unable to measure",
+        }))
       }
-    };
+    }
 
     const fetchIP = async () => {
       try {
-        const response = await fetch('https://api.ipify.org?format=json');
-        const data = await response.json();
+        const response = await fetch("https://api.ipify.org?format=json")
+        const data = await response.json()
         setSystemInfo((prev) => ({
           ...prev,
           ipAddress: data.ip,
-        }));
+        }))
       } catch {
         setSystemInfo((prev) => ({
           ...prev,
-          ipAddress: lang === 'zh' ? '无法获取' : 'Unable to fetch',
-        }));
+          ipAddress: lang === "zh" ? "无法获取" : "Unable to fetch",
+        }))
       }
-    };
+    }
 
-    updateSystemInfo();
-    fetchIP();
-    updateLatency();
+    updateSystemInfo()
+    fetchIP()
+    updateLatency()
 
-    const timeInterval = setInterval(updateSystemInfo, 1000);
-    const latencyInterval = setInterval(updateLatency, 1000);
+    const timeInterval = setInterval(updateSystemInfo, 1000)
+    const latencyInterval = setInterval(updateLatency, 1000)
 
     return () => {
-      clearInterval(timeInterval);
-      clearInterval(latencyInterval);
-    };
-  }, []);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const containerRect = e.currentTarget.getBoundingClientRect();
-    setMousePosition({
-      x: e.clientX - containerRect.left,
-      y: e.clientY - containerRect.top,
-    });
-
-    if (isDragging) {
-      const newPosition =
-        ((e.clientX - containerRect.left) / containerRect.width) * 100;
-      setDividerPosition(Math.max(20, Math.min(80, newPosition)));
+      clearInterval(timeInterval)
+      clearInterval(latencyInterval)
     }
-  };
+  }, [])
 
   return (
     <>
@@ -187,22 +157,9 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
 
       <Sidebar />
 
-      <div
-        className="flex flex-grow overflow-hidden h-[calc(100vh-10rem)] mt-20"
-        style={{
-          marginLeft: '50px',
-        }}
-        onMouseMove={handleMouseMove}
-        onMouseUp={() => setIsDragging(false)}
-        onMouseLeave={() => setIsDragging(false)}
-      >
-        <div
-          className="p-4 border-2 block-left mr-2 ml-6"
-          style={{
-            width: `${dividerPosition}%`,
-          }}
-        >
-          <div ref={containerRef} className="overflow-y-auto h-full">
+      <div className="flex flex-col lg:flex-row overflow-hidden h-screen pt-16 pb-8 px-4 lg:pl-16">
+        <div className="w-full lg:w-1/2 p-4 border-2 block-left overflow-y-auto mb-4 lg:mb-0">
+          <div ref={containerRef} className="h-full">
             <History history={history} />
             <Input
               inputRef={inputRef}
@@ -218,82 +175,62 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
           </div>
         </div>
 
-        <div
-          className="flex flex-col"
-          style={{
-            width: `calc(100% - 50px - ${dividerPosition}%)`,
-          }}
-        >
-          <div className="h-1/2 p-4 border-2 block-right-1 overflow-y-auto">
+        <div className="w-full lg:w-1/2 flex flex-col">
+          <div className="h-1/2 p-4 border-2 block-right-1 overflow-y-auto mb-4">
             <div className="min-h-full bg-black p-1">
-              <div className="flex flex-row items-stretch">
-                <div className="flex flex-col gap-4 items-start">
+              <div className="flex flex-col lg:flex-row items-stretch">
+                <div className="flex flex-row lg:flex-col gap-4 items-start mb-4 lg:mb-0">
                   {Array.from({ length: 7 }).map((_, index) => (
                     <div key={index} className="relative w-16 h-10">
                       <div className="absolute w-8 h-6 border border-white left-4 top-2" />
                       <div
                         className="absolute w-6 h-5 left-2 top-0"
                         style={{
-                          backgroundColor: `rgb(${60 + index * 20}, ${
-                            60 + index * 20
-                          }, ${60 + index * 20})`,
+                          backgroundColor: `rgb(${60 + index * 20}, ${60 + index * 20}, ${60 + index * 20})`,
                         }}
                       />
                       <div
                         className="absolute w-6 h-5 right-2 top-5"
                         style={{
-                          backgroundColor: `rgb(${40 + index * 20}, ${
-                            40 + index * 20
-                          }, ${40 + index * 20})`,
+                          backgroundColor: `rgb(${40 + index * 20}, ${40 + index * 20}, ${40 + index * 20})`,
                         }}
                       />
                     </div>
                   ))}
                 </div>
 
-                <div className="flex-divider"></div>
+                <div className="flex-divider hidden lg:block"></div>
 
-                <div className="flex flex-col gap-4">
-                  <h1 className="text-white font-bold text-4xl">
-                    Welcome to my site!
-                  </h1>
-                  <span className="text-white text-sm">
-                    Developer Profile: Mohan Lu
-                  </span>
-                  <span className="text-white text-sm">
-                    📧 CONTACT: ml7612@nyu.edu | +1 347-616-0606
-                  </span>
-                  <span className="text-white text-sm">
+                <div className="flex flex-col gap-4 lg:ml-4">
+                  <h1 className="text-white font-bold text-2xl lg:text-4xl">Welcome to my site!</h1>
+                  <span className="text-white text-xs lg:text-sm">Developer Profile: Mohan Lu</span>
+                  <span className="text-white text-xs lg:text-sm">📧 CONTACT: ml7612@nyu.edu | +1 347-616-0606</span>
+                  <span className="text-white text-xs lg:text-sm">
                     🔗 LinkedIn: https://www.linkedin.com/in/mohan-lu/
                   </span>
-                  <span className="text-white text-sm">
-                    📄 RESUME: Available upon request
-                  </span>
-                  <span className="text-white text-sm">
-                    🐙 GitHub: https://github.com/Yolo1105
-                  </span>
+                  <span className="text-white text-xs lg:text-sm">📄 RESUME: Available upon request</span>
+                  <span className="text-white text-xs lg:text-sm">🐙 GitHub: https://github.com/Yolo1105</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Bottom Half */}
-          <div className="h-1/2 p-4 border-2 mt-2 block-right-2">
-            <h2 className="text-4xl font-bold mb-4 mt-2">{sectionTitle}</h2>
+          <div className="h-1/2 p-4 border-2 block-right-2 overflow-y-auto">
+            <h2 className="text-2xl lg:text-4xl font-bold mb-4 mt-2">{sectionTitle}</h2>
 
             <div className="flex">
               <div className="text-[rgba(255,255,255,0.5)] mr-4 text-right">
                 {Array.from({ length: 13 }).map((_, index) => (
-                  <p key={index} className="min-h-6">
+                  <p key={index} className="min-h-4 lg:min-h-6 text-xs lg:text-base">
                     {index + 1}
                   </p>
                 ))}
-                <p className="min-h-6"></p>
+                <p className="min-h-4 lg:min-h-6"></p>
               </div>
 
-              <div className="flex-grow">
+              <div className="flex-grow text-xs lg:text-base">
                 {[
-                  '#!/bin/bash',
+                  "#!/bin/bash",
                   'echo "============================="',
                   'echo "🖥 SYSTEM INFO:"',
                   'echo "============================="',
@@ -329,7 +266,8 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default IndexPage;
+export default IndexPage
+
