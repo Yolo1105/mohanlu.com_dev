@@ -1,11 +1,11 @@
 {
-  "name": "liveterm",
+  "name": "mohanlu.com",
   "version": "0.1.0",
   "license": "MIT",
   "author": {
-    "name": "Vincent Wu",
-    "url": "https://cveinnt.com",
-    "email": "contact@wensenwu.com"
+    "name": "Mohan Lu",
+    "url": "https://mohanlu.com",
+    "email": "mohan.lu1105@gmail.com"
   },
   "scripts": {
     "dev": "next dev",
@@ -18,7 +18,7 @@
     "prepare": "husky install",
     "test": "jest"
   },
-  "homepage": "https://Yolo1105.github.io/mohanlu.com_dev",
+  "homepage": "https://mohanlu.com",
   "dependencies": {
     "axios": "^0.27.2",
     "next": "12.1.6",
