@@ -38,11 +38,9 @@ const App = ({ Component, pageProps }) => {
         <Loading onLoadingComplete={handleLoadingComplete} />
       ) : (
         <div
-          className="text-light-foreground dark:text-dark-foreground min-w-max text-xs md:min-w-full md:text-base main-content fade-in"
+          className="text-light-foreground dark:text-dark-foreground min-w-max text-xs md:min-w-full md:text-base main-content"
           style={{
             backgroundColor: '#3e3e42', // Explicitly set background to black
-            transition: 'opacity 0.5s ease', // Ensure smooth transition
-            opacity: 1, // Ensure full opacity
           }}
           onClick={onClickAnywhere}
         >

@@ -141,7 +141,7 @@ pre {
   font-family: monospace;
   color: #fff;
   opacity: 0.9;
-  font-size: 1.2rem;
+  font-size: 2rem;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 20px;
@@ -209,18 +209,16 @@ pre {
 }
 
 .fade-in {
-  animation: fadeIn 0.5s ease-in-out;
+  animation: fadeIn 0.5s ease-in;
 }
 
 .loading-container.fade-out {
-  animation: fadeOut 0.5s ease-in-out;
-  opacity: 0;
+  animation: fadeOut 0.5s;
   pointer-events: none;
 }
 
 .main-content {
-  opacity: 0;
-  animation: fadeIn 0.5s ease-in-out forwards;
+  animation: fadeIn 0.5s ease-in forwards;
 }
 
 .floating-icon {
