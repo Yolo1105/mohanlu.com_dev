@@ -63,7 +63,7 @@ const NavbarAndSidebar: React.FC = () => {
     zIndex: 1100,
     boxShadow: '2px 6px 15px rgba(0, 0, 0, 1)',
     borderBottom: '1.5px solid #2d2d30',
-    fontFamily: '"Hack NF", monospace',
+    fontFamily: 'Hack NF',
   };
 
   const sidebarStyle: React.CSSProperties = {
@@ -80,7 +80,7 @@ const NavbarAndSidebar: React.FC = () => {
     display: 'flex',
     flexDirection: 'column',
     borderRight: '1px solid #2d2d30',
-    fontFamily: '"Hack NF", monospace',
+    fontFamily: 'Hack NF',
   };
 
   const logoStyle: React.CSSProperties = {
@@ -89,7 +89,7 @@ const NavbarAndSidebar: React.FC = () => {
     fontSize: '1.2rem',
     fontWeight: 'bold',
     color: 'white',
-    fontFamily: '"Hack NF", monospace',
+    fontFamily: 'Hack NF',
   };
 
   const footerStyle: React.CSSProperties = {
@@ -110,11 +110,10 @@ const NavbarAndSidebar: React.FC = () => {
   const navItemStyle: React.CSSProperties = {
     position: 'relative',
     margin: '0 40px',
-    fontSize: '1rem',
-    fontWeight: 'bold',
+    fontSize: '1.2rem',
     cursor: 'pointer',
     color: 'white',
-    fontFamily: '"Hack NF", monospace',
+    fontFamily: 'Hack NF',
   };
 
   const sidebarItemStyle = (index: number): React.CSSProperties => ({

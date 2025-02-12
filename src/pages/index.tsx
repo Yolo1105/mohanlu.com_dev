@@ -59,7 +59,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
       inputRef.current.scrollIntoView();
       inputRef.current.focus({ preventScroll: true });
     }
-  }, [inputRef]); // Removed unnecessary dependency: history
+  }, [inputRef]);
 
   useEffect(() => {
     const lang = navigator.language.includes('zh') ? 'zh' : 'en';
@@ -164,6 +164,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* Background Stars */}
       <div className="fixed inset-0 z-0">
         <div id="stars"></div>
         <div id="stars2"></div>
@@ -172,11 +173,14 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
 
       <Sidebar />
 
+      {/* Main Content Wrapper */}
       <div className="flex h-screen overflow-hidden pt-16 pb-8 pr-12">
-        {/* Main Content Wrapper - Ensure it takes full width minus sidebar */}
-        <div className="flex w-[calc(100vw-50px)] ml-2 mt-2 mb-2">
-          {/* Left Container (Half of Remaining Space) */}
-          <div className="border-2 flex flex-col w-[calc(1/2+5px)] gap-6">
+        <div className="flex w-[calc(100vw+100px)] mt-2 mb-2">
+          {/* Left Container */}
+          <div
+            className="border-2 flex flex-col w-[cal(1/2+20px)] animate-slide-left"
+            style={{ animationDelay: '0s' }}
+          >
             <div ref={containerRef} className="flex-grow overflow-y-auto p-4">
               <History history={history} />
               <Input
@@ -193,10 +197,13 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
             </div>
           </div>
 
-          {/* Right Container (Other Half, Split Vertically) */}
+          {/* Right Container */}
           <div className="flex flex-col h-full w-1/2 ml-2 mr-4 gap-2">
-            {/* Top Right Section */}
-            <div className="border-2 p-4 flex-1 overflow-hidden tb-2">
+            {/* Right Upper Section */}
+            <div
+              className="border-2 p-4 flex-1 overflow-hidden tb-2 animate-slide-right"
+              style={{ animationDelay: '0.5s' }}
+            >
               <div className="bg-black p-1">
                 <div className="flex items-start gap-4">
                   <div className="flex flex-col gap-4 mt-[-10px]">
@@ -227,28 +234,68 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
                     <h1 className="text-white font-bold text-2xl md:text-4xl">
                       Welcome to my site!
                     </h1>
-                    <span className="text-white text-s ">
+                    <span className="text-white text-s">
                       Developer Profile: Mohan Lu
                     </span>
-                    <span className="text-white text-s ">
-                      📧 CONTACT: ml7612@nyu.edu | +1 347-616-0606
+                    <span className="text-white text-s">
+                      📧 CONTACT:{' '}
+                      <u>
+                        <a
+                          href="mailto:ml7612@nyu.edu"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          ml7612@nyu.edu
+                        </a>
+                      </u>{' '}
+                      | +1 347-616-0606
                     </span>
-                    <span className="text-white text-s ">
-                      🔗 LinkedIn: https://www.linkedin.com/in/mohan-lu/
+                    <span className="text-white text-s">
+                      🔗 LinkedIn:{' '}
+                      <u>
+                        <a
+                          href="https://www.linkedin.com/in/mohan-lu/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          https://www.linkedin.com/in/mohan-lu/
+                        </a>
+                      </u>
                     </span>
-                    <span className="text-white text-s ">
-                      📄 RESUME: Available upon request
+                    <span className="text-white text-s">
+                      📄 RESUME:{' '}
+                      <u>
+                        <a
+                          href="https://your-resume-url.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Available upon request
+                        </a>
+                      </u>
                     </span>
-                    <span className="text-white text-s ">
-                      🐙 GitHub: https://github.com/Yolo1105
+                    <span className="text-white text-s">
+                      🐙 GitHub:{' '}
+                      <u>
+                        <a
+                          href="https://github.com/Yolo1105"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          https://github.com/Yolo1105
+                        </a>
+                      </u>
                     </span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Bottom Right Section */}
-            <div className="border-2 p-4 flex-1 gap-2 overflow-hidden">
+            {/* Right Lower Section */}
+            <div
+              className="border-2 p-4 flex-1 gap-2 overflow-hidden animate-slide-right"
+              style={{ animationDelay: '1s' }}
+            >
               <h2 className="text-lg md:text-2xl font-bold mb-2">
                 {sectionTitle}
               </h2>
@@ -322,6 +369,36 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
           </div>
         </div>
       </div>
+
+      {/* CSS Animations */}
+      <style jsx>{`
+        .animate-slide-left {
+          animation: slideInFromLeft 1s ease both;
+        }
+        .animate-slide-right {
+          animation: slideInFromRight 1s ease both;
+        }
+        @keyframes slideInFromLeft {
+          from {
+            transform: translateX(-100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        @keyframes slideInFromRight {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+      `}</style>
     </>
   );
 };
