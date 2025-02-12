@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const NavbarAndSidebar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<number | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [typewriterText, setTypewriterText] = useState('>_');
 
   const toggleSidebarItem = (index: number) => {
     if (activeSection === index) {
@@ -14,6 +15,38 @@ const NavbarAndSidebar: React.FC = () => {
       setIsSidebarOpen(true);
     }
   };
+
+  // ✅ Typewriter effect for ">_MohanLu"
+  useEffect(() => {
+    const texts = ['>_MohanLu', '>_Developer', '>_Innovator'];
+    let currentIndex = 0;
+    let isDeleting = false;
+    let text = '';
+    let typingSpeed = 150;
+
+    const type = () => {
+      const fullText = texts[currentIndex];
+
+      if (isDeleting) {
+        text = fullText.substring(0, text.length - 1);
+      } else {
+        text = fullText.substring(0, text.length + 1);
+      }
+
+      setTypewriterText(text);
+
+      if (!isDeleting && text === fullText) {
+        setTimeout(() => (isDeleting = true), 1000); // Pause before deleting
+      } else if (isDeleting && text === '') {
+        isDeleting = false;
+        currentIndex = (currentIndex + 1) % texts.length;
+      }
+
+      setTimeout(type, typingSpeed);
+    };
+
+    type();
+  }, []);
 
   const navbarStyle: React.CSSProperties = {
     position: 'fixed',
@@ -28,16 +61,16 @@ const NavbarAndSidebar: React.FC = () => {
     alignItems: 'center',
     padding: '0 10px',
     zIndex: 1100,
-    boxShadow: '2 6px 15px rgba(0, 0, 0, 1)',
+    boxShadow: '2px 6px 15px rgba(0, 0, 0, 1)',
     borderBottom: '1.5px solid #2d2d30',
     fontFamily: '"Hack NF", monospace',
   };
 
   const sidebarStyle: React.CSSProperties = {
     position: 'fixed',
-    top: '45px',
+    top: '60px',
     left: 0,
-    height: 'calc(100vh - 45px)',
+    height: 'calc(100vh - 60px)',
     width: '50px',
     backgroundColor: '#141414',
     transition: 'width 0.3s ease',
@@ -47,6 +80,7 @@ const NavbarAndSidebar: React.FC = () => {
     display: 'flex',
     flexDirection: 'column',
     borderRight: '1px solid #2d2d30',
+    fontFamily: '"Hack NF", monospace',
   };
 
   const logoStyle: React.CSSProperties = {
@@ -55,7 +89,7 @@ const NavbarAndSidebar: React.FC = () => {
     fontSize: '1.2rem',
     fontWeight: 'bold',
     color: 'white',
-    font: 'Hack NF',
+    fontFamily: '"Hack NF", monospace',
   };
 
   const footerStyle: React.CSSProperties = {
@@ -80,6 +114,7 @@ const NavbarAndSidebar: React.FC = () => {
     fontWeight: 'bold',
     cursor: 'pointer',
     color: 'white',
+    fontFamily: '"Hack NF", monospace',
   };
 
   const sidebarItemStyle = (index: number): React.CSSProperties => ({
@@ -113,7 +148,7 @@ const NavbarAndSidebar: React.FC = () => {
   return (
     <>
       <header style={navbarStyle} className="navbar">
-        <div style={logoStyle}>&gt;_MohanLu</div>
+        <div style={logoStyle}>{typewriterText}</div>
         {navItems.map((item, index) => (
           <div
             key={index}
