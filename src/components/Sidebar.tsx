@@ -30,6 +30,7 @@ const NavbarAndSidebar: React.FC = () => {
     zIndex: 1100,
     boxShadow: '2 6px 15px rgba(0, 0, 0, 1)',
     borderBottom: '1.5px solid #2d2d30',
+    fontFamily: '"Hack NF", monospace',
   };
 
   const sidebarStyle: React.CSSProperties = {
@@ -54,6 +55,7 @@ const NavbarAndSidebar: React.FC = () => {
     fontSize: '1.2rem',
     fontWeight: 'bold',
     color: 'white',
+    font: 'Hack NF',
   };
 
   const footerStyle: React.CSSProperties = {
