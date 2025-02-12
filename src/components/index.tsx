@@ -3,10 +3,10 @@
 import Head from 'next/head';
 import React, { useEffect, useState, useCallback } from 'react';
 import config from '../../config.json';
-import Sidebar from '../components/Sidebar';
-import { Input } from '../components/input';
-import { useHistory } from '../components/history/hook';
-import { History } from '../components/history/History';
+import Sidebar from './Sidebar';
+import { Input } from './input';
+import { useHistory } from './history/hook';
+import { History } from './history/History';
 import { banner } from '../utils/bin';
 import { sumfetch } from '../utils/bin';
 
@@ -172,11 +172,11 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
 
       <Sidebar />
 
-      <div className="flex h-screen overflow-hidden pt-16 pb-8 pr-12">
+      <div className="flex h-screen overflow-hidden pt-16 pb-8 pr-10">
         {/* Main Content Wrapper - Ensure it takes full width minus sidebar */}
         <div className="flex w-[calc(100vw-50px)] h-full">
           {/* Left Container (Half of Remaining Space) */}
-          <div className="border-2 flex flex-col h-full w-[calc(1/2+5px)]">
+          <div className="border-2 flex flex-col h-full w-[calc(1/2+5px)">
             <div ref={containerRef} className="flex-grow overflow-y-auto p-4">
               <History history={history} />
               <Input
@@ -228,19 +228,20 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
                       Welcome to my site!
                     </h1>
                     <span className="text-white text-xs md:text-sm">
-                      Developer Profile: Mohan Lu
-                    </span>
-                    <span className="text-white text-xs md:text-sm">
-                      📧 CONTACT: ml7612@nyu.edu | +1 347-616-0606
-                    </span>
-                    <span className="text-white text-xs md:text-sm">
-                      🔗 LinkedIn: https://www.linkedin.com/in/mohan-lu/
+                      Software Engineer, Full Stack, Backend, Artificial
+                      Intelligence, Cloud
                     </span>
                     <span className="text-white text-xs md:text-sm">
                       📄 RESUME: Available upon request
                     </span>
                     <span className="text-white text-xs md:text-sm">
+                      🔗 LinkedIn: https://www.linkedin.com/in/mohan-lu/
+                    </span>
+                    <span className="text-white text-xs md:text-sm">
                       🐙 GitHub: https://github.com/Yolo1105
+                    </span>
+                    <span className="text-white text-xs md:text-sm">
+                      🦊 GitLab: https://gitlab.com/ml7612
                     </span>
                   </div>
                 </div>
@@ -254,7 +255,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
               </h2>
 
               <div className="flex">
-                <div className="text-[rgba(255,255,255,0.5)] mr-4 text-right">
+                <div className="text-[rgba(255,255,255,0.5)] text-right">
                   {Array.from({ length: 13 }).map((_, index) => (
                     <p
                       key={index}

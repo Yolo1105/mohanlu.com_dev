@@ -174,8 +174,8 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
       <Sidebar />
 
       {/* Main Content Wrapper */}
-      <div className="flex h-screen overflow-hidden pt-16 pb-8 pr-12">
-        <div className="flex w-[calc(100vw+100px)] mt-2 mb-2">
+      <div className="flex h-screen overflow-hidden pt-16 pb-8 pr-10">
+        <div className="flex w-[calc(100vw+100px)] mt-2 mb-2 ml-2">
           {/* Left Container */}
           <div
             className="border-2 flex flex-col w-[cal(1/2+20px)] animate-slide-left"
@@ -198,7 +198,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
           </div>
 
           {/* Right Container */}
-          <div className="flex flex-col h-full w-1/2 ml-2 mr-4 gap-2">
+          <div className="flex flex-col h-full w-1/2 ml-2 gap-2">
             {/* Right Upper Section */}
             <div
               className="border-2 p-4 flex-1 overflow-hidden tb-2 animate-slide-right"
@@ -234,21 +234,9 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
                     <h1 className="text-white font-bold text-2xl md:text-4xl">
                       Welcome to my site!
                     </h1>
-                    <span className="text-white text-s">
-                      Developer Profile: Mohan Lu
-                    </span>
-                    <span className="text-white text-s">
-                      📧 CONTACT:{' '}
-                      <u>
-                        <a
-                          href="mailto:ml7612@nyu.edu"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          ml7612@nyu.edu
-                        </a>
-                      </u>{' '}
-                      | +1 347-616-0606
+                    <span className="text-white text-xs md:text-sm">
+                      Software Engineer, Full Stack, Backend, Artificial
+                      Intelligence, Cloud
                     </span>
                     <span className="text-white text-s">
                       🔗 LinkedIn:{' '}
@@ -286,6 +274,18 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
                         </a>
                       </u>
                     </span>
+                    <span className="text-white text-s">
+                      🦊 GitLab:{' '}
+                      <u>
+                        <a
+                          href="https://gitlab.com/ml7612"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          https://gitlab.com/ml7612
+                        </a>
+                      </u>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -301,11 +301,11 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
               </h2>
 
               <div className="flex">
-                <div className="text-[rgba(255,255,255,0.5)] mr-4 text-right">
+                <div className="text-[rgba(255,255,255,0.5)] text-right">
                   {Array.from({ length: 9 }).map((_, index) => (
                     <p
                       key={index}
-                      className="min-h-4 md:min-h-6 text-xs md:text-base"
+                      className="min-h-4 md:min-h-6 text-xs md:text-base mr-2"
                     >
                       {index + 1}
                     </p>

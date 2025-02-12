@@ -70,8 +70,8 @@ const NavbarAndSidebar: React.FC = () => {
     position: 'fixed',
     top: '60px',
     left: 0,
-    height: 'calc(100vh - 60px)',
-    width: '50px',
+    height: 'calc(100vh)',
+    width: '30px',
     backgroundColor: '#141414',
     transition: 'width 0.3s ease',
     zIndex: 1000,
@@ -79,6 +79,8 @@ const NavbarAndSidebar: React.FC = () => {
     boxShadow: '2px 0 6px rgba(0,0,0,0.3)',
     display: 'flex',
     flexDirection: 'column',
+    writingMode: 'vertical-lr', // Vertical text, reading downwards
+    alignItems: 'center',
     borderRight: '1px solid #2d2d30',
     fontFamily: 'Hack NF',
   };
@@ -116,32 +118,12 @@ const NavbarAndSidebar: React.FC = () => {
     fontFamily: 'Hack NF',
   };
 
-  const sidebarItemStyle = (index: number): React.CSSProperties => ({
-    padding: '15px 10px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    cursor: 'pointer',
-    color: 'white',
-    transition: 'background-color 0.3s ease',
-    width: '50px',
-    backgroundColor: activeSection === index ? '#3e3e42' : 'transparent',
-  });
-
   const navItems = [
     './About',
     './Experience',
     './Projects',
     './Skills',
     './Contact',
-  ];
-
-  const sidebarItems = [
-    { icon: '📁', text: 'Files' },
-    { icon: '🔍', text: 'Search' },
-    { icon: '🌿', text: 'Git' },
-    { icon: '🐞', text: 'Debug' },
-    { icon: '➕', text: 'Extensions' },
   ];
 
   return (
@@ -169,29 +151,12 @@ const NavbarAndSidebar: React.FC = () => {
       </header>
 
       <div style={sidebarStyle} className="sidebar">
-        {sidebarItems.map((item, index) => (
-          <div
-            key={index}
-            style={sidebarItemStyle(index)}
-            onClick={() => toggleSidebarItem(index)}
-            onMouseEnter={(e) => {
-              if (activeSection !== index) {
-                e.currentTarget.style.backgroundColor = '#3e3e42';
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (activeSection !== index) {
-                e.currentTarget.style.backgroundColor = 'transparent';
-              }
-            }}
-          >
-            <span>{item.icon}</span>
-          </div>
-        ))}
+        &copy; 2025 Mohan Lu. All rights reserved.
       </div>
 
       <footer style={footerStyle} className="footer">
-        &copy; 2025 Mohan Lu. All rights reserved.
+        Master Branch Ln 11, Col 5 Spaces:2 UTF - 8 LF {} TypeScript JSX
+        {/* &copy; 2025 Mohan Lu. All rights reserved. */}
       </footer>
     </>
   );

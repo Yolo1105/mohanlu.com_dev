@@ -39,7 +39,7 @@ const Loading: React.FC<LoadingProps> = ({ onLoadingComplete }) => {
       );
     };
 
-    const intervalId = setInterval(animateIcons, 16); // Increased to 60 FPS for smoother animation
+    const intervalId = setInterval(animateIcons, 16); // ~60 FPS for smoother animation
 
     return () => clearInterval(intervalId);
   }, []);
@@ -93,13 +93,17 @@ const Loading: React.FC<LoadingProps> = ({ onLoadingComplete }) => {
     if (typewriterRef.current && !typewriterInstance.current) {
       typewriterInstance.current = new Typewriter(typewriterRef.current, {
         loop: false,
-        typingSpeed: 30, // Slightly increased for smoother typing
+        typingSpeed: 30,
         deletingSpeed: 20,
       });
 
+      // Use random speed and pause for the initial command
+      const initialRandomSpeed = Math.random() * 0.15 + 0.05; // e.g. between 0.05 and 0.2
+      const initialRandomPause = Math.floor(Math.random() * 400) + 100; // between 100ms and 500ms
+
       typewriterInstance.current
-        .typeString('mohan@dev:~$ ssh mohan_lu.com')
-        .pauseFor(500)
+        .typeString('mohan@dev:~$ ssh mohan_lu.com', initialRandomSpeed)
+        .pauseFor(initialRandomPause)
         .newLine()
         .start()
         .then(() => {
@@ -112,33 +116,40 @@ const Loading: React.FC<LoadingProps> = ({ onLoadingComplete }) => {
 
   const processOutput = () => {
     const output = [
-      // 'CPU0 microcode updated early to revision 0x1b, date = 2014-05-29',
-      // 'Initializing cgroup subsys cpuset',
-      // 'KERNEL supported cpus:',
-      // '  Intel GenuineIntel',
-      // '  AMD AuthenticAMD',
-      // '  Centaur CentaurHauls',
-      // 'Initialising...',
-      // '',
+      '> npm install portfolio --save',
+      '> Installing dependencies: express, react, node, etc.',
+      '> Running node server.js',
+      '> Initializing creative API endpoints',
+      '> Full-stack environment loaded',
+      'All systems go!',
     ];
 
     let i = 0;
+
+    // Helper functions to generate random speeds and pauses
+    const getRandomSpeed = () => Math.random() * 0.15 + 0.05; // Random speed between 0.05 and 0.2
+    const getRandomPause = () => Math.floor(Math.random() * 400) + 100; // Random pause between 100 and 500 ms
+    const getRandomLineDelay = () => Math.floor(Math.random() * 100) + 50; // Delay between lines: 50-150ms
+
     const typeOutputLine = () => {
       if (i < output.length) {
+        const randomSpeed = getRandomSpeed();
+        const randomPause = getRandomPause();
+
         typewriterInstance.current
-          ?.typeString(output[i], 0.1) // Increased speed for smoother typing
+          ?.typeString(output[i], randomSpeed)
           .newLine()
-          .pauseFor(100) // Short pause between lines
+          .pauseFor(randomPause)
           .start()
           .then(() => {
             i++;
-            setTimeout(typeOutputLine, 50); // Small delay between lines for smoother appearance
+            // Auto-scroll to bottom
+            if (containerRef.current) {
+              containerRef.current.scrollTop =
+                containerRef.current.scrollHeight;
+            }
+            setTimeout(typeOutputLine, getRandomLineDelay());
           });
-
-        // Auto-scroll to bottom
-        if (containerRef.current) {
-          containerRef.current.scrollTop = containerRef.current.scrollHeight;
-        }
       } else {
         setIsComplete(true);
         setTimeout(() => onLoadingComplete?.(), 300);
