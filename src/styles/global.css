@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Hack";
+  font-family: 'Hack';
   src: url(/assets/fonts/Hack-NF.ttf);
   display: swap;
 }
 
 * {
-  font-family: "Hack", monospace;
+  font-family: 'Hack', monospace;
 }
 
 :root {
@@ -63,7 +63,7 @@ div#__next > div {
 }
 
 #stars:after {
-  content: " ";
+  content: ' ';
   position: absolute;
   top: 2000px;
   width: 1px;
@@ -81,7 +81,7 @@ div#__next > div {
 }
 
 #stars2:after {
-  content: " ";
+  content: ' ';
   position: absolute;
   top: 2000px;
   width: 2px;
@@ -99,7 +99,7 @@ div#__next > div {
 }
 
 #stars3:after {
-  content: " ";
+  content: ' ';
   position: absolute;
   top: 2000px;
   width: 3px;
@@ -166,7 +166,7 @@ pre {
 }
 
 .term:after {
-  content: "_";
+  content: '_';
   opacity: 1;
   animation: cursor 1s infinite;
 }
@@ -252,7 +252,9 @@ pre {
   width: 40px; /* Adjust size */
   opacity: 0.5; /* Semi-transparent */
   z-index: -1; /* Ensure icons are visible */
-  left: calc(var(--random-left, 0%) - 20px); /* Ensure icons are positioned randomly */
+  left: calc(
+    var(--random-left, 0%) - 20px
+  ); /* Ensure icons are positioned randomly */
   animation: moveUpAndSpin 10s linear infinite; /* Combined animation */
 }
 
@@ -394,8 +396,8 @@ pre {
 .footer {
   position: fixed;
   bottom: 0;
-  left: 0;
-  width: 100%;
+  left: 50px; /* Adjust to start after sidebar */
+  width: calc(100% - 50px); /* Prevent it from exceeding the right side */
   height: var(--footer-height);
   background-color: #0b0b0b;
   color: white;
@@ -529,4 +531,3 @@ pre {
     font-size: 1.25rem;
   }
 }
-

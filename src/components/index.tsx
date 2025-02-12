@@ -174,9 +174,9 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
 
       <div className="flex h-screen overflow-hidden pt-16 pb-8 pr-12">
         {/* Main Content Wrapper - Ensure it takes full width minus sidebar */}
-        <div className="flex w-[calc(100vw-50px)] ml-2 mt-2 mb-2">
+        <div className="flex w-[calc(100vw-50px)] h-full">
           {/* Left Container (Half of Remaining Space) */}
-          <div className="border-2 flex flex-col w-[calc(1/2+5px)] gap-6">
+          <div className="border-2 flex flex-col h-full w-[calc(1/2+5px)]">
             <div ref={containerRef} className="flex-grow overflow-y-auto p-4">
               <History history={history} />
               <Input
@@ -194,12 +194,12 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
           </div>
 
           {/* Right Container (Other Half, Split Vertically) */}
-          <div className="flex flex-col h-full w-1/2 ml-2 mr-4 gap-2">
+          <div className="flex flex-col h-full w-1/2">
             {/* Top Right Section */}
-            <div className="border-2 p-4 flex-1 overflow-hidden tb-2">
+            <div className="border-2 p-4 flex-1 overflow-y-auto">
               <div className="bg-black p-1">
                 <div className="flex items-start gap-4">
-                  <div className="flex flex-col gap-4 mt-[-10px]">
+                  <div className="flex flex-col gap-4">
                     {Array.from({ length: 7 }).map((_, index) => (
                       <div key={index} className="relative w-16 h-10">
                         <div className="absolute w-8 h-6 border border-white left-4 top-2" />
@@ -227,19 +227,19 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
                     <h1 className="text-white font-bold text-2xl md:text-4xl">
                       Welcome to my site!
                     </h1>
-                    <span className="text-white text-s ">
+                    <span className="text-white text-xs md:text-sm">
                       Developer Profile: Mohan Lu
                     </span>
-                    <span className="text-white text-s ">
+                    <span className="text-white text-xs md:text-sm">
                       📧 CONTACT: ml7612@nyu.edu | +1 347-616-0606
                     </span>
-                    <span className="text-white text-s ">
+                    <span className="text-white text-xs md:text-sm">
                       🔗 LinkedIn: https://www.linkedin.com/in/mohan-lu/
                     </span>
-                    <span className="text-white text-s ">
+                    <span className="text-white text-xs md:text-sm">
                       📄 RESUME: Available upon request
                     </span>
-                    <span className="text-white text-s ">
+                    <span className="text-white text-xs md:text-sm">
                       🐙 GitHub: https://github.com/Yolo1105
                     </span>
                   </div>
@@ -248,14 +248,14 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
             </div>
 
             {/* Bottom Right Section */}
-            <div className="border-2 p-4 flex-1 gap-2 overflow-hidden">
-              <h2 className="text-lg md:text-2xl font-bold mb-2">
+            <div className="border-2 p-4 flex-1 overflow-y-auto">
+              <h2 className="text-2xl md:text-4xl font-bold mb-4">
                 {sectionTitle}
               </h2>
 
               <div className="flex">
                 <div className="text-[rgba(255,255,255,0.5)] mr-4 text-right">
-                  {Array.from({ length: 9 }).map((_, index) => (
+                  {Array.from({ length: 13 }).map((_, index) => (
                     <p
                       key={index}
                       className="min-h-4 md:min-h-6 text-xs md:text-base"
@@ -278,44 +278,26 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
                     </p>
                   ))}
 
-                  <div className="flex-grow text-xs md:text-base">
-                    {[
-                      {
-                        zh: '当前时间是：',
-                        en: 'Current Time: ',
-                        value: systemInfo.currentTime,
-                      },
-                      {
-                        zh: '操作系统：',
-                        en: 'Operating System: ',
-                        value: systemInfo.osInfo,
-                      },
-                      {
-                        zh: '浏览器信息：',
-                        en: 'Browser Info: ',
-                        value: systemInfo.browserInfo,
-                      },
-                      {
-                        zh: 'IP 地址：',
-                        en: 'IP Address: ',
-                        value: systemInfo.ipAddress,
-                      },
-                      {
-                        zh: '网络延迟：',
-                        en: 'Network Latency: ',
-                        value: systemInfo.latency,
-                      },
-                    ].map((item, index) => (
-                      <p key={index}>
-                        <span className="font-bold">
-                          {navigator.language.includes('zh')
-                            ? item.zh
-                            : item.en}
-                        </span>
-                        <span>{item.value}</span>
-                      </p>
-                    ))}
-                  </div>
+                  <p>
+                    <span className="font-bold">当前时间是：</span>
+                    <span>{systemInfo.currentTime}</span>
+                  </p>
+                  <p>
+                    <span className="font-bold">操作系统：</span>
+                    <span>{systemInfo.osInfo}</span>
+                  </p>
+                  <p>
+                    <span className="font-bold">浏览器信息：</span>
+                    <span>{systemInfo.browserInfo}</span>
+                  </p>
+                  <p>
+                    <span className="font-bold">IP 地址：</span>
+                    <span>{systemInfo.ipAddress}</span>
+                  </p>
+                  <p>
+                    <span className="font-bold">网络延迟：</span>
+                    <span>{systemInfo.latency}</span>
+                  </p>
                 </div>
               </div>
             </div>
