@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Document base ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #141414;
+  color: #d6d6dd;
+  font-family: 'Geist', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* The IDE chrome manages its own scrolling internally — the document
+     itself never scrolls. */
+  overflow: hidden;
+}
+
+#__next { width: 100vw; height: 100vh; }
+
+/* Hide scrollbars across the app while keeping scroll functional. */
+::-webkit-scrollbar { display: none; width: 0; height: 0; }
+* { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; width: 0; height: 0; }
+
+input, textarea { outline: none; }
+
+/* ── Reusable animation keyframes ──────────────────────────────────── */
+@keyframes blink {
+  0%, 50%   { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+@keyframes thinkDot {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30%           { opacity: 1;   transform: translateY(-2px); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+@keyframes petEmote {
+  0%   { opacity: 0; transform: translateY(4px)  scale(0.6); }
+  15%  { opacity: 1; transform: translateY(-2px) scale(1.1); }
+  30%  {             transform: translateY(-4px) scale(1); }
+  85%  { opacity: 1; transform: translateY(-10px); }
+  100% { opacity: 0; transform: translateY(-14px); }
+}
+
+/* ── Loading screen ────────────────────────────────────────────────── */
+
+/* Three parallax star layers. Each is a single tiny element whose
+   box-shadow paints hundreds of dots; the :after pseudo-element
+   duplicates the pattern 2000px below so the upward scroll loops
+   seamlessly. Stars sit behind everything (z-index 0). */
+.loading-star,
+.loading-star::after {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: transparent;
+  z-index: 0;
+  pointer-events: none;
+}
+.loading-star::after {
+  content: ' ';
+  top: 2000px;
+  box-shadow: inherit;
+  width: inherit;
+  height: inherit;
+}
+.loading-star-small  { width: 1px; height: 1px; animation: animStar 50s  linear infinite; }
+.loading-star-medium { width: 2px; height: 2px; animation: animStar 100s linear infinite; }
+.loading-star-large  { width: 3px; height: 3px; animation: animStar 150s linear infinite; }
+
+@keyframes animStar {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-2000px); }
+}
+
+/* Floating tech icons drift up the viewport while rotating. They sit
+   ABOVE the typewriter text (z-index 3 vs. text z-index 1) so the
+   colored brand icons literally flow past and over the words.
+   Translation range starts well below the viewport (130vh) and ends
+   well above (-40vh) so each icon spends most of its lifetime visibly
+   in-screen rather than vanishing the moment it reaches the top.
+   Opacity fades in at the bottom and out at the top so they enter
+   and exit smoothly rather than popping. */
+.loading-floating-icon {
+  position: fixed;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  object-fit: contain;
+  will-change: transform, opacity;
+  animation-name: moveUpAndSpin;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes moveUpAndSpin {
+  0%   { transform: translateY(130vh) rotate(0deg);   opacity: 0; }
+  8%   {                                              opacity: 0.4; }
+  92%  {                                              opacity: 0.4; }
+  100% { transform: translateY(-40vh) rotate(360deg); opacity: 0; }
+}
