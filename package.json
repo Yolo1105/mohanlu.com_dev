@@ -1,8 +1,14 @@
 {
   "name": "mohanlu-portfolio",
   "version": "2.0.0",
-  "description": "Mohan Lu's personal portfolio — an interactive Cursor-IDE-themed site with AI assistant",
+  "description": "Mohan Lu's personal portfolio — an interactive IDE-themed site with grounded AI assistant",
   "private": true,
+  "author": "Mohan Lu <mohan.lu1105@gmail.com>",
+  "homepage": "https://mohanlu.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yolo1105"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

@@ -1,12 +1,15 @@
-name: Deploy Website
+name: CI
 
 on:
   push:
     branches:
-      - main # Change if your branch is different
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  deploy:
+  verify:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,17 +19,17 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # Use the version your project requires
-          cache: 'yarn'
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install Dependencies
-        run: yarn install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type Check
+        run: npm run typecheck
 
       - name: Build the Project
-        run: yarn build && yarn export
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: out # Use the correct output directory
+        run: npm run build

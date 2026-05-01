@@ -41,352 +41,436 @@ const C = {
   err:   '#f14c4c',
 };
 
-// ── File content (kept brief, placeholder only) ─────────────────────────
+// ── File content ─────────────────────────────────────────────────────────
+// All files visible in the IDE's file tree are stored here. Each entry has
+// a `kind` (markdown | bash | yaml | json | dotfile | pdf) and a `body`
+// for text formats. PDFs have no body — the rendering pane handles them
+// separately. Markdown supports interactive extensions:
+//   [[Label|path/to/file.md]]            opens the file
+//   [[Label|path/to/file.md|colorKey]]   colored chip variant
+//   [[Label|focus:chat]]                 focuses chat input
+//   [[Label|focus:terminal]]             focuses terminal input
+//   {c:colorKey:text}                    inline colored span
 const FILE_CONTENT = {
   'README.md': { kind: 'markdown', body:
-`# {c:synKeyword:const} {c:synType:mohan} = {c:synFn:engineer} + {c:synString:student} + {c:synAttr:shipper};
+`# {c:synKeyword:const} {c:synType:mohan} = {c:synFn:engineer} + {c:synString:cofounder} + {c:synAttr:researcher};
 
-cs undergrad at [[nyu tandon|experience/nyu.md|synType]]. [[full-stack|projects/flareo.md|synFn]] engineer with detours into [[embedded firmware|projects/arduino-rover.md|synKeyword]] and [[3d scenes|projects/particle-canvas.md|synString]]. strong bias toward shipping, mild obsession with making things feel good.
+graduating senior at [[nyu tandon|experience/nyu.md|synType]] (cs, dec 2025), heading to [[columbia|experience/columbia.md|synType]] for an ms in computer engineering. currently shipping at [[italic|experience/italic.md|synFn]], [[aeyesafe|experience/aeyesafe.md|synFn]], and as cto of [[furnishes|experience/furnishes.md|synFn]]. published [[ai-for-games research|achievements/aiide-2025.md|synKeyword]] at AIIDE 2025.
 
-> This site is my portfolio. Instead of a marketing page, I made it look like a code editor, because that's where I actually live. [[Click around|README.md|accent]]. [[Open files|about/bio.sh|accent]]. [[Run commands|focus:terminal|accent]]. [[Ask the assistant|focus:chat|accent]].
+> This site is my portfolio. Instead of a marketing page, I made it look like a code editor — because that's where I actually live. [[Click around|README.md|accent]]. [[Open files|about/bio.sh|accent]]. [[Run commands|focus:terminal|accent]]. [[Ask the assistant|focus:chat|accent]].
 
 ## the basics
 
 \`\`\`yaml
-location:    new york, ny
-school:      nyu tandon, class of 2027
-focus:       full-stack, distributed systems, embedded
-shipping:    flareo v1.2 (cloudflare workers + postgres)
-learning:    rust on weekends
+location:    new york, ny  # remote across LA, Seattle, Singapore
+school:      nyu tandon (BS CS, dec 2025) → columbia (MS CompE, sep 2026)
 status:      open to summer 2026 internships
+shipping:    [[flareo|projects/flareo.md|synKeyword]], [[furnishes|experience/furnishes.md|synKeyword]], italic, aeyesafe
 \`\`\`
 
-## what's this thing built with
+## what i'm currently building
 
-The whole site is one React component. No router. No state library. Tailwind for utility classes, plain CSS for animations, custom SVGs everywhere.
+three concurrent roles, plus my own startup, plus research:
 
-- **React + Tailwind** drive the UI
-- **Lucide** for icons, **Geist** and **Geist Mono** for type
-- **Custom SVG penguin** wanders the left panel. Handwritten state machine. Click him. Drag him.
-- The chat assistant runs in mock mode today, with a clean swap path to a real LLM via Vercel serverless route. Everything else is fully client-side.
+- **[[italic|experience/italic.md|synFn]]** — agentic operations platform for e-commerce. e2b sandboxes, postgres rls, mastra workflows.
+- **[[aeyesafe|experience/aeyesafe.md|synFn]]** — wearable-free senior health monitoring. asyncio tcp ingestion, time-series anomaly detection.
+- **[[furnishes|experience/furnishes.md|synFn]]** (cofounder/cto) — 3d interior design with rag, ppo for placement, conditional gan for color.
+- **[[flareo|projects/flareo.md|synKeyword]]** — solo: container supply-chain platform with sigstore signing, trivy scanning, kyverno admission.
 
-## what you can actually do here
+## tech i actually use
 
-This isn't a static page. Most of the IDE works:
-
-- **Browse the file tree** on the left. Real markdown, real code blocks, real content. The \`projects/\` folder is where the engineering writeups live.
-- **Use the side panels.** The activity bar swaps the left panel between file tree, content search, recent commits, my stack as a list of installed extensions, achievements, timeline, and contact.
-- **Talk to the assistant** on the right. It actually answers. Try asking *"why hire her?"* or *"tell me about flareo"*. Type \`/\` for slash commands.
-- **Open the terminal** at the bottom. \`ls\`, \`cat\`, \`whoami\`, \`whois\` all work. The bottom panel also has **OUTPUT** (live activity log) and **PORTS** (every place you can find me online).
-
-## try the terminal
-
-\`\`\`bash
-$ whoami
-mohan lu, undergrad @ nyu tandon, full-stack engineer
-
-$ ls projects
-flareo.md
-particle-canvas.md
-arduino-rover.md
-
-$ cat projects/flareo.md
-# opens the file in the editor
-
-$ help
-# shows the full command list
+\`\`\`yaml
+daily:    [typescript, python, react, next.js, postgres, redis]
+active:   [rust, go, fastapi, prisma, docker, kubernetes, aws]
+ml:       [pytorch ppo, conditional gan, faiss hnsw, langchain, opentelemetry]
+security: [sigstore/cosign, trivy, kyverno, hmac, oauth, row-level security]
 \`\`\`
 
-The terminal remembers command history (up/down arrows). \`help\` lists everything available.
+## links
 
-## quick links
-
-If you'd rather skip the tour:
-
-- **bio**: \`about/bio.sh\`
-- **resume**: \`about/resume.pdf\`
-- **best project**: \`projects/flareo.md\`
-- **all my links**: open the **PORTS** tab in the bottom panel
-- **email me**: the mail icon in the activity bar (fastest way)
+- github: [[Yolo1105|focus:chat|accent]] — github.com/Yolo1105
+- linkedin: linkedin.com/in/mohan-lu
+- email: mohan.lu1105@gmail.com
 
 ---
 
-> Thanks for stopping by. If you build something cool, I'd love to hear about it.
-`},
-  'github.md': { kind: 'markdown', body:
-`# {c:synKeyword:open}/{c:synType:public} {c:synAttr:→} {c:synFn:source}
-
-\`github.com/mohanlu\`
-
-A few public repos worth a look:
-
-- **flareo**, full-stack worker pipeline w/ Postgres + R2
-- **particle-canvas**, interactive WebGL particle system
-- **arduino-rover**, autonomous rover w/ ROS
-- **dotfiles**, my zsh + neovim setup
-- **mohanlu.com**, this site
-
-## activity
-~12 commits this week · most active in {c:synKeyword:TypeScript} and {c:synKeyword:Python}.
-
+> *built this in next.js 15 + react 18, anthropic sdk for the chat. source layout is intentional — explore.*
 ` },
-  'linkedin.md': { kind: 'markdown', body:
-`# {c:synKeyword:profile} {c:synAttr:://} {c:synType:professional}
 
-\`linkedin.com/in/mohan-lu\`
-
-## current
-- **NYU Tandon**, B.S. Computer Science, class of 2027
-- Focus: full-stack engineering, systems, AI tooling
-
-## experience
-- Building **flareo**, full-stack worker pipeline (TS / Postgres / R2)
-- Self-directed full-stack web development, 2 years
-- Coursework in algorithms, systems, software engineering
-
-## skills
-TypeScript · Python · C++ · React · Node.js · PostgreSQL · Docker · ROS · Blender
-
-## reach out
-Open to internships and collaborations. Best contact through the email in \`contact.json\`.
-` },
   'about/bio.sh': { kind: 'bash', body:
 `#!/bin/bash
-# bio.sh — who I am, in script form
-# run with: ./bio.sh
+# bio.sh — who i am, in shell
 
-echo "============================================"
-echo "  WHOAMI: mohan lu"
-echo "============================================"
+export NAME="Mohan Lu"
+export PRONOUNS="she/her"
+export ROLE="Software Engineer × 3 + CTO × 1 + Researcher"
+export LOCATION="New York, NY"
+export TIMEZONE="America/New_York"
 
-NAME="Mohan Lu"
-PRONOUNS="she/her"
-ROLE="full-stack engineer"
-SCHOOL="NYU Tandon"
-GRADUATING="2027"
-LOCATION="New York, NY"
+# education
+export NYU_TANDON="BS Computer Science, Dec 2025"
+export NYU_MINORS="Cybersecurity + Game Design"
+export COLUMBIA="MS Computer Engineering, Sep 2026 - Dec 2027"
 
-echo "name        $NAME"
-echo "role        $ROLE"
-echo "school      $SCHOOL  (class of $GRADUATING)"
-echo "located     $LOCATION"
+# what i build
+echo "shipping at three companies concurrently:"
+echo "  - italic    (agentic e-commerce ops)"
+echo "  - aeyesafe  (sensor-based health monitoring)"
+echo "  - furnishes (3d interior design — my company, cto)"
+
+# the side project that's also flagship
+echo "and flareo: container supply-chain verification"
+echo "  - typescript web + node worker + rust cli"
+echo "  - sigstore + cosign + trivy + kyverno"
+echo "  - github.com/Yolo1105/flareo"
+
+# how i think about engineering
 echo ""
-
-# What I've been building
-echo "## recent work"
-PROJECTS=(
-  "flareo            full-stack pipeline on Cloudflare Workers + Postgres"
-  "particle-canvas   interactive WebGL particle field, hand-rolled physics"
-  "arduino-rover     autonomous rover with cooperative-scheduler firmware"
-)
-for p in "\${PROJECTS[@]}"; do
-  echo "  - $p"
-done
-echo ""
-
-# Stack I reach for
-echo "## tech I use daily"
-STACK="typescript python react tailwind"
-echo "  $STACK"
-echo ""
-echo "## tech I'm actively building with"
-echo "  cplusplus postgres cloudflare-workers redis"
-echo ""
-echo "## currently learning"
-echo "  rust  # working through the book on weekends"
-echo ""
-
-# Values
-echo "## what I care about"
-cat <<EOF
-  - clean code that's kind to the next person reading it
-  - tools that make hard things feel obvious
-  - building things that are durable, not just demoable
-  - shipping before perfect
-  - the boring solution is usually right
-EOF
-echo ""
-
-# Status
-echo "## current status"
-if [ "$AVAILABLE" = "true" ]; then
-  echo "  open to summer 2026 internships"
-else
-  echo "  heads down on portfolio v2"
-fi
-
-echo ""
-echo "# end of bio. for more, run \\\`cat config.yaml\\\` or open the chat."
+echo "philosophy:"
+echo "  - ship with measurement, not speculation"
+echo "  - decision gates with trigger criteria"
+echo "  - security and observability from day one"
+echo "  - document the why, not just the what"
 ` },
+
   'about/timeline.json': { kind: 'json', body: {
-    education: [{ school: 'NYU Tandon', from: '2023', focus: 'Computer Science' }],
-    milestones: [
-      { date: '2024-08', event: 'First full-stack project shipped' },
-      { date: '2025-03', event: 'Started learning Rust' },
-      { date: '2026-01', event: 'Building portfolio v2' }
-    ]
-  }},
+    'sep_2021': { event: 'Started NYU Tandon', detail: 'BS Computer Science, minors in Cybersecurity + Game Design' },
+    'feb_2024': { event: 'NYU Research Technology Services', detail: 'HPC Assistant — built AI tutoring platform + HPC RAG assistant on OpenShift' },
+    'may_2024': { event: 'Founded Furnishes', detail: 'Cofounder & CTO — 3D interior design recommendation platform' },
+    'may_2025': { event: 'Started Flareo', detail: 'Solo project: container supply-chain verification platform' },
+    'jul_2025': { event: 'Joined Aeyesafe', detail: 'Software Engineer — wearable-free health monitoring sensor platform' },
+    'aug_2025': { event: 'Joined Italic', detail: 'Software Engineer — agentic operations platform for e-commerce' },
+    'sep_2025': { event: 'AIIDE 2025 publication', detail: 'Second author on Markovian WaveFunctionCollapse paper, EXAG workshop' },
+    'dec_2025': { event: 'Graduating NYU Tandon', detail: "Dean's List 2024-2025" },
+    'sep_2026': { event: 'Starting Columbia MS', detail: 'MS Computer Engineering, expected Dec 2027' },
+  } },
+
   'about/resume.pdf': { kind: 'pdf' },
+
+  'about/contact.json': { kind: 'json', body: {
+    email:    'mohan.lu1105@gmail.com',
+    github:   'https://github.com/Yolo1105',
+    linkedin: 'https://linkedin.com/in/mohan-lu',
+    portfolio: 'https://mohanlu.com',
+    location: 'New York, NY',
+    timezone: 'America/New_York',
+    response_time: 'within 4 hours during NYC daytime',
+    open_to: ['summer 2026 internship', 'full-stack roles', 'AI infrastructure', 'systems engineering'],
+    not_pursuing: ['pure ML research', 'sales engineering'],
+  } },
+
   'experience/nyu.md': { kind: 'markdown', body:
-`# {c:synKeyword:school}: {c:synType:nyu_tandon}
+`# {c:synKeyword:nyu} {c:synType:tandon}
 
-Undergraduate, **Computer Science**, class of {c:synFn:2027}.
+**BS Computer Science · Sep 2021 – Dec 2025**
+**Minors: Cybersecurity, Game Design**
+**Dean's List: Academic Year 2024–2025**
 
-Coursework focused on {c:synKeyword:systems}, {c:synKeyword:algorithms}, and {c:synKeyword:software engineering}.
+four years at nyu's engineering school. the cs program is rigorous; the cybersecurity minor pushed me toward adversarial thinking; the game design minor connected me to [[julian togelius|achievements/aiide-2025.md|synKeyword]]'s research group, which led to a published paper.
+
+## what i did beyond coursework
+
+- spent two years (feb 2024 – dec 2025) as an [[hpc assistant|experience/nyu-it.md|synFn]] at NYU's research technology services — building production tooling for researchers
+- coauthored a [[paper|achievements/aiide-2025.md|synKeyword]] published at AIIDE 2025
+- built [[flareo|projects/flareo.md|synKeyword]] as a solo project bridging into industry-grade infrastructure
+- founded [[furnishes|experience/furnishes.md|synFn]] in may 2024 while still enrolled
+
+## what i'm taking forward
+
+next stop: [[columbia|experience/columbia.md|synType]] for an ms in computer engineering, sep 2026.
 ` },
+
+  'experience/nyu-it.md': { kind: 'markdown', body:
+`# {c:synFn:nyu} {c:synType:research} {c:synAttr:technology services}
+
+**HPC Assistant · Feb 2024 – Dec 2025 · NYC**
+
+two distinct projects, both shipped in production at the university's IT department.
+
+## ai tutoring platform for university courses
+
+stack: \`fastapi\` · \`svelte typescript\` · \`redis queue\` · \`openshift\` · \`pgvector\` · \`postgres\` · \`opentelemetry\`
+
+- distributed redis queue worker pool, scaling to 8 replicas under fault tolerance
+- coordinated delete cleanup across pgvector, postgres, and knowledge files — preventing orphans from partial-failure rollbacks
+- atomic redis lua scripts on shared pools, preventing read-modify-write races across 8 replicas under sentinel failover
+- instrumented queue workers with opentelemetry to trace llm completions, embedding generation, and pgvector retrieval
+- caught a security leak: switched model authorization to deny-by-default with role and group scoping, closing access to unconfigured models platform-wide
+
+## hpc resource allocation assistant
+
+stack: \`fastapi\` · \`streamlit\` · \`faiss\` · \`bm25\` · \`langchain\` · \`kubernetes\`
+
+a rag pipeline answering researcher queries about cluster access, job submission, software modules.
+
+- retrieval: faiss hnsw + bm25 re-ranking through reciprocal rank fusion
+- p99 latency under 2 seconds
+- kubernetes statefulsets on openshift with cpu and memory autoscaling
+- redis embedding cache through langchain retrieval layer, reducing repeat api calls
+
+> the pattern of "hybrid retrieval + ranking + cache layer + autoscaling" turned out to be extremely transferable. i use variants of it everywhere now.
+` },
+
+  'experience/italic.md': { kind: 'markdown', body:
+`# {c:synFn:italic}
+
+**Software Engineer · Aug 2025 – present · Los Angeles (remote)**
+
+building an agentic operations platform for e-commerce. real production code with 1,000+ monthly active users. this is where i learned what it actually takes to ship ai agents that touch real revenue.
+
+## what i shipped
+
+- **streaming chat** with next.js server components, persisted tool execution state — 1,000+ MAU
+- **e2b sandboxes** with hmac-signed bridge api for callbacks, logging execution + bridge calls in supabase storage
+- **postgres multi-tenant schema** with row-level security isolating organizations, runs, approvals via supabase auth
+- **slack integration** with webhook signature verification + block kit buttons, gating agent execution on confirmed approvals
+- **mastra workflows** chaining shopify, klaviyo, recharge through pipedream and ai gateway, isolating credentials per tenant
+
+## what i learned
+
+agents that actually work in production look very different from demos. you need:
+- isolated execution surfaces (e2b sandboxes, signed bridges)
+- explicit human gates on consequential actions (slack approvals)
+- credential isolation per tenant (rls, scoped auth)
+- workflow orchestration that survives partial failure (mastra, dlq)
+
+> this is the kind of work you only get to do at a startup that's actually shipping ai to real businesses, not demoware.
+` },
+
+  'experience/aeyesafe.md': { kind: 'markdown', body:
+`# {c:synFn:aeyesafe}
+
+**Software Engineer · Jul 2025 – present · Seattle (remote)**
+
+senior health monitoring through wearable-free sensors. distributed systems work in a healthcare context — translating physical sensor signals into actionable health metrics and alerts.
+
+## what i built
+
+- **distributed sensor ingestion**: python asyncio tcp client processing **20K daily readings from 200 facilities**
+- **vendor sleep api integration** with hmac-sha1 auth + gzip decompression, extracting **30+ health metrics into dynamodb**
+- **multi-tier aggregation** with eventbridge cron + shared lambda layers, reducing dashboard query load
+- **sliding-window anomaly detection** on mongodb time-series aggregations, substantially minimizing false-positive alerts
+- **observability**: prometheus + grafana dashboards + pagerduty escalation for rapid incident response
+
+## why this matters
+
+false alerts in eldercare aren't just annoying — they erode trust until staff stop responding. cutting them down was as much a clinical-safety win as a technical one.
+
+> the sliding-window pattern + multi-tier aggregation is the same general shape as the rag-with-cache pattern from nyu IT — different domain, same architectural skeleton.
+` },
+
+  'experience/furnishes.md': { kind: 'markdown', body:
+`# {c:synFn:furnishes}
+
+**Cofounder & Chief Technology Officer · May 2024 – present · Singapore (remote)**
+
+my own company. an intelligent 3d interior design recommendation platform.
+
+i'm not just an engineer here — i'm the technical leader. the work spans generative ai, reinforcement learning, full-stack web, and infrastructure. the breadth is the point: a startup needs someone who can build the whole thing.
+
+## what's in the stack
+
+### chat assistant + 3d studio
+- chat assistant with **hybrid rag retrieval grounded in live 3d scene state**
+- text-to-3d furniture studio integrated with the conversation
+- streamed **5-stage room generation** through flux + hunyuan3d over sse — under 15 seconds preview tier
+- per-piece failure isolation (one model failing doesn't kill the room)
+
+### machine learning
+- **conditional gan** trained on 10K+ designs for color generation
+- **int8 quantization** reducing inference model size 75%
+- **pytorch ppo** reinforcement learning for furniture placement
+  - **42% improvement** in user acceptance vs baseline
+
+### infrastructure
+- postgres + prisma persistence across **60+ models** (conversations, preferences, design docs, cost tracking)
+- docker on aws ecs with cloudfront
+- github actions ci/cd
+- supports 1,000+ concurrent users
+
+## why i started this
+
+interior design recommendation tools are mostly "moodboard generators" — they don't model the actual room. furnishes does: it understands what's already in the scene, recommends pieces that fit, and uses rl to refine placement based on which arrangements users actually accept.
+
+> open-source surface: github.com/Yolo1105/Furniture-Arrangement-Generator
+` },
+
+  'experience/columbia.md': { kind: 'markdown', body:
+`# {c:synType:columbia} {c:synFn:university}
+
+**MS Computer Engineering · Sep 2026 – Dec 2027 (incoming)**
+
+admitted to columbia for a master's in computer engineering, starting after the gap from my december 2025 nyu graduation. it's a 16-month program ending december 2027.
+
+## why this program
+
+computer engineering bridges the cs side i already know with deeper systems and hardware grounding. given the work i'm doing in distributed systems (aeyesafe), supply-chain security (flareo), and ml infrastructure (furnishes, italic), the ce angle adds the layer i've been borrowing without formally studying — closer-to-the-metal architecture, signal processing, embedded.
+
+## the gap window
+
+dec 2025 → sep 2026 is a real window. i'm currently allocated across italic, aeyesafe, and furnishes, and **open to summer 2026 internships** that overlap with that gap.
+
+> [[contact|focus:chat|accent]] if there's a specific opportunity worth a conversation.
+` },
+
   'projects/flareo.md': { kind: 'markdown', body:
-`# {c:synFn:flareo} {c:synAttr:// pipeline}
+`# {c:synKeyword:flareo}
 
-A full-stack worker pipeline for processing and storing media at scale, built on [[Cloudflare's edge stack|projects/flareo.md|synType]] with a {c:synKeyword:Postgres} metadata layer.
+**Container supply-chain verification platform · solo · May 2025 – April 2026**
 
-> Built because every off-the-shelf job queue I tried either didn't run on the edge or required spinning up infra I didn't want to babysit.
+submitters push a Dockerfile; the platform builds it deterministically, scans it for vulnerabilities, signs the result with sigstore, and publishes a verifiable runbook attached to the resulting image.
 
-## What it does
+target users: teams running self-hosted infra who want to know that the containers they pull match the source they think they're pulling — without having to set up the build, sign, and verify pipelines themselves.
 
-Accepts upload requests at the edge, runs transformation pipelines (resize, transcode, hash, scan), persists outputs to R2, and exposes a typed query API for the frontend. Built around three guarantees: **at-least-once** processing, **idempotent** retries, and **observable** failure modes.
+- **repo**: github.com/Yolo1105/flareo
+- **live preview**: preview.flareo.dev
 
-## Architecture
+## architecture
 
+\`\`\`text
+┌────────────────────────────┐
+│      apps/web (Vercel)     │  Next.js · marketplace · API · NextAuth
+└────────┬──────────────┬────┘
+         │ Postgres     │ HTTP + FLAREO_WORKER_SECRET
+         ▼              ▼
+   ┌──────────┐  ┌────────────────────────┐
+   │ Postgres │  │  apps/worker (Hetzner) │  Build → Trivy → cosign sign
+   └──────────┘  └────────────────────────┘  → push to ECR Public
+                              │
+                              ▼
+                       ECR Public (signed)
+                              │
+                              ▼
+              packages/cli (Rust, brew install flareo)
+              + deploy/kubernetes (Kyverno admission)
 \`\`\`
-client → POST /upload → Worker (auth + validate)
-                     ↓
-             enqueue → Cloudflare Queue
-                     ↓
-        consumer Worker → R2 (blob)
-                       → Postgres (metadata, status)
-                       → Webhook (downstream notify)
+
+## components
+
+- **\`apps/web\`** — next.js. nextauth v5 (github oauth), prisma, upstash redis, resend, sentry
+- **\`apps/worker\`** — node build worker pulling jobs from db queue, building in sandbox, trivy scanning, cosign keyless signing, pushing to ecr public, callback via shared secret
+- **\`packages/cli\`** — **rust** binary. \`flareo verify\` and \`flareo pull\`. ships via homebrew with github oauth device-code flow. runs trivy locally as second-opinion before pull.
+- **\`deploy/kubernetes\`** — opa gatekeeper / kyverno admission controllers. blocks unsigned images, defaults to audit-mode for rollout.
+
+## what makes this real
+
+verifies arbitrary OCI images against sigstore bundles, parsing **v0.1 through v0.3** across docker hub, ghcr, and ecr public. that's the part most container security tools skip — they only handle one bundle version.
+
+\`\`\`yaml
+languages: { typescript: 84.8%, mdx: 7.2%, rust: 5.9%, shell: 1.6% }
+commits:   112
+status:    pre-launch (decision gate F0: 5% landing → signup conversion)
 \`\`\`
 
-A single Cloudflare Worker handles ingress; a separate consumer Worker subscribes to the queue and executes the pipeline. State lives in Postgres (Hyperdrive-backed) so the consumers themselves are stateless and horizontally scalable.
+## why this is the flagship
 
-## Stack
+it's the project where i invested the most discipline:
+- decision gates with measurable trigger criteria (the F0 conversion gate)
+- speculative code behind feature flags (\`FLAREO_FEATURE_*\`)
+- archived docs marked "do not follow as instructions" to avoid prompt poisoning when working with ai assistants
+- separate runbooks for deploy, ops, and customization
 
-- **Runtime**, Cloudflare Workers + Queues + R2
-- **Database**, PostgreSQL via Hyperdrive (pooled at the edge)
-- **Schema**, Drizzle ORM with strict TypeScript inference
-- **Observability**, Structured logs to Workers Logpush + custom dashboards in Grafana
-- **Auth**, JWT (RS256) with key rotation via D1
-
-## Tradeoffs I made
-
-- **Postgres over D1.** D1 would be cheaper and edge-native, but I needed JSONB and complex indexing across multi-tenant data. Worth the hop to Hyperdrive.
-- **Queues over Durable Objects.** DOs are great for coordination but overkill for a fire-and-forget pipeline. Queues' built-in retries + DLQ saved me writing my own retry logic.
-- **Idempotency keys at the API layer**, not the consumer. Means clients can safely retry without me having to dedupe inside the pipeline, a big simplification.
-
-## What I'd do differently
-
-The transcoding step initially ran inside the consumer Worker. Worker CPU limits made anything heavier than image resize impractical. v1.2 splits transcoding to a separate fan-out path that posts to a serverless GPU provider, works, but the abstraction got leaky. If I rebuilt it I'd model the pipeline as discrete *steps* from the start instead of monolithic consumers.
-
-## Status
-
-**v1.2 shipped April 2026.** Currently handling ~20k jobs/day in production. Next: replacing the webhook fan-out with a proper event bus so downstream subscribers can replay missed events.
-
-[github.com/mohanlu/flareo](https://github.com/mohanlu/flareo)
+> the readme alone is itself a portfolio piece. clone the repo and read it.
 ` },
-  'projects/particle-canvas.md': { kind: 'markdown', body:
-`# {c:synFn:particle_canvas} {c:synAttr:// webgl}
 
-An interactive {c:synKeyword:WebGL} particle field that connects nearby particles into a constellation mesh and reacts to the cursor.
+  'projects/furniture-arrangement.md': { kind: 'markdown', body:
+`# {c:synFn:furniture-arrangement-generator}
 
-> Hand-rolled physics, no library dependencies. Built it to learn how to write performant graphics code without leaning on three.js.
+**Open-source surface of the [[furnishes|experience/furnishes.md|synFn]] ml stack**
 
-## The effect
+- **repo**: github.com/Yolo1105/Furniture-Arrangement-Generator
+- **language**: python
 
-Particles drift on slow Brownian motion, but any pair within a threshold distance draws a line between them, opacity scaled by distance. The cursor acts as a soft attractor: particles within range nudge toward it, creating a localized swarm. Move fast and the mesh tears like a soap film.
+## what it does
 
-## How it works
+reinforcement learning for furniture placement in 3d rooms. given a set of pieces and a room geometry, learns to produce arrangements that maximize a learned acceptance signal.
 
-The naive O(n²) pairwise distance check breaks down past ~300 particles. So:
+## what's inside
 
-\`\`\`typescript
-// Spatial hash grid, bucket particles by cell, only check
-// neighbors within current cell + 8 adjacent cells.
-const grid = new Map<string, Particle[]>();
-const CELL = LINK_DISTANCE; // grid cell = link threshold
-for (const p of particles) {
-  const key = \`\${(p.x / CELL) | 0},\${(p.y / CELL) | 0}\`;
-  (grid.get(key) ?? grid.set(key, []).get(key)).push(p);
+- **pytorch ppo** for the placement policy
+- room-state representation grounded in actual geometry (not just bounding boxes)
+- reward signal trained on real user acceptance/rejection data
+- **42% improvement** over baseline placement on user acceptance rates
+
+## relationship to furnishes
+
+this is the open-source version of one component of the furnishes platform. the production version is integrated with:
+- live 3d scene state
+- conditional gan for color generation
+- int8 quantization for inference cost
+- the broader rag-grounded recommendation loop
+
+> see [[furnishes|experience/furnishes.md|synFn]] for the production stack context.
+` },
+
+  'projects/air-quality-nyc.md': { kind: 'markdown', body:
+`# {c:synAttr:air quality nyc}
+
+**Civic data project visualizing NYC air quality**
+
+- repos: github.com/Yolo1105/Air-Quality-Map and github.com/Yolo1105/Air_Quality_New_York
+
+an early-ish project visualizing nyc air quality data. it's pinned on my github because i think the substance of civic-data work matters even when the stars don't.
+
+## what it does
+
+interactive map of nyc air quality readings. mostly html + javascript, no fancy stack. but the data is real (nyc open data, epa) and the questions it answers are real.
+
+## why it's still pinned
+
+most engineers prune their pinned repos to whatever looks impressive. i keep this one because it's a small piece of evidence that i build for substance, not optics.
+
+> civic data is undervalued. there's a lot of public data with real implications for public health and policy that just sits there because nobody packages it accessibly.
+` },
+
+  'achievements/aiide-2025.md': { kind: 'markdown', body:
+`# {c:synKeyword:aiide} {c:synType:2025} {c:synFn:publication}
+
+**Second author on a published paper at AIIDE 2025 EXAG workshop**
+
+\`\`\`bibtex
+@inproceedings{yiu2025markovian,
+  title     = {A Markovian Framing of WaveFunctionCollapse for
+              Procedurally Generating Aesthetically Complex Environments},
+  author    = {Yiu, Frederic and {\\textbf{Lu, Mohan}} and Li, Nuo and Joseph, Kevin
+              and Zhang, Tianxin and Togelius, Julian and Merino, Tim and Earle, Sam},
+  booktitle = {Experimental AI in Games Workshop (EXAG'25), AIIDE 2025},
+  year      = {2025},
+  url       = {https://arxiv.org/abs/2509.09919},
 }
 \`\`\`
 
-That alone took the per-frame work from O(n²) to roughly O(n) for typical densities, and unlocked 2000+ particles at 60fps on a midrange laptop.
+## what the paper does
 
-## What I learned
+reframes WaveFunctionCollapse — a popular procedural generation algorithm — as a markov decision process. this lets you apply rl methods to an algorithm that's traditionally been treated as a constraint solver.
 
-- **GPU compute would've been faster but worse to debug.** Started writing it as a compute shader, switched to plain canvas2d + spatial hashing once I realized I'd hit the limit of my WebGL debugging stamina before I'd hit a perf wall.
-- **The bottleneck was the line stroking, not the math.** Rendering 4000+ short line segments is heavier than computing them. Batching adjacent strokes by alpha bucket cut paint time by ~40%.
-- **Linear interpolation for cursor force gives a "syrupy" feel that beats any spring constant I tried.**
+## why this matters
 
-## Run it
+procedural generation in games has historically been:
+- **rule-based** (designer-authored constraints) — limited expressivity
+- **search-based** (constraint solvers like wfc) — brittle to "aesthetic" criteria
 
-\`\`\`bash
-git clone https://github.com/mohanlu/particle-canvas
-cd particle-canvas && npm install && npm run dev
-\`\`\`
+framing wfc as a markov process opens the door to learning aesthetic criteria from data — closer to what an artist or designer would actually want.
 
-Knobs are exposed via \`config.ts\`, particle count, link distance, drift speed, attractor radius. Live-reloads on save.
+## the team
 
-[github.com/mohanlu/particle-canvas](https://github.com/mohanlu/particle-canvas)
+published with **julian togelius** (nyu professor, well-known in ai-for-games), **sam earle**, **tim merino**, and four others. togelius's research group is one of the most active in the academic ai-for-games space.
+
+> the connection between this paper and the [[furnishes|experience/furnishes.md|synFn]] ppo work isn't accidental. there's a coherent through-line: procedural generation → reinforcement learning → 3d scene synthesis.
 ` },
-  'projects/arduino-rover.md': { kind: 'markdown', body:
-`# {c:synFn:arduino_rover} {c:synAttr:// embedded}
 
-A small autonomous rover that wanders a room, avoids obstacles via {c:synKeyword:ultrasonic ranging}, and accepts manual override over {c:synKeyword:Bluetooth} from a companion mobile app.
-
-## Why I built it
-
-Wanted hands-on with the full embedded loop, sensor → microcontroller → actuator → host comms, without hiding behind a hobby framework that abstracts away timing and interrupts.
-
-## Hardware
-
-- **Compute**, Arduino Uno (ATmega328P) for sensors + motor control, Raspberry Pi 4 for higher-level path planning over UART
-- **Sensors**, HC-SR04 ultrasonic on a servo-mounted sweep, MPU-6050 IMU for heading
-- **Drive**, TT motor + L298N H-bridge for differential drive
-- **Comms**, HC-05 Bluetooth Classic for phone control (LE was tempting but the latency was worse for joystick input)
-- **Power**, 4×AA NiMH for motors, 9V for logic. Yes, separate rails, running everything off one battery caused brownouts on motor spikes.
-
-## Firmware architecture
-
-The Arduino runs a cooperative scheduler, no RTOS, just a tick loop with phase-buckets so the ultrasonic sweep, IMU read, motor PWM, and serial parse never block each other.
-
-\`\`\`cpp
-// Tick loop runs at 50 Hz. Each subsystem checks its own
-// next_run_ms and yields if it's not its turn.
-void loop() {
-  uint32_t now = millis();
-  if (now >= sonar.next_run_ms) sonar.tick(now);
-  if (now >= imu.next_run_ms)   imu.tick(now);
-  if (now >= drive.next_run_ms) drive.tick(now);
-  serial_pump();  // always
-}
-\`\`\`
-
-The Pi handles anything that needs more than a few KB of state, path planning, telemetry logging, firmware OTA over UART.
-
-## Lessons
-
-- **Power matters more than code.** I spent two weekends chasing "ghost resets" before realizing motor stall current was dragging Vcc below the brownout threshold. Separate rails fixed it instantly.
-- **Float math on an 8-bit MCU is a tax.** Switched the IMU fusion math to fixed-point Q16 and freed up ~3ms per loop.
-- **Cooperative > preemptive at this scale.** RTOS would've been over-engineering for one µC and three subsystems.
-
-## What's next
-
-Replacing ultrasonic with a 2D LiDAR module so it can do real SLAM instead of greedy obstacle avoidance. The Pi side already has a stub for it.
-
-[github.com/mohanlu/arduino-rover](https://github.com/mohanlu/arduino-rover)
-` },
-  'contact.json': { kind: 'json', body: {
-    email: 'mohan@example.com',
-    links: { github: 'github.com/mohanlu', linkedin: 'linkedin.com/in/mohan-lu' },
-    available: true
-  }},
   'now.md': { kind: 'markdown', body:
 `# {c:synKeyword:now}() {c:synAttr:→} {c:synFn:current_focus}
 
-- Building [[portfolio v2|README.md|synFn]] (this site)
-- Reading *Designing Data-Intensive Applications*
-- Learning {c:synKeyword:Rust} on weekends
+- shipping at [[italic|experience/italic.md|synFn]] (agentic e-commerce, since aug 2025)
+- shipping at [[aeyesafe|experience/aeyesafe.md|synFn]] (health monitoring, since jul 2025)
+- running [[furnishes|experience/furnishes.md|synFn]] as cofounder/cto (since may 2024)
+- iterating on [[flareo|projects/flareo.md|synKeyword]] (decision gate F0 next)
+- finishing nyu (BS CS, december 2025)
+- starting columbia ms in september 2026
+- open to summer 2026 internships in the gap window
 ` },
+
   'commands.md': { kind: 'markdown', body:
 `# {c:synKeyword:commands}() {c:synAttr:→} {c:synFn:terminal_reference}
 
@@ -402,10 +486,9 @@ Replacing ultrasonic with a 2D LiDAR module so it can do real SLAM instead of gr
 
 ## reading files
 
-- \`cat <file>\` — open the file in the editor (yes, technically not what cat does, but you get the file)
+- \`cat <file>\` — open the file in the editor
 - \`open <file>\` — alias for \`cat\`
-- \`head <file>\` — open the file (would show first lines in a real shell)
-- \`tail <file>\` — open the file (would show last lines)
+- \`head <file>\` / \`tail <file>\` — open the file
 - \`grep <pattern> <file>\` — search inside a file. Try \`grep rust .env\`.
 - \`wc <file>\` — count lines and words
 
@@ -453,96 +536,96 @@ Replacing ultrasonic with a 2D LiDAR module so it can do real SLAM instead of gr
 
 > Tip: most of these accept arguments. The terminal is forgiving — it'll tell you what went wrong if a command misfires.
 ` },
-  'skills/coming-soon.md': { kind: 'markdown', body:
-`# {c:synAttr:skills}/_
 
-> still being written.
-
-A full breakdown of what Mohan works with, sorted by depth, not by buzzword count, is on its way.
-
-The short version, until then:
-- **Languages**: {c:synKeyword:TypeScript}, {c:synKeyword:Python}, {c:synKeyword:C/C++}, {c:synKeyword:Java}, {c:synKeyword:Rust} (learning)
-- **Web**: React, Next.js, Tailwind, Node, the Cloudflare stack
-- **Data**: Postgres, MongoDB, Redis, R2 / S3
-- **Embedded**: Arduino, Raspberry Pi, ROS, hardware bring-up
-- **3D & creative**: Blender, basic Cinema 4D, custom WebGL
-
-Check back soon, or just ask Mohan's assistant on the right.
-` },
-  '.env': { kind: 'dotfile', body:
-`# .env, current personal state
-# (no actual secrets, this is a portfolio after all)
-
-STATUS=available_for_internships
-CURRENT_FOCUS=portfolio_v2
-LAST_SHIPPED=flareo_v1.2
-
-LOCATION=new_york_ny
-TIMEZONE=America/New_York
-WORKING_HOURS=9am-10pm
-
-LANG_PRIMARY=typescript
-LANG_LEARNING=rust
-
-COFFEE_LEVEL=high
-SLEEP_DEBT=manageable
-MORALE=shipping
-
-LAST_DEPLOY=2026-04-25
-NEXT_GRAD=2027-05
-` },
   'config.yaml': { kind: 'yaml', body:
-`# config.yaml, who I am, what I'm building, what I want
-# This is the human-readable manifest for me as an engineer.
+`# config.yaml — environment manifest
 
-profile:
-  name: Mohan Lu
-  role: full-stack engineer
-  school: NYU Tandon
-  graduating: 2027
+identity:
+  name:     mohan lu
   pronouns: she/her
+  email:    mohan.lu1105@gmail.com
+  github:   github.com/Yolo1105
+  linkedin: linkedin.com/in/mohan-lu
 
-mission: >
-  Build systems that feel inevitable,
-  the kind people use without thinking
-  about the engineering underneath.
+education:
+  current:
+    school:    nyu tandon
+    degree:    BS Computer Science
+    minors:    [cybersecurity, game design]
+    period:    "Sep 2021 – Dec 2025"
+    honors:    "Dean's List 2024-2025"
+  incoming:
+    school:    columbia university
+    degree:    MS Computer Engineering
+    period:    "Sep 2026 – Dec 2027"
 
-values:
-  - ship before perfect
-  - taste matters as much as correctness
-  - the boring solution is usually right
-  - read the source before the docs
-  - own the whole loop, edge to disk
+current_roles:
+  - { company: italic,    title: "Software Engineer",        location: "los angeles (remote)", since: "Aug 2025" }
+  - { company: aeyesafe,  title: "Software Engineer",        location: "seattle (remote)",     since: "Jul 2025" }
+  - { company: furnishes, title: "Cofounder & CTO",          location: "singapore (remote)",   since: "May 2024" }
 
 stack:
-  daily:    [typescript, python, react, tailwind]
-  active:   [cplusplus, postgres, cloudflare-workers, redis]
-  learning: [rust]
-  curious:  [zig, jax, formal_methods]
+  daily:    [typescript, python, react, next.js, postgres, redis]
+  active:   [rust, go, fastapi, prisma, docker, kubernetes, aws]
+  learning: [closer-to-the-metal architecture (columbia ms)]
+  curious:  [formal verification, mechanism design]
 
-current:
-  building:  portfolio v2 (this site)
-  reading:   Designing Data-Intensive Applications
-  listening: lo-fi + occasional jazz
-  shipping:  Flareo v1.2
+ml_specialty:
+  - "PyTorch PPO reinforcement learning (furniture placement, 42% over baseline)"
+  - "Conditional GAN with INT8 quantization (75% size reduction)"
+  - "RAG with FAISS HNSW + BM25 reciprocal rank fusion"
+  - "OpenTelemetry tracing for LLM pipelines"
 
-looking_for:
-  type:        summer 2026 internship
-  domains:     [full-stack, distributed_systems, embedded]
-  location:    [NYC, remote, willing_to_relocate]
-  start_date:  2026-05
-  duration:    12-14 weeks
+security_specialty:
+  - "Sigstore + cosign keyless signing"
+  - "Trivy CVE scanning at build time"
+  - "Kyverno admission control"
+  - "Postgres Row-Level Security multi-tenant isolation"
+  - "HMAC-signed API callbacks"
+  - "Deny-by-default authorization"
 
-contact:
-  preferred:  email
-  response:   ~4 hours
-  cal:        cal.com/mohanlu
+certifications:
+  - "AWS Cloud Support Associate"
+  - "IBM AI Engineering"
+  - "IBM DevOps and Software Engineering"
+
+publications:
+  - "Yiu, Lu, et al. (2025). Markovian WaveFunctionCollapse. AIIDE 2025 EXAG workshop. arXiv:2509.09919"
+
+open_to:
+  - "summer 2026 internships"
+  - "AI infrastructure roles"
+  - "supply-chain security work"
+  - "distributed systems"
+  - "applied research engineering"
+`
+  },
+
+  'skills/coming-soon.md': { kind: 'markdown', body:
+`# {c:synAttr:more skills} {c:synKeyword:and} {c:synFn:work} {c:synType:in progress}
+
+The [[stack panel|focus:terminal|accent]] on the left has the full breakdown. This file is a placeholder.
+
+> Everything I actually use is documented in the FACTS section that powers the chat. Try asking the assistant: "what's mohan good at?"
 ` },
-  '.preferences': { kind: 'dotfile', body:
-`# ~/.preferences
-alias coffee="strong"
-alias music="violin"
-alias mvp="ship-it"
+
+  '.env': { kind: 'dotfile', body:
+`# .env — non-secret defaults
+# (real secrets live in .env.local, which is .gitignored)
+
+NODE_ENV=development
+NEXT_PUBLIC_APP_NAME="mohan_lu.portfolio"
+NEXT_PUBLIC_APP_URL=https://mohanlu.com
+
+# Tools that actually power the live version of this site
+ANTHROPIC_API_KEY=  # in .env.local
+KV_REST_API_URL=    # optional, vercel kv
+KV_REST_API_TOKEN=  # optional, vercel kv
+
+# Tools that are real in my actual work, but not used by this site
+POSTGRES_URL=         # via prisma
+SUPABASE_URL=         # used at italic
+SIGSTORE_OIDC_ISSUER= # used in flareo
 
 export FAVORITE_LANG=typescript
 export TIMEZONE=America/New_York
@@ -550,35 +633,40 @@ export TIMEZONE=America/New_York
 };
 
 // ── File tree ────────────────────────────────────────────────────────────
-// Standard codebase layout: folders first (alphabetical), then files
-// (alphabetical), with hidden dotfiles last. README.md is the canonical
-// orientation file at the root.
+// Layout convention: folders first (alphabetical), then files (alphabetical),
+// with hidden dotfiles last. Each path here must match a key in FILE_CONTENT.
 const tree = [
   { type: 'folder', name: 'about', defaultOpen: true, children: [
     { type: 'file', name: 'bio.sh',        path: 'about/bio.sh',        icon: 'bash' },
-    { type: 'file', name: 'timeline.json', path: 'about/timeline.json', icon: 'json' },
+    { type: 'file', name: 'contact.json',  path: 'about/contact.json',  icon: 'json' },
     { type: 'file', name: 'resume.pdf',    path: 'about/resume.pdf',    icon: 'pdf' },
-  ]},
-  { type: 'folder', name: 'experience', defaultOpen: false, children: [
-    { type: 'file', name: 'nyu.md', path: 'experience/nyu.md', icon: 'md' },
-  ]},
+    { type: 'file', name: 'timeline.json', path: 'about/timeline.json', icon: 'json' },
+  ] },
+  { type: 'folder', name: 'achievements', defaultOpen: false, children: [
+    { type: 'file', name: 'aiide-2025.md', path: 'achievements/aiide-2025.md', icon: 'md' },
+  ] },
+  { type: 'folder', name: 'experience', defaultOpen: true, children: [
+    { type: 'file', name: 'aeyesafe.md', path: 'experience/aeyesafe.md', icon: 'md' },
+    { type: 'file', name: 'columbia.md', path: 'experience/columbia.md', icon: 'md' },
+    { type: 'file', name: 'furnishes.md', path: 'experience/furnishes.md', icon: 'md' },
+    { type: 'file', name: 'italic.md',   path: 'experience/italic.md',   icon: 'md' },
+    { type: 'file', name: 'nyu.md',      path: 'experience/nyu.md',      icon: 'md' },
+    { type: 'file', name: 'nyu-it.md',   path: 'experience/nyu-it.md',   icon: 'md' },
+  ] },
   { type: 'folder', name: 'projects', defaultOpen: true, children: [
-    { type: 'file', name: 'flareo.md',          path: 'projects/flareo.md',          icon: 'md' },
-    { type: 'file', name: 'particle-canvas.md', path: 'projects/particle-canvas.md', icon: 'md' },
-    { type: 'file', name: 'arduino-rover.md',   path: 'projects/arduino-rover.md',   icon: 'md' },
-  ]},
-  { type: 'folder', name: 'skills',  defaultOpen: false, children: [
+    { type: 'file', name: 'air-quality-nyc.md',       path: 'projects/air-quality-nyc.md',       icon: 'md' },
+    { type: 'file', name: 'flareo.md',                path: 'projects/flareo.md',                icon: 'md' },
+    { type: 'file', name: 'furniture-arrangement.md', path: 'projects/furniture-arrangement.md', icon: 'md' },
+  ] },
+  { type: 'folder', name: 'skills', defaultOpen: false, children: [
     { type: 'file', name: 'coming-soon.md', path: 'skills/coming-soon.md', icon: 'md' },
-  ]},
+  ] },
   // Files (alphabetical, then dotfiles)
   { type: 'file', name: 'commands.md', path: 'commands.md', icon: 'md' },
-  { type: 'file', name: 'config.yaml',  path: 'config.yaml',  icon: 'yaml' },
-  { type: 'file', name: 'contact.json', path: 'contact.json', icon: 'json' },
-  { type: 'file', name: 'now.md',       path: 'now.md',       icon: 'md' },
-  { type: 'file', name: 'README.md',    path: 'README.md',    icon: 'md' },
-  // Dotfiles last
-  { type: 'file', name: '.env',         path: '.env',         icon: 'config' },
-  { type: 'file', name: '.preferences', path: '.preferences', icon: 'config' },
+  { type: 'file', name: 'config.yaml', path: 'config.yaml', icon: 'yaml' },
+  { type: 'file', name: 'now.md',      path: 'now.md',      icon: 'md' },
+  { type: 'file', name: 'README.md',   path: 'README.md',   icon: 'md' },
+  { type: 'file', name: '.env',        path: '.env',        icon: 'config' },
 ];
 
 // ── Resize hook ──────────────────────────────────────────────────────────
@@ -838,10 +926,10 @@ function LoadingScreen({ fadingOut, onComplete }) {
 
     // Phase 4 — boot sequence
     { p: 'mohan@dev:~$ ', pc: 'accent', t: 'launch portfolio.v2', thinkAfter: true },
-    { t: '[1/8] mounting /projects ',     tail: { text: '3 repos',         cls: 'peach' } },
-    { t: '[2/8] mounting /experience ',   tail: { text: '1 entry',         cls: 'peach' } },
-    { t: '[3/8] mounting /skills ',       tail: { text: '19 technologies', cls: 'peach' } },
-    { t: '[4/8] mounting /achievements ', tail: { text: '6 honors',        cls: 'peach' } },
+    { t: '[1/8] mounting /projects ',     tail: { text: '3 repos',          cls: 'peach' } },
+    { t: '[2/8] mounting /experience ',   tail: { text: '6 entries',        cls: 'peach' } },
+    { t: '[3/8] mounting /skills ',       tail: { text: '34 technologies',  cls: 'peach' } },
+    { t: '[4/8] mounting /achievements ', tail: { text: '6 honors',         cls: 'peach' } },
     { t: '[5/8] starting terminal ',      tail: { text: '40 commands ok',  cls: 'accent' } },
     { t: '[6/8] starting AI assistant ',  tail: { text: 'grounded',        cls: 'accent' } },
     { t: '[7/8] starting penguin pet ',   tail: { text: '17 states ok',    cls: 'accent' } },
@@ -1769,7 +1857,7 @@ function renderJson(value, indent) {
   if (value === null) return <span style={{ color: C.synKeyword }}>null</span>;
   if (typeof value === 'boolean') return <span style={{ color: C.synKeyword }}>{String(value)}</span>;
   if (typeof value === 'number')  return <span style={{ color: C.synFn }}>{value}</span>;
-  if (typeof value === 'string')  return <span style={{ color: C.synString }}>{`"${value}"`}</span>;
+  if (typeof value === 'string')  return <span style={{ color: C.synString }}>{'"'}{value}{'"'}</span>;
   if (Array.isArray(value)) {
     if (!value.length) return <span style={{ color: C.textPrimary }}>[]</span>;
     return (
@@ -1791,7 +1879,7 @@ function renderJson(value, indent) {
         <span style={{ color: C.textPrimary }}>{'{'}</span>
         {keys.map((k, i) => (
           <div key={k} style={{ paddingLeft: (indent + 1) * 16 }}>
-            <span style={{ color: C.synAttr }}>{`"${k}"`}</span><span style={{ color: C.textPrimary }}>: </span>{renderJson(value[k], indent + 1)}{i < keys.length - 1 && <span style={{ color: C.textPrimary }}>,</span>}
+            <span style={{ color: C.synAttr }}>{'"'}{k}{'"'}</span><span style={{ color: C.textPrimary }}>: </span>{renderJson(value[k], indent + 1)}{i < keys.length - 1 && <span style={{ color: C.textPrimary }}>,</span>}
           </div>
         ))}
         <div style={{ paddingLeft: indent * 16 }}><span style={{ color: C.textPrimary }}>{'}'}</span></div>
@@ -1826,40 +1914,31 @@ function JsonPane({ body }) {
 
 // ── PDF preview pane ─────────────────────────────────────────────────────
 function PdfPane() {
+  // Loads the real resume.pdf from /public via the browser's native PDF
+  // viewer. The download button gives visitors a one-click save. If the
+  // browser can't render PDFs inline (rare — most can), the iframe will
+  // show the browser's fallback prompt to download.
+  const pdfUrl = '/resume.pdf';
   return (
-    <div className="w-full h-full flex flex-col items-center" style={{ background: C.bgTab, overflow: 'auto', padding: 24 }}>
-      <div className="flex items-center justify-between" style={{ width: '100%', maxWidth: 720, marginBottom: 16, gap: 12 }}>
-        <div style={{ fontSize: 12, color: C.textSecondary, fontFamily: 'Geist Mono, ui-monospace, monospace', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>resume.pdf · 1 of 1</div>
-        <button className="flex items-center gap-2 px-3 py-1.5 rounded-md cursor-pointer flex-shrink-0"
-                style={{ background: C.accent, color: '#fff', fontSize: 12, border: 'none' }}>
-          <Download size={13} strokeWidth={1.5} /> Download
-        </button>
-      </div>
-      <div className="shadow-xl pdf-preview"
-           style={{
-             width: '100%',
-             maxWidth: 720,
-             background: '#fafafa',
-             color: '#222',
-             minHeight: 600,
-             padding: '60px 80px',
-             fontFamily: 'Georgia, serif',
-             boxSizing: 'border-box',
-           }}>
-        <h1 style={{ fontSize: 32, fontWeight: 700, marginBottom: 4 }}>Mohan Lu</h1>
-        <div style={{ fontSize: 13, color: '#666', marginBottom: 28 }}>Software Engineer · NYU Tandon · mohan@example.com</div>
-        <h2 style={{ fontSize: 16, fontWeight: 700, borderBottom: '1px solid #ccc', paddingBottom: 4, marginBottom: 12, marginTop: 24 }}>Education</h2>
-        <div style={{ fontSize: 14, marginBottom: 16 }}>
-          <strong>NYU Tandon School of Engineering</strong> · 2023 to 2027<br />
-          B.S. Computer Science
+    <div className="w-full h-full flex flex-col" style={{ background: C.bgTab, overflow: 'hidden' }}>
+      {/* Toolbar */}
+      <div className="flex items-center justify-between flex-shrink-0"
+           style={{ padding: '12px 24px', borderBottom: `1px solid ${C.border}`, gap: 12 }}>
+        <div style={{ fontSize: 12, color: C.textSecondary, fontFamily: 'Geist Mono, ui-monospace, monospace', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          resume.pdf · Mohan_Lu_Resume.pdf
         </div>
-        <h2 style={{ fontSize: 16, fontWeight: 700, borderBottom: '1px solid #ccc', paddingBottom: 4, marginBottom: 12 }}>Projects</h2>
-        <div style={{ fontSize: 14, marginBottom: 8 }}><strong>Flareo</strong>, full-stack pipeline, TypeScript / Postgres / R2</div>
-        <div style={{ fontSize: 14, marginBottom: 8 }}><strong>Particle Canvas</strong>, interactive WebGL particle system</div>
-        <div style={{ fontSize: 14, marginBottom: 16 }}><strong>Arduino Rover</strong>, autonomous rover with ROS</div>
-        <h2 style={{ fontSize: 16, fontWeight: 700, borderBottom: '1px solid #ccc', paddingBottom: 4, marginBottom: 12 }}>Skills</h2>
-        <div style={{ fontSize: 14 }}>TypeScript, Python, C++, React, Node.js, PostgreSQL, Docker, ROS, Blender</div>
+        <a href={pdfUrl} download="Mohan_Lu_Resume.pdf"
+           className="flex items-center gap-2 px-3 py-1.5 rounded-md cursor-pointer flex-shrink-0"
+           style={{ background: C.accent, color: '#fff', fontSize: 12, border: 'none', textDecoration: 'none' }}>
+          <Download size={13} strokeWidth={1.5} /> Download
+        </a>
       </div>
+      {/* Inline PDF view */}
+      <iframe
+        src={pdfUrl}
+        title="Mohan Lu's resume"
+        style={{ flex: 1, width: '100%', border: 'none', background: '#fafafa' }}
+      />
     </div>
   );
 }
@@ -2198,12 +2277,13 @@ function PortsPane({ pushOutput }) {
   // Status colors signal the kind: green = active, blue = informational,
   // muted = future / placeholder.
   const ports = [
-    { port: '443',  label: 'github.com/mohanlu',       url: 'https://github.com/mohanlu',         desc: 'source code',            status: 'active'  },
-    { port: '443',  label: 'linkedin.com/in/mohan-lu', url: 'https://linkedin.com/in/mohan-lu',   desc: 'professional',           status: 'active'  },
-    { port: '443',  label: 'cal.com/mohanlu',          url: 'https://cal.com/mohanlu',            desc: 'schedule a 15-min chat', status: 'active'  },
-    { port: '25',   label: 'mohan@example.com',        url: 'mailto:mohan@example.com',           desc: 'email · ~4hr response',  status: 'active'  },
-    { port: '8080', label: '/api/chat',                url: null,                                 desc: 'assistant endpoint',     status: 'mock'    },
-    { port: '8081', label: '/resume.pdf',              url: null,                                 desc: 'cv download',            status: 'planned' },
+    { port: '443',  label: 'github.com/Yolo1105',       url: 'https://github.com/Yolo1105',          desc: 'source · 56 repos',          status: 'active'  },
+    { port: '443',  label: 'linkedin.com/in/mohan-lu',  url: 'https://linkedin.com/in/mohan-lu',     desc: 'professional',                status: 'active'  },
+    { port: '443',  label: 'preview.flareo.dev',        url: 'https://preview.flareo.dev',           desc: 'flagship live preview',       status: 'active'  },
+    { port: '443',  label: 'arxiv.org/abs/2509.09919',  url: 'https://arxiv.org/abs/2509.09919',     desc: 'AIIDE 2025 paper',            status: 'active'  },
+    { port: '25',   label: 'mohan.lu1105@gmail.com',    url: 'mailto:mohan.lu1105@gmail.com',        desc: 'email · ~4h NYC daytime',     status: 'active'  },
+    { port: '8080', label: '/api/chat',                 url: null,                                    desc: 'assistant endpoint',          status: 'mock'    },
+    { port: '8081', label: '/resume.pdf',               url: '/resume.pdf',                           desc: 'cv · download or view',       status: 'active'  },
   ];
 
   const statusColor = (s) =>
@@ -2307,215 +2387,301 @@ function PlaceholderPane() {
 // Generated content for side-panel items that don't map to real files in
 // the tree. Each entry has a path like 'virtual:tech/typescript' and a
 // kind ('tech' | 'achievement' | 'milestone') that determines rendering.
+// ── Virtual content ──────────────────────────────────────────────────────
+// Pages opened when visitors click items in side panels (Stack tech badges,
+// Achievements, Timeline). Keys are the path used by openFile().
 const VIRTUAL_CONTENT = {
-  // ─── Tech stack details ─────────────────────────────────────────────────
+  // ── Tech detail pages ────────────────────────────────────────────────
   'virtual:tech/typescript': {
-    kind: 'tech',
-    title: 'TypeScript',
-    status: 'daily',
-    stars: 5,
-    category: 'Languages',
-    desc: 'Main language for everything web. Type system goes brrr.',
+    kind: 'tech', title: 'TypeScript', status: 'daily', stars: 5, category: 'Languages',
+    desc: 'Main language across italic, flareo, furnishes.',
     sections: [
-      { heading: 'Where I use it', body: "Frontend (React + Next.js), backend services, Cloudflare Worker code, build tooling, data scripts. If it touches the web, it's probably TS." },
-      { heading: 'Opinions', body: "Strict mode always. Generics over `any`. Discriminated unions for state machines. The cost of `any` compounds, I'd rather spend 10 minutes on a type than 10 hours on a runtime bug." },
-      { heading: 'Projects using it', body: 'Flareo, this portfolio site, particle-canvas, internal tooling.', files: [{ path: 'projects/flareo.md', icon: 'md' }, { path: 'projects/particle-canvas.md', icon: 'md' }] },
+      { heading: 'Where I use it', body: 'Italic web app, Flareo monorepo (web + worker), Furnishes web stack, this portfolio. Strict mode everywhere.' },
+      { heading: 'Opinions', body: 'Generics over `any`. Discriminated unions for state machines. The cost of `any` compounds — I would rather spend 10 minutes on a type than 10 hours on a runtime bug.' },
+      { heading: 'Real projects using it', body: '', files: [{ path: 'projects/flareo.md', icon: 'md' }, { path: 'experience/italic.md', icon: 'md' }, { path: 'experience/furnishes.md', icon: 'md' }] },
     ],
   },
   'virtual:tech/python': {
-    kind: 'tech',
-    title: 'Python',
-    status: 'daily',
-    stars: 5,
-    category: 'Languages',
-    desc: 'Data, ML, scripting, and quick prototypes.',
+    kind: 'tech', title: 'Python', status: 'daily', stars: 5, category: 'Languages',
+    desc: 'Aeyesafe ingestion, NYU RAG, Furnishes ML.',
     sections: [
-      { heading: 'Where I use it', body: 'NumPy + Pandas for data analysis, PyTorch for ML coursework, Flask/FastAPI for quick backend prototypes, scripting that touches files or APIs.' },
-      { heading: 'Opinions', body: 'Type hints + ruff in every project. Avoid `*args, **kwargs` unless writing a library. Async is fine when justified, sync when not.' },
+      { heading: 'Where I use it', body: 'Aeyesafe asyncio TCP ingestion, NYU HPC RAG pipeline, Furnishes PyTorch PPO + GAN training, NYU AI tutor backend.' },
+      { heading: 'Opinions', body: 'Type hints + ruff in every project. Async only when justified. Avoid the framework treadmill.' },
+      { heading: 'Real projects', body: '', files: [{ path: 'experience/aeyesafe.md', icon: 'md' }, { path: 'experience/nyu-it.md', icon: 'md' }, { path: 'experience/furnishes.md', icon: 'md' }] },
     ],
-  },
-  'virtual:tech/cplusplus': {
-    kind: 'tech',
-    title: 'C++',
-    status: 'active',
-    stars: 4,
-    category: 'Languages',
-    desc: 'Embedded firmware and performance-critical code.',
-    sections: [
-      { heading: 'Where I use it', body: 'Arduino firmware, embedded controllers, occasional perf-critical hot paths in larger systems.' },
-      { heading: 'Projects', body: 'Arduino rover firmware, sensor calibration code.', files: [{ path: 'projects/arduino-rover.md', icon: 'md' }] },
-    ],
-  },
-  'virtual:tech/java': {
-    kind: 'tech', title: 'Java', status: 'occasional', stars: 4, category: 'Languages',
-    desc: 'CS coursework foundation + Android side projects.',
-    sections: [{ heading: 'Where I use it', body: 'Most of my CS coursework was Java-first. Comfortable with Spring, JUnit, and the broader JVM ecosystem.' }],
   },
   'virtual:tech/rust': {
-    kind: 'tech', title: 'Rust', status: 'learning', stars: 2, category: 'Languages',
-    desc: 'Working through the book on weekends.',
-    sections: [{ heading: 'Status', body: 'Ownership is starting to make sense. Have written some toy CLIs and HTTP servers. Want to ship something real this year.' }],
+    kind: 'tech', title: 'Rust', status: 'active', stars: 4, category: 'Languages',
+    desc: 'Flareo CLI binary, ships via Homebrew.',
+    sections: [
+      { heading: 'Where I use it', body: 'The Flareo CLI is a Rust binary distributed through Homebrew. Runs Trivy locally as a second-opinion scan, verifies sigstore bundles.' },
+      { heading: 'Why Rust here', body: 'Distributing a CLI to operators means it runs on hardware I do not control. Rust gives me predictable resource usage, no GC pauses, single static binary.' },
+      { heading: 'Real projects', body: '', files: [{ path: 'projects/flareo.md', icon: 'md' }] },
+    ],
+  },
+  'virtual:tech/go': {
+    kind: 'tech', title: 'Go', status: 'active', stars: 3, category: 'Languages',
+    desc: 'Distributed systems work.',
+    sections: [
+      { heading: 'Where I use it', body: 'Smaller services where I want a single binary deploy, simple concurrency model, fast cold starts.' },
+    ],
+  },
+  'virtual:tech/javascript': {
+    kind: 'tech', title: 'JavaScript', status: 'occasional', stars: 4, category: 'Languages',
+    desc: 'Pre-TypeScript era, still touches it.',
+    sections: [{ heading: 'Where I use it', body: 'Older projects, scripts that do not warrant typing, occasional client-side tooling.' }],
+  },
+  'virtual:tech/java': {
+    kind: 'tech', title: 'Java', status: 'occasional', stars: 3, category: 'Languages',
+    desc: 'CS coursework foundation.',
+    sections: [{ heading: 'Where I use it', body: 'Most of my CS coursework at NYU was Java-first. Comfortable with the JVM ecosystem but not actively building in it.' }],
   },
   'virtual:tech/react': {
     kind: 'tech', title: 'React', status: 'daily', stars: 5, category: 'Web',
-    desc: 'My default UI framework, components, hooks, the works.',
+    desc: 'Frontend across all current roles.',
     sections: [
-      { heading: 'Style', body: 'Function components + hooks. Heavy use of useReducer for complex state. Avoid prop-drilling with context where it makes sense.' },
-      { heading: 'Projects', body: 'This site, internal tooling, particle-canvas viewer.' },
+      { heading: 'Where I use it', body: 'Italic web app (server components), Flareo dashboard, Furnishes 3D editor (with Three.js), this portfolio.' },
+      { heading: 'Opinions', body: 'Server components > client components when possible. Suspense boundaries early. State machines for anything with three or more states.' },
     ],
   },
   'virtual:tech/nextjs': {
-    kind: 'tech', title: 'Next.js', status: 'active', stars: 4, category: 'Web',
-    desc: 'SSR + edge-rendered apps when SEO and speed both matter.',
-    sections: [{ heading: 'Where I use it', body: 'App router for new projects. SSR for marketing pages, RSC for data-heavy views. Vercel or Cloudflare Pages depending on the project.' }],
+    kind: 'tech', title: 'Next.js', status: 'daily', stars: 5, category: 'Web',
+    desc: 'Italic, Flareo web, this portfolio (v15).',
+    sections: [
+      { heading: 'Where I use it', body: 'App Router across every web project. Server components for data fetching, server actions for mutations, edge runtime where it makes sense.' },
+      { heading: 'Real projects', body: '', files: [{ path: 'experience/italic.md', icon: 'md' }, { path: 'projects/flareo.md', icon: 'md' }] },
+    ],
   },
   'virtual:tech/tailwind': {
     kind: 'tech', title: 'Tailwind', status: 'daily', stars: 5, category: 'Web',
-    desc: 'Utility-first CSS, fast iteration without leaving the JSX.',
-    sections: [{ heading: 'Style', body: 'Tailwind for utility, plain CSS for animations or anything with @keyframes / @container queries. Resist the urge to extract too early.' }],
+    desc: 'CSS via utility classes.',
+    sections: [{ heading: 'Where I use it', body: 'Every web project. The fastest way to get a consistent design system without ceremony.' }],
   },
-  'virtual:tech/cloudflare-workers': {
-    kind: 'tech', title: 'Cloudflare Workers', status: 'active', stars: 4, category: 'Web',
-    desc: 'Edge runtime. Flareo runs here.',
+  'virtual:tech/three': {
+    kind: 'tech', title: 'Three.js', status: 'active', stars: 4, category: 'Web',
+    desc: '3D scene rendering at Furnishes.',
     sections: [
-      { heading: 'Why', body: 'Cold starts measured in milliseconds, global edge deployment by default, R2 + KV + D1 in the same ecosystem. Good fit for async pipelines like Flareo.' },
-      { heading: 'Projects', body: 'Flareo full-stack worker pipeline.', files: [{ path: 'projects/flareo.md', icon: 'md' }] },
+      { heading: 'Where I use it', body: 'Furnishes — rendering interior design scenes, integrating with the text-to-3D furniture studio (Flux + Hunyuan3D pipeline).' },
+      { heading: 'Real projects', body: '', files: [{ path: 'experience/furnishes.md', icon: 'md' }] },
     ],
+  },
+  'virtual:tech/fastapi': {
+    kind: 'tech', title: 'FastAPI', status: 'active', stars: 4, category: 'Web',
+    desc: 'NYU RAG pipeline, AI tutor backend.',
+    sections: [
+      { heading: 'Where I use it', body: 'NYU HPC RAG assistant, NYU AI tutoring platform — both production deployments at NYU IT.' },
+      { heading: 'Real projects', body: '', files: [{ path: 'experience/nyu-it.md', icon: 'md' }] },
+    ],
+  },
+  'virtual:tech/svelte': {
+    kind: 'tech', title: 'Svelte', status: 'occasional', stars: 3, category: 'Web',
+    desc: 'NYU AI tutor frontend.',
+    sections: [{ heading: 'Where I use it', body: 'The NYU AI tutoring platform frontend was Svelte + TypeScript. Lightweight and reactive, fit the constraints well.' }],
+  },
+  'virtual:tech/htmx': {
+    kind: 'tech', title: 'HTMX', status: 'occasional', stars: 3, category: 'Web',
+    desc: 'Progressive enhancement, occasional.',
+    sections: [{ heading: 'Where I use it', body: 'When a project does not need a full SPA. Server-rendered HTML with surgical interactivity often beats a full React tree.' }],
   },
   'virtual:tech/postgresql': {
-    kind: 'tech', title: 'PostgreSQL', status: 'active', stars: 4, category: 'Data',
-    desc: 'Primary relational store for serious projects.',
-    sections: [{ heading: 'Comfort', body: 'Schema design, indexing, JSONB columns, FTS. Not a DBA but enough to ship.' }],
-  },
-  'virtual:tech/mongodb': {
-    kind: 'tech', title: 'MongoDB', status: 'occasional', stars: 3, category: 'Data',
-    desc: 'When the data is genuinely document-shaped.',
-    sections: [{ heading: 'Take', body: "Defaults to relational unless the problem is actually document-shaped, and a lot of teams reach for Mongo before that's true. Use the right tool." }],
+    kind: 'tech', title: 'PostgreSQL', status: 'daily', stars: 5, category: 'Data',
+    desc: 'RLS multi-tenant, pgvector, Prisma at scale.',
+    sections: [
+      { heading: 'Where I use it', body: 'Italic (multi-tenant with Row-Level Security), Furnishes (60+ Prisma models), Flareo (job queue + image metadata), NYU (pgvector for RAG embeddings).' },
+      { heading: 'Opinions', body: 'RLS for multi-tenant isolation when correctness matters. Prisma when modeling many entities. Don\'t skip indexes — measure before assuming.' },
+      { heading: 'Real projects', body: '', files: [{ path: 'experience/italic.md', icon: 'md' }, { path: 'experience/furnishes.md', icon: 'md' }, { path: 'projects/flareo.md', icon: 'md' }] },
+    ],
   },
   'virtual:tech/redis': {
-    kind: 'tech', title: 'Redis', status: 'active', stars: 4, category: 'Data',
-    desc: 'Cache, pub/sub, rate limiting, ephemeral state.',
-    sections: [{ heading: 'Where I use it', body: 'Caching expensive computes, rate-limit counters, simple pub/sub for event distribution. Not a primary store.' }],
-  },
-  'virtual:tech/r2': {
-    kind: 'tech', title: 'Cloudflare R2', status: 'active', stars: 4, category: 'Data',
-    desc: 'S3-compatible object storage with no egress fees.',
-    sections: [{ heading: 'Where I use it', body: 'Blob storage for Flareo, file uploads, asset delivery. The no-egress pricing makes it easy to use without watching the meter.' }],
-  },
-  'virtual:tech/arduino': {
-    kind: 'tech', title: 'Arduino', status: 'occasional', stars: 4, category: 'Embedded',
-    desc: 'Hardware projects, sensor work, quick prototyping.',
+    kind: 'tech', title: 'Redis', status: 'active', stars: 5, category: 'Data',
+    desc: 'Atomic Lua scripts, Sentinel failover, Queue.',
     sections: [
-      { heading: 'Boards', body: 'Uno R3 for hobby work, Nano 33 IoT for projects that need wireless.' },
-      { heading: 'Projects', body: 'Autonomous rover with ultrasonic obstacle avoidance + Bluetooth control.', files: [{ path: 'projects/arduino-rover.md', icon: 'md' }] },
+      { heading: 'Where I use it', body: 'NYU AI tutor — distributed queue worker pool of 8 replicas with atomic Lua scripts to prevent read-modify-write races under Sentinel failover. Furnishes — embedding cache. Flareo — Upstash for rate limiting.' },
+      { heading: 'Opinions', body: 'Most engineers use Redis as a key-value cache. It\'s much more powerful as a coordination primitive — Lua scripts give you atomicity for free.' },
+      { heading: 'Real projects', body: '', files: [{ path: 'experience/nyu-it.md', icon: 'md' }] },
     ],
   },
-  'virtual:tech/raspberry-pi': {
-    kind: 'tech', title: 'Raspberry Pi', status: 'occasional', stars: 4, category: 'Embedded',
-    desc: 'Small servers, robotics, anything where a full Linux box at $35 makes sense.',
-    sections: [{ heading: 'Where I use it', body: 'Home automation tinkering, ROS-based robotics projects, occasional self-hosted services.' }],
+  'virtual:tech/mongodb': {
+    kind: 'tech', title: 'MongoDB', status: 'active', stars: 4, category: 'Data',
+    desc: 'Time-series at Aeyesafe.',
+    sections: [
+      { heading: 'Where I use it', body: 'Aeyesafe — sliding-window anomaly detection on MongoDB time-series aggregations for sensor data.' },
+      { heading: 'Real projects', body: '', files: [{ path: 'experience/aeyesafe.md', icon: 'md' }] },
+    ],
   },
-  'virtual:tech/ros': {
-    kind: 'tech', title: 'ROS', status: 'occasional', stars: 3, category: 'Embedded',
-    desc: 'Robotics middleware, pub/sub for hardware.',
-    sections: [{ heading: 'Comfort', body: 'Built rover navigation stacks with ROS Noetic. Comfortable with topics, services, and basic SLAM concepts.' }],
+  'virtual:tech/dynamodb': {
+    kind: 'tech', title: 'DynamoDB', status: 'active', stars: 4, category: 'Data',
+    desc: '30+ health metrics storage at Aeyesafe.',
+    sections: [
+      { heading: 'Where I use it', body: 'Aeyesafe — storage layer for the 30+ health metrics extracted from vendor sleep API. Multi-tier aggregation pipeline reads/writes here.' },
+      { heading: 'Real projects', body: '', files: [{ path: 'experience/aeyesafe.md', icon: 'md' }] },
+    ],
   },
-  'virtual:tech/blender': {
-    kind: 'tech', title: 'Blender', status: 'occasional', stars: 3, category: 'Creative',
-    desc: '3D modeling and animation for personal projects.',
-    sections: [{ heading: 'What I make', body: 'Architectural visualization, low-poly assets, occasional procedural geometry experiments. Not a generalist, focused on specific styles I enjoy.' }],
+  'virtual:tech/mysql': {
+    kind: 'tech', title: 'MySQL', status: 'occasional', stars: 3, category: 'Data',
+    desc: 'Legacy systems.',
+    sections: [{ heading: 'Where I use it', body: 'Compatible with existing systems when needed. PostgreSQL is my default choice for new projects.' }],
   },
-  'virtual:tech/figma': {
-    kind: 'tech', title: 'Figma', status: 'active', stars: 4, category: 'Creative',
-    desc: 'UI design and quick prototyping.',
-    sections: [{ heading: 'Workflow', body: 'Sketch in Figma first when the design is non-trivial. Components + auto-layout. Frequently iterate by exporting to React directly.' }],
+  'virtual:tech/rabbitmq': {
+    kind: 'tech', title: 'RabbitMQ', status: 'occasional', stars: 3, category: 'Data',
+    desc: 'Message broker for distributed work.',
+    sections: [{ heading: 'Where I use it', body: 'When work needs proper queueing semantics that Redis Streams or pg-boss can\'t cover.' }],
+  },
+  'virtual:tech/docker': {
+    kind: 'tech', title: 'Docker', status: 'daily', stars: 5, category: 'Infra',
+    desc: 'Containers everywhere.',
+    sections: [{ heading: 'Where I use it', body: 'Every project. Multi-stage builds for production, dev containers for local consistency, ECR for registries.' }],
+  },
+  'virtual:tech/kubernetes': {
+    kind: 'tech', title: 'Kubernetes', status: 'active', stars: 4, category: 'Infra',
+    desc: 'OpenShift at NYU IT, ECS at Furnishes.',
+    sections: [
+      { heading: 'Where I use it', body: 'NYU IT — OpenShift StatefulSets with autoscaling for the RAG service. Flareo — Kyverno admission controllers for verifying signed images.' },
+      { heading: 'Real projects', body: '', files: [{ path: 'experience/nyu-it.md', icon: 'md' }, { path: 'projects/flareo.md', icon: 'md' }] },
+    ],
+  },
+  'virtual:tech/aws': {
+    kind: 'tech', title: 'AWS', status: 'daily', stars: 5, category: 'Infra',
+    desc: 'ECS, DynamoDB, EventBridge, Lambda Layers.',
+    sections: [
+      { heading: 'Where I use it', body: 'Furnishes (ECS + CloudFront + GitHub Actions CI/CD). Aeyesafe (DynamoDB + EventBridge cron + shared Lambda Layers). Flareo (ECR Public for signed images).' },
+      { heading: 'Certified', body: 'AWS Cloud Support Associate.' },
+    ],
+  },
+  'virtual:tech/gcp': {
+    kind: 'tech', title: 'GCP', status: 'occasional', stars: 3, category: 'Infra',
+    desc: 'Occasional projects.',
+    sections: [{ heading: 'Where I use it', body: 'Multi-cloud when needed. Familiar with Cloud Run, BigQuery, Firestore.' }],
+  },
+  'virtual:tech/terraform': {
+    kind: 'tech', title: 'Terraform', status: 'active', stars: 3, category: 'Infra',
+    desc: 'Infrastructure as code.',
+    sections: [{ heading: 'Where I use it', body: 'Provisioning AWS infrastructure declaratively. Better than ClickOps for anything that needs to be reproducible.' }],
+  },
+  'virtual:tech/github-actions': {
+    kind: 'tech', title: 'GitHub Actions', status: 'daily', stars: 5, category: 'Infra',
+    desc: 'CI/CD across every project.',
+    sections: [{ heading: 'Where I use it', body: 'Build/test/deploy pipelines in every repo. Flareo CLI matrix releases ship through it.' }],
+  },
+  'virtual:tech/prometheus': {
+    kind: 'tech', title: 'Prometheus', status: 'active', stars: 4, category: 'Infra',
+    desc: 'Metrics + observability at Aeyesafe.',
+    sections: [
+      { heading: 'Where I use it', body: 'Aeyesafe — production metrics with Grafana dashboards + PagerDuty escalation.' },
+      { heading: 'Real projects', body: '', files: [{ path: 'experience/aeyesafe.md', icon: 'md' }] },
+    ],
+  },
+  'virtual:tech/grafana': {
+    kind: 'tech', title: 'Grafana', status: 'active', stars: 4, category: 'Infra',
+    desc: 'Dashboards + alerting.',
+    sections: [{ heading: 'Where I use it', body: 'Aeyesafe production dashboards. Pairs with Prometheus + PagerDuty for end-to-end observability.' }],
+  },
+  'virtual:tech/pytorch': {
+    kind: 'tech', title: 'PyTorch', status: 'active', stars: 4, category: 'ML',
+    desc: 'PPO furniture placement, conditional GAN.',
+    sections: [
+      { heading: 'Where I use it', body: 'Furnishes — PPO reinforcement learning for furniture placement (42% improvement vs baseline), conditional GAN for color generation with INT8 quantization (75% size reduction).' },
+      { heading: 'Real projects', body: '', files: [{ path: 'experience/furnishes.md', icon: 'md' }, { path: 'projects/furniture-arrangement.md', icon: 'md' }] },
+    ],
+  },
+  'virtual:tech/langchain': {
+    kind: 'tech', title: 'LangChain', status: 'active', stars: 4, category: 'ML',
+    desc: 'NYU HPC RAG pipeline.',
+    sections: [
+      { heading: 'Where I use it', body: 'NYU HPC Resource Allocation Assistant — retrieval layer with FAISS HNSW + BM25 reciprocal rank fusion + Redis embedding cache.' },
+      { heading: 'Real projects', body: '', files: [{ path: 'experience/nyu-it.md', icon: 'md' }] },
+    ],
+  },
+  'virtual:tech/opentelemetry': {
+    kind: 'tech', title: 'OpenTelemetry', status: 'active', stars: 4, category: 'ML',
+    desc: 'Tracing LLM completions + embedding gen.',
+    sections: [
+      { heading: 'Where I use it', body: 'NYU AI tutor — instrumented Queue workers to trace LLM completions, embedding generation, and pgvector retrieval for performance analysis.' },
+    ],
+  },
+  'virtual:tech/sigstore': {
+    kind: 'tech', title: 'Sigstore', status: 'active', stars: 5, category: 'Security',
+    desc: 'Keyless signing in Flareo.',
+    sections: [
+      { heading: 'Where I use it', body: 'Flareo — verifies arbitrary OCI images against Sigstore bundles, parsing v0.1 through v0.3 across Docker Hub, GHCR, and ECR Public.' },
+      { heading: 'Real projects', body: '', files: [{ path: 'projects/flareo.md', icon: 'md' }] },
+    ],
+  },
+  'virtual:tech/cosign': {
+    kind: 'tech', title: 'cosign', status: 'active', stars: 5, category: 'Security',
+    desc: 'Image signing in Flareo build worker.',
+    sections: [
+      { heading: 'Where I use it', body: 'Flareo build worker — keyless signing of approved images before pushing to ECR Public. Backoff to dead-letter queue on failure.' },
+    ],
+  },
+  'virtual:tech/trivy': {
+    kind: 'tech', title: 'Trivy', status: 'active', stars: 5, category: 'Security',
+    desc: 'CVE scanning in Flareo.',
+    sections: [
+      { heading: 'Where I use it', body: 'Flareo — rejects critical/high CVEs before signing. Also runs locally in the Rust CLI as a second-opinion scan before pulls.' },
+    ],
+  },
+  'virtual:tech/kyverno': {
+    kind: 'tech', title: 'Kyverno', status: 'active', stars: 4, category: 'Security',
+    desc: 'Admission policies for Flareo.',
+    sections: [
+      { heading: 'Where I use it', body: 'Flareo deploy/kubernetes — admission controller policies blocking unsigned images, defaulting to audit mode for rollout.' },
+    ],
   },
 
-  // ─── Achievements ───────────────────────────────────────────────────────
+  // ── Achievement detail pages ─────────────────────────────────────────
+  'virtual:achievement/aiide-2025': {
+    kind: 'achievement', title: 'AIIDE 2025 publication', date: '2025', org: 'AIIDE 2025 EXAG', tier: 'gold',
+    sections: [
+      { heading: 'About', body: 'Second author on "A Markovian Framing of WaveFunctionCollapse for Procedurally Generating Aesthetically Complex Environments." Published at the EXAG workshop, AIIDE 2025.' },
+      { heading: 'Authors', body: 'Yiu, Lu (me), Li, Joseph, Zhang, Togelius, Merino, Earle.' },
+      { heading: 'arXiv', body: 'arXiv:2509.09919' },
+      { heading: 'Read more', body: '', files: [{ path: 'achievements/aiide-2025.md', icon: 'md' }] },
+    ],
+  },
+  'virtual:achievement/columbia-admission': {
+    kind: 'achievement', title: 'Columbia MS admission', date: '2026', org: 'Columbia University', tier: 'gold',
+    sections: [
+      { heading: 'About', body: 'Admitted to the MS Computer Engineering program at Columbia University. Sep 2026 – Dec 2027.' },
+      { heading: 'Why CompE', body: 'Bridges the CS background with deeper systems and hardware grounding — closer to the work I am already doing in distributed systems, supply-chain security, and ML infrastructure.' },
+      { heading: 'Read more', body: '', files: [{ path: 'experience/columbia.md', icon: 'md' }] },
+    ],
+  },
   'virtual:achievement/deans-list': {
-    kind: 'achievement', title: "Dean's List", date: '2025', org: 'NYU Tandon', tier: 'gold',
-    desc: 'Recognized for academic excellence, multiple semesters running.',
+    kind: 'achievement', title: "Dean's List 2024-2025", date: '2025', org: 'NYU Tandon', tier: 'gold',
     sections: [
-      { heading: 'What it took', body: 'Maintaining a high GPA while taking heavy courseloads (sometimes 18+ credits) and shipping side projects on the side.' },
-      { heading: 'What I learned', body: 'How to manage time across competing priorities. When to grind vs when to rest. Sleep is undervalued.' },
+      { heading: 'About', body: "Recognized for academic excellence during the 2024-2025 academic year at NYU Tandon School of Engineering. Achieved while concurrently running Furnishes as cofounder/CTO and working at NYU Research Technology Services as an HPC Assistant." },
     ],
   },
-  'virtual:achievement/hacknyu-2024': {
-    kind: 'achievement', title: '2nd place, Best Use of Hardware', date: '2024', org: 'HackNYU', tier: 'silver',
-    desc: 'Built a real-time gesture-controlled drone interface in 36 hours.',
+  'virtual:achievement/aws-cloud-support': {
+    kind: 'achievement', title: 'AWS Cloud Support Associate', date: '2024', org: 'AWS', tier: 'silver',
     sections: [
-      { heading: 'What we built', body: 'A wearable that reads hand gestures via accelerometer + flex sensors, transmits over BLE to a base station, which sends MAVLink commands to a drone in real time.' },
-      { heading: 'My role', body: 'Firmware on the wearable + the BLE bridge. Teammate handled the drone-control side.' },
-      { heading: 'What I learned', body: "BLE is a pain in the ass under a deadline. Don't trust manufacturer SDKs. Real demos > slick slides." },
+      { heading: 'About', body: 'Cloud infrastructure and operations certification covering EC2, S3, IAM, VPC, CloudWatch, troubleshooting at scale.' },
     ],
   },
-  'virtual:achievement/tandon-scholarship': {
-    kind: 'achievement', title: 'Tandon Scholarship Recipient', date: '2024', org: 'NYU Tandon', tier: 'gold',
-    desc: 'Merit-based award for incoming freshmen.',
+  'virtual:achievement/ibm-ai-engineering': {
+    kind: 'achievement', title: 'IBM AI Engineering Certification', date: '2024', org: 'IBM', tier: 'silver',
     sections: [
-      { heading: 'About', body: 'Awarded based on academic record, leadership, and demonstrated interest in engineering. Renewable through undergraduate study.' },
+      { heading: 'About', body: 'Applied machine learning + deep learning track. Covers neural networks, computer vision, NLP fundamentals, model deployment.' },
     ],
   },
-  'virtual:achievement/valedictorian': {
-    kind: 'achievement', title: 'Valedictorian / National Honor Society', date: '2023', org: 'High School', tier: 'gold',
-    desc: 'Top of graduating class.',
+  'virtual:achievement/ibm-devops': {
+    kind: 'achievement', title: 'IBM DevOps and Software Engineering', date: '2024', org: 'IBM', tier: 'silver',
     sections: [
-      { heading: 'About', body: 'Graduated as valedictorian. Active in National Honor Society, peer tutoring and community service hours.' },
-    ],
-  },
-  'virtual:achievement/ap-scholar': {
-    kind: 'achievement', title: 'AP Scholar with Distinction', date: '2023', org: 'College Board', tier: 'silver',
-    desc: 'Average score of 3.5+ across 5+ AP exams.',
-    sections: [
-      { heading: 'Subjects', body: 'CS A (5), Calc BC (5), Physics C (5), Lang (4), US History (4).' },
-    ],
-  },
-  'virtual:achievement/math-olympiad': {
-    kind: 'achievement', title: 'Top 10%, Regional Math Olympiad', date: '2022', org: 'Regional Math Olympiad', tier: 'bronze',
-    desc: 'Geometry & combinatorics tracks.',
-    sections: [
-      { heading: 'About', body: 'Top 10% finish in the regional round. Geometry and combinatorics were my stronger tracks.' },
+      { heading: 'About', body: 'CI/CD, containers, infrastructure track. Covers GitHub Actions, Docker, Kubernetes basics, Agile/Scrum methodology.' },
     ],
   },
 
-  // ─── Timeline milestones ────────────────────────────────────────────────
-  'virtual:milestone/graduation-2027': {
-    kind: 'milestone', title: 'Graduate from NYU Tandon', date: '2027 (planned)', type: 'edu', status: 'planned',
-    sections: [
-      { heading: 'About', body: 'B.S. Computer Science, expected May 2027.' },
-      { heading: "What's next", body: "After graduation: ideally a full-time engineering role at a place where I can ship and learn fast. Open to startups, scale-ups, and the engineering teams at larger companies." },
-    ],
+  // ── Milestone detail pages (slug-based, used by TimelinePanel) ───────
+  'virtual:milestone/columbia-graduation': {
+    kind: 'milestone', title: 'Graduate Columbia MS', date: '2027 (planned)', type: 'edu', status: 'planned',
+    sections: [{ heading: 'About', body: 'M.S. Computer Engineering at Columbia University — expected Dec 2027.' }],
   },
   'virtual:milestone/internship-2026': {
-    kind: 'milestone', title: 'Summer 2026 internship', date: '2026 (planned)', type: 'work', status: 'planned',
+    kind: 'milestone', title: 'Summer internship — open', date: 'Summer 2026 (planned)', type: 'work', status: 'planned',
     sections: [
-      { heading: 'Looking for', body: 'Full-stack or systems-leaning roles. Backend infrastructure, distributed systems, or frontend with strong engineering culture.' },
-      { heading: 'Logistics', body: 'NYC or remote-friendly preferred but open to relocation. Available May–Aug.' },
-    ],
-  },
-  'virtual:milestone/portfolio-v2': {
-    kind: 'milestone', title: 'Building portfolio v2 (this site)', date: 'Now', type: 'project', status: 'current',
-    sections: [
-      { heading: 'About', body: "A reimagined portfolio as a Cursor-IDE clone. Made every panel real, the file tree opens files, the search works across content, the AI chat answers questions about me, and there's a penguin." },
-      { heading: 'Why', body: "Generic portfolio templates don't show how I think. This one does." },
-    ],
-  },
-  'virtual:milestone/rust-2025': {
-    kind: 'milestone', title: 'Started learning Rust', date: '2025', type: 'personal', status: 'done',
-    sections: [
-      { heading: 'About', body: "Working through the Rust book on weekends. Ownership is making sense slowly. Want to ship something real this year." },
-    ],
-  },
-  'virtual:milestone/nyu-2023': {
-    kind: 'milestone', title: 'Started at NYU Tandon', date: '2023', type: 'edu', status: 'done',
-    sections: [
-      { heading: 'About', body: 'Began undergrad at NYU Tandon studying Computer Science. Tandon Scholarship recipient.' },
-    ],
-  },
-  'virtual:milestone/hs-2023': {
-    kind: 'milestone', title: 'Graduated high school', date: '2023', type: 'edu', status: 'done',
-    sections: [
-      { heading: 'About', body: 'Valedictorian. National Honor Society. AP Scholar with Distinction. Spent the year before graduation also picking up programming as a serious interest.' },
+      { heading: 'About', body: 'Dec 2025 NYU graduation → Sep 2026 Columbia start gives me a bridge window. Open to AI infrastructure, supply-chain security, distributed systems, generative AI, or applied research engineering.' },
+      { heading: 'Reach out', body: 'mohan.lu1105@gmail.com — most worth a conversation when you have a specific opportunity in mind.' },
     ],
   },
 };
@@ -2728,7 +2894,7 @@ function PromptPrefix() {
 // deletes, repeats with the next entry. The suffixes list is module-level
 // so it has a stable identity across renders (otherwise the typewriter
 // useEffect's exhaustive-deps would flag it).
-const TYPEWRITER_SUFFIXES = ['', 'dev', 'engineer', 'student', 'builder', 'designer'];
+const TYPEWRITER_SUFFIXES = ['', 'engineer', 'cofounder', 'researcher', 'shipper', 'student'];
 
 function TypewriterWordmark() {
   const [idx, setIdx] = useState(0);
@@ -4048,50 +4214,50 @@ function ActivityPanel({ onOpenFile }) {
   const commits = [
     {
       hash: 'a3f9c21',
-      msg: 'shipped Flareo v1.2, added retry logic + dead-letter queue',
+      msg: 'flareo: F0 conversion gate instrumentation wired',
       time: '2 days ago',
       file: { path: 'projects/flareo.md', icon: 'md' },
     },
     {
       hash: 'b8e2d44',
-      msg: 'particle-canvas: fixed slow render at 4k resolution',
+      msg: 'italic: e2b sandbox bridge HMAC verification',
       time: '5 days ago',
-      file: { path: 'projects/particle-canvas.md', icon: 'md' },
+      file: { path: 'experience/italic.md', icon: 'md' },
     },
     {
       hash: 'c1f0e8a',
-      msg: 'arduino-rover: ultrasonic sensor calibration pass',
+      msg: 'aeyesafe: sliding-window anomaly detection tuning',
       time: '1 week ago',
-      file: { path: 'projects/arduino-rover.md', icon: 'md' },
+      file: { path: 'experience/aeyesafe.md', icon: 'md' },
     },
     {
       hash: 'd5a3b91',
-      msg: 'portfolio v2: built the Cursor-IDE skin (this site)',
+      msg: 'portfolio v2: built the IDE skin (this site)',
       time: '2 weeks ago',
       file: null,
     },
     {
       hash: 'e7b1c0d',
-      msg: 'about: updated timeline.json with new milestone',
+      msg: 'about: updated timeline.json with Columbia + AIIDE pub',
       time: '3 weeks ago',
       file: { path: 'about/timeline.json', icon: 'json' },
     },
     {
       hash: 'f2c4d50',
-      msg: 'experience: wrote up NYU Tandon notes',
+      msg: 'furnishes: PPO placement reward signal refactor',
       time: '1 month ago',
-      file: { path: 'experience/nyu.md', icon: 'md' },
+      file: { path: 'experience/furnishes.md', icon: 'md' },
     },
     {
       hash: 'g6a8e13',
-      msg: 'started learning Rust on weekends',
+      msg: 'aiide: paper accepted at EXAG workshop',
       time: '2 months ago',
-      file: null,
+      file: { path: 'achievements/aiide-2025.md', icon: 'md' },
     },
     {
       hash: 'h9b2f76',
-      msg: 'flareo: initial commit, worker pipeline scaffolding',
-      time: '3 months ago',
+      msg: 'flareo: initial commit, monorepo scaffolding',
+      time: '6 months ago',
       file: { path: 'projects/flareo.md', icon: 'md' },
     },
   ];
@@ -4184,31 +4350,50 @@ function StackPanel({ onOpenFile }) {
   // status: 'daily' (used every day), 'active' (current projects), 'occasional', 'learning'
   const stack = [
     // Languages
-    { slug: 'typescript', name: 'TypeScript',  desc: 'main language for web work',                 status: 'daily',      stars: 5, category: 'Languages' },
-    { slug: 'python',     name: 'Python',      desc: 'data, scripting, ML',                       status: 'daily',      stars: 5, category: 'Languages' },
-    { slug: 'cplusplus',  name: 'C++',         desc: 'embedded firmware, perf-critical code',      status: 'active',     stars: 4, category: 'Languages' },
-    { slug: 'java',       name: 'Java',        desc: 'CS coursework + Android',                   status: 'occasional', stars: 4, category: 'Languages' },
-    { slug: 'rust',       name: 'Rust',        desc: 'learning on weekends',                      status: 'learning',   stars: 2, category: 'Languages' },
+    { slug: 'typescript', name: 'TypeScript',  desc: 'main language across italic, flareo, furnishes',  status: 'daily',      stars: 5, category: 'Languages' },
+    { slug: 'python',     name: 'Python',      desc: 'aeyesafe ingestion, nyu rag, furnishes ML',        status: 'daily',      stars: 5, category: 'Languages' },
+    { slug: 'rust',       name: 'Rust',        desc: 'flareo CLI binary, ships via homebrew',            status: 'active',     stars: 4, category: 'Languages' },
+    { slug: 'go',         name: 'Go',          desc: 'distributed systems work',                          status: 'active',     stars: 3, category: 'Languages' },
+    { slug: 'javascript', name: 'JavaScript',  desc: 'pre-typescript era, still touches it',              status: 'occasional', stars: 4, category: 'Languages' },
+    { slug: 'java',       name: 'Java',        desc: 'cs coursework',                                     status: 'occasional', stars: 3, category: 'Languages' },
 
     // Web
-    { slug: 'react',              name: 'React',       desc: 'frontend framework of choice',     status: 'daily',  stars: 5, category: 'Web' },
-    { slug: 'nextjs',             name: 'Next.js',     desc: 'SSR + edge-rendered apps',         status: 'active', stars: 4, category: 'Web' },
-    { slug: 'tailwind',           name: 'Tailwind',    desc: 'CSS via utility classes',          status: 'daily',  stars: 5, category: 'Web' },
-    { slug: 'cloudflare-workers', name: 'Cloudflare Workers', desc: 'edge runtime, Flareo runs here', status: 'active', stars: 4, category: 'Web' },
+    { slug: 'react',     name: 'React',     desc: 'frontend across all current roles',           status: 'daily',  stars: 5, category: 'Web' },
+    { slug: 'nextjs',    name: 'Next.js',   desc: 'italic, flareo web, this portfolio (v15)',    status: 'daily',  stars: 5, category: 'Web' },
+    { slug: 'tailwind',  name: 'Tailwind',  desc: 'CSS via utility classes',                     status: 'daily',  stars: 5, category: 'Web' },
+    { slug: 'three',     name: 'Three.js',  desc: '3D scene rendering at furnishes',             status: 'active', stars: 4, category: 'Web' },
+    { slug: 'fastapi',   name: 'FastAPI',   desc: 'nyu rag pipeline, ai tutor backend',          status: 'active', stars: 4, category: 'Web' },
+    { slug: 'svelte',    name: 'Svelte',    desc: 'nyu ai tutor frontend',                       status: 'occasional', stars: 3, category: 'Web' },
+    { slug: 'htmx',      name: 'HTMX',      desc: 'progressive enhancement, occasional',         status: 'occasional', stars: 3, category: 'Web' },
 
     // Data
-    { slug: 'postgresql', name: 'PostgreSQL',    desc: 'primary relational store',                status: 'active',     stars: 4, category: 'Data' },
-    { slug: 'mongodb',    name: 'MongoDB',       desc: 'document store for unstructured data',    status: 'occasional', stars: 3, category: 'Data' },
-    { slug: 'redis',      name: 'Redis',         desc: 'cache + pub/sub',                        status: 'active',     stars: 4, category: 'Data' },
-    { slug: 'r2',         name: 'Cloudflare R2', desc: 'blob/object storage',                     status: 'active',     stars: 4, category: 'Data' },
+    { slug: 'postgresql', name: 'PostgreSQL', desc: 'RLS multi-tenant, pgvector, prisma at scale', status: 'daily',      stars: 5, category: 'Data' },
+    { slug: 'redis',      name: 'Redis',      desc: 'atomic Lua scripts, sentinel failover, queue', status: 'active',     stars: 5, category: 'Data' },
+    { slug: 'mongodb',    name: 'MongoDB',    desc: 'time-series at aeyesafe',                      status: 'active',     stars: 4, category: 'Data' },
+    { slug: 'dynamodb',   name: 'DynamoDB',   desc: '30+ health metrics storage at aeyesafe',       status: 'active',     stars: 4, category: 'Data' },
+    { slug: 'mysql',      name: 'MySQL',      desc: 'legacy systems',                                status: 'occasional', stars: 3, category: 'Data' },
+    { slug: 'rabbitmq',   name: 'RabbitMQ',   desc: 'message broker for distributed work',           status: 'occasional', stars: 3, category: 'Data' },
 
-    // Embedded & 3D
-    { slug: 'arduino',      name: 'Arduino',      desc: 'hardware projects, sensor work',         status: 'occasional', stars: 4, category: 'Embedded' },
-    { slug: 'raspberry-pi', name: 'Raspberry Pi', desc: 'small servers, robotics',                status: 'occasional', stars: 4, category: 'Embedded' },
-    { slug: 'ros',          name: 'ROS',          desc: 'robotics middleware',                    status: 'occasional', stars: 3, category: 'Embedded' },
+    // Infra & DevOps
+    { slug: 'docker',      name: 'Docker',      desc: 'containers everywhere',                        status: 'daily',  stars: 5, category: 'Infra' },
+    { slug: 'kubernetes',  name: 'Kubernetes',  desc: 'openshift at NYU IT, ECS at furnishes',        status: 'active', stars: 4, category: 'Infra' },
+    { slug: 'aws',         name: 'AWS',         desc: 'ECS, DynamoDB, EventBridge, Lambda Layers',    status: 'daily',  stars: 5, category: 'Infra' },
+    { slug: 'gcp',         name: 'GCP',         desc: 'occasional projects',                          status: 'occasional', stars: 3, category: 'Infra' },
+    { slug: 'terraform',   name: 'Terraform',   desc: 'infrastructure as code',                       status: 'active', stars: 3, category: 'Infra' },
+    { slug: 'github-actions', name: 'GitHub Actions', desc: 'CI/CD across every project',             status: 'daily',  stars: 5, category: 'Infra' },
+    { slug: 'prometheus',  name: 'Prometheus',  desc: 'metrics + observability at aeyesafe',          status: 'active', stars: 4, category: 'Infra' },
+    { slug: 'grafana',     name: 'Grafana',     desc: 'dashboards + alerting',                        status: 'active', stars: 4, category: 'Infra' },
 
-    { slug: 'blender', name: 'Blender', desc: '3D modeling + animation', status: 'occasional', stars: 3, category: 'Creative' },
-    { slug: 'figma',   name: 'Figma',   desc: 'UI design',               status: 'active',     stars: 4, category: 'Creative' },
+    // ML / AI
+    { slug: 'pytorch',     name: 'PyTorch',     desc: 'PPO furniture placement, conditional GAN',     status: 'active', stars: 4, category: 'ML' },
+    { slug: 'langchain',   name: 'LangChain',   desc: 'NYU HPC RAG pipeline',                          status: 'active', stars: 4, category: 'ML' },
+    { slug: 'opentelemetry', name: 'OpenTelemetry', desc: 'tracing LLM completions + embedding gen',  status: 'active', stars: 4, category: 'ML' },
+
+    // Security
+    { slug: 'sigstore',    name: 'Sigstore',    desc: 'keyless signing in flareo',                    status: 'active', stars: 5, category: 'Security' },
+    { slug: 'cosign',      name: 'cosign',      desc: 'image signing, flareo build worker',           status: 'active', stars: 5, category: 'Security' },
+    { slug: 'trivy',       name: 'Trivy',       desc: 'CVE scanning in flareo',                       status: 'active', stars: 5, category: 'Security' },
+    { slug: 'kyverno',     name: 'Kyverno',     desc: 'admission policies, flareo k8s deploy',        status: 'active', stars: 4, category: 'Security' },
   ];
 
   // Group by category in render order
@@ -4412,12 +4597,12 @@ function AchievementsPanel({ onOpenFile }) {
   // Each entry has a date, organization, title, and optional description
   // Edit these as your real list of wins/awards comes in
   const achievements = [
-    { slug: 'deans-list',         date: '2025', org: 'NYU Tandon',           title: "Dean's List",                          desc: 'Recognized for academic excellence, multiple semesters.', tier: 'gold' },
-    { slug: 'hacknyu-2024',       date: '2024', org: 'HackNYU',              title: '2nd place, Best Use of Hardware',     desc: 'Built a real-time gesture-controlled drone interface in 36 hours.', tier: 'silver' },
-    { slug: 'tandon-scholarship', date: '2024', org: 'NYU Tandon',           title: 'Tandon Scholarship Recipient',         desc: 'Merit-based award for incoming freshmen.', tier: 'gold' },
-    { slug: 'valedictorian',      date: '2023', org: 'High School',          title: 'Valedictorian / National Honor Society', desc: 'Top of graduating class.', tier: 'gold' },
-    { slug: 'ap-scholar',         date: '2023', org: 'AP Scholar',           title: 'AP Scholar with Distinction',          desc: 'Average score of 3.5+ on 5+ AP exams.', tier: 'silver' },
-    { slug: 'math-olympiad',      date: '2022', org: 'Regional Math Olympiad', title: 'Top 10% finisher',                   desc: 'Competition math, geometry & combinatorics tracks.', tier: 'bronze' },
+    { slug: 'aiide-2025',           date: '2025', org: 'AIIDE 2025 EXAG',     title: 'Published paper (second author)',     desc: 'Markovian framing of WaveFunctionCollapse for procedural generation. arXiv:2509.09919, with Togelius, Earle, Merino et al.', tier: 'gold' },
+    { slug: 'columbia-admission',   date: '2026', org: 'Columbia University', title: 'MS Computer Engineering admission',    desc: 'Incoming Sep 2026 – Dec 2027.', tier: 'gold' },
+    { slug: 'deans-list',           date: '2025', org: 'NYU Tandon',          title: "Dean's List 2024-2025",                 desc: 'Recognized for academic excellence.', tier: 'gold' },
+    { slug: 'aws-cloud-support',    date: '2024', org: 'AWS',                 title: 'AWS Cloud Support Associate',          desc: 'Cloud infrastructure & operations certification.', tier: 'silver' },
+    { slug: 'ibm-ai-engineering',   date: '2024', org: 'IBM',                 title: 'AI Engineering Certification',          desc: 'Applied machine learning + deep learning track.', tier: 'silver' },
+    { slug: 'ibm-devops',           date: '2024', org: 'IBM',                 title: 'DevOps and Software Engineering',       desc: 'CI/CD, containers, infrastructure track.', tier: 'silver' },
   ];
 
   const tierColor = {
@@ -4508,59 +4693,69 @@ function TimelinePanel({ onOpenFile }) {
   const entries = [
     {
       date: '2027 (planned)', type: 'edu', status: 'planned',
-      title: 'Graduate from NYU Tandon',
-      desc: 'B.S. Computer Science · expected May 2027.',
-      slug: 'graduation-2027',
+      title: 'Graduate Columbia MS',
+      desc: 'M.S. Computer Engineering · expected Dec 2027.',
+      slug: 'columbia-graduation',
     },
     {
-      date: '2026 (planned)', type: 'work', status: 'planned',
-      title: 'Summer internship',
-      desc: 'Looking for full-stack or systems-leaning roles. Open to relocation.',
+      date: 'Sep 2026 (incoming)', type: 'edu', status: 'planned',
+      title: 'Start Columbia MS',
+      desc: 'M.S. Computer Engineering · 16-month program.',
+      file: { path: 'experience/columbia.md', icon: 'md' },
+    },
+    {
+      date: 'Summer 2026 (planned)', type: 'work', status: 'planned',
+      title: 'Summer internship — open',
+      desc: 'Dec 2025 graduation → Sep 2026 Columbia. Open to AI infra, supply-chain security, distributed systems.',
       slug: 'internship-2026',
     },
     {
-      date: 'Now', type: 'project', status: 'current',
-      title: 'Building portfolio v2 (this site)',
-      desc: 'Cursor-IDE-themed personal site. You are reading the result.',
-      slug: 'portfolio-v2',
-    },
-    {
-      date: '2026', type: 'project', status: 'done',
-      title: 'Shipped Flareo v1.2',
-      desc: 'Added retry logic, dead-letter queue, and observability dashboards.',
-      file: { path: 'projects/flareo.md', icon: 'md' },
-    },
-    {
-      date: '2025', type: 'personal', status: 'done',
-      title: 'Started learning Rust',
-      desc: 'Working through the Rust book on weekends. Ownership is making sense slowly.',
-      slug: 'rust-2025',
-    },
-    {
-      date: '2024', type: 'project', status: 'done',
-      title: 'First full-stack project shipped',
-      desc: 'Particle-canvas web experiment, interactive WebGL.',
-      file: { path: 'projects/particle-canvas.md', icon: 'md' },
-    },
-    {
-      date: '2024', type: 'project', status: 'done',
-      title: 'Arduino rover (autonomous nav)',
-      desc: 'Hardware + firmware. Ultrasonic obstacle avoidance, Bluetooth control.',
-      file: { path: 'projects/arduino-rover.md', icon: 'md' },
-    },
-    {
-      date: '2023',
-      type: 'edu',
-      status: 'done',
-      title: 'Started at NYU Tandon',
-      desc: 'B.S. Computer Science. Tandon Scholarship recipient.',
+      date: 'Dec 2025', type: 'edu', status: 'planned',
+      title: 'Graduate NYU Tandon',
+      desc: "B.S. Computer Science · Dean's List 2024-2025.",
       file: { path: 'experience/nyu.md', icon: 'md' },
     },
     {
-      date: '2023', type: 'edu', status: 'done',
-      title: 'Graduated high school',
-      desc: 'Valedictorian. National Honor Society. AP Scholar with Distinction.',
-      slug: 'hs-2023',
+      date: 'Sep 2025', type: 'project', status: 'done',
+      title: 'AIIDE 2025 publication',
+      desc: 'Second author on Markovian WaveFunctionCollapse paper, EXAG workshop. arXiv:2509.09919.',
+      file: { path: 'achievements/aiide-2025.md', icon: 'md' },
+    },
+    {
+      date: 'Aug 2025', type: 'work', status: 'current',
+      title: 'Joined Italic',
+      desc: 'Software Engineer building agentic e-commerce ops platform. E2B sandboxes, Postgres RLS, Mastra workflows.',
+      file: { path: 'experience/italic.md', icon: 'md' },
+    },
+    {
+      date: 'Jul 2025', type: 'work', status: 'current',
+      title: 'Joined Aeyesafe',
+      desc: 'Software Engineer on wearable-free sensor health monitoring. Asyncio TCP ingestion at 20K/day from 200 facilities.',
+      file: { path: 'experience/aeyesafe.md', icon: 'md' },
+    },
+    {
+      date: 'May 2025', type: 'project', status: 'current',
+      title: 'Started Flareo',
+      desc: 'Solo: container supply-chain platform. TypeScript web + Node worker + Rust CLI. Sigstore + Trivy + Kyverno.',
+      file: { path: 'projects/flareo.md', icon: 'md' },
+    },
+    {
+      date: 'May 2024', type: 'project', status: 'current',
+      title: 'Founded Furnishes',
+      desc: 'Cofounder & CTO. 3D interior design recommendation. RAG + PPO + conditional GAN.',
+      file: { path: 'experience/furnishes.md', icon: 'md' },
+    },
+    {
+      date: 'Feb 2024', type: 'work', status: 'done',
+      title: 'NYU Research Technology Services',
+      desc: 'HPC Assistant. Built AI tutoring platform + HPC RAG assistant on OpenShift. Caught a security leak in production.',
+      file: { path: 'experience/nyu-it.md', icon: 'md' },
+    },
+    {
+      date: 'Sep 2021', type: 'edu', status: 'done',
+      title: 'Started NYU Tandon',
+      desc: 'B.S. Computer Science · minors in Cybersecurity + Game Design.',
+      file: { path: 'experience/nyu.md', icon: 'md' },
     },
   ];
 
@@ -4701,42 +4896,42 @@ function ContactPanel({ onOpenFile }) {
   const links = [
     {
       Icon: Mail,
-      label: 'mohan@example.com',
-      sub: 'avg response: 4h · best for cold outreach',
-      href: 'mailto:mohan@example.com',
+      label: 'mohan.lu1105@gmail.com',
+      sub: 'best for cold outreach · response within 4h NYC daytime',
+      href: 'mailto:mohan.lu1105@gmail.com',
       color: C.synFn,
-    },
-    {
-      Icon: Calendar,
-      label: 'cal.com/mohanlu',
-      sub: 'book a 15-min chat, no pitch needed',
-      href: 'https://cal.com/mohanlu',
-      color: C.ok,
     },
     {
       Icon: Linkedin,
       label: 'linkedin.com/in/mohan-lu',
-      sub: 'open to opportunities',
+      sub: 'professional network',
       href: 'https://www.linkedin.com/in/mohan-lu',
       color: C.accent,
     },
     {
       Icon: Github,
-      label: 'github.com/mohanlu',
-      sub: '12 commits this week',
-      href: 'https://github.com/mohanlu',
+      label: 'github.com/Yolo1105',
+      sub: '56 repos · ships more than promotes',
+      href: 'https://github.com/Yolo1105',
       color: C.textPrimary,
+    },
+    {
+      Icon: Rocket,
+      label: 'preview.flareo.dev',
+      sub: 'live preview of Flareo (flagship project)',
+      href: 'https://preview.flareo.dev',
+      color: C.synKeyword,
     },
   ];
 
-  // Topics Mohan loves chatting about, gives visitors a hook for a real first message
+  // Topics Mohan actually wants to chat about — gives visitors a hook for a real first message
   const topics = [
-    'distributed systems',
-    'edge runtimes',
-    'embedded firmware',
-    'building Cursor-style UIs',
-    'NYU Tandon advice',
-    'learning Rust as a working dev',
+    'agentic AI infrastructure',
+    'container supply-chain security',
+    'distributed sensor systems',
+    'RAG with hybrid retrieval',
+    'reinforcement learning for spatial problems',
+    'NYU → Columbia trajectories',
   ];
 
   return (
@@ -4847,7 +5042,7 @@ function ContactPanel({ onOpenFile }) {
             {topics.map((t, i) => (
               <span key={i}
                 onClick={() => {
-                  window.location.href = `mailto:mohan@example.com?subject=${encodeURIComponent(`Let's chat about ${t}`)}`;
+                  window.location.href = `mailto:mohan.lu1105@gmail.com?subject=${encodeURIComponent(`Let's chat about ${t}`)}`;
                 }}
                 className="cursor-pointer rounded"
                 style={{
@@ -5095,9 +5290,10 @@ GROUNDING RULES — these are non-negotiable
    you don't know and point to the contact panel.
 
 3. NO CONFIDENT FABRICATION
-   Specifically, never invent: GPAs, salaries, exact dates, company names
-   not in FACTS, course titles not in FACTS, technologies she has used
-   that aren't in FACTS, opinions she holds, or anyone she has worked with.
+   Specifically, never invent: GPAs, salaries, exact dates not in FACTS,
+   company names not in FACTS, course titles, technologies she has used
+   that aren't in FACTS, opinions she holds, or anyone she has worked
+   with beyond what is listed.
 
 4. THIRD PERSON
    Speak about Mohan in the third person ("Mohan has shipped...", "her
@@ -5105,8 +5301,8 @@ GROUNDING RULES — these are non-negotiable
 
 5. CITE FILES
    When relevant, refer visitors to specific files in the file tree using
-   their path: "see projects/flareo.md", "see about/bio.sh". The frontend
-   turns these paths into clickable cards.
+   their path: "see projects/flareo.md", "see experience/italic.md". The
+   frontend turns these paths into clickable cards.
 
 6. SCOPE
    Only discuss Mohan and her work. If asked about anything else
@@ -5128,71 +5324,173 @@ FACTS — everything you may state as fact about Mohan
 ## Identity
 - Full name: Mohan Lu
 - Pronouns: she/her
-- Current role: full-stack engineer (student)
-- School: NYU Tandon School of Engineering
-- Major: Computer Science
-- Class of: 2027 (graduating May 2027)
-- Location: New York, NY
-- Open to relocation: yes
-
-## Looking for (as of April 2026)
-- Summer 2026 internship
-- Strong preference: full-stack or systems-leaning roles
-- Open to: developer-tooling, distributed systems, embedded
-- Not pursuing: pure ML research, sales engineering
-
-## Contact
-- Email: mohan@example.com
+- Current role: software engineer (graduating senior, three concurrent positions)
+- Location: New York, NY (working remote across teams in LA, Seattle, Singapore)
+- Email: mohan.lu1105@gmail.com
+- GitHub: github.com/Yolo1105
 - LinkedIn: linkedin.com/in/mohan-lu
-- GitHub: github.com/mohanlu
-- Cal.com (booking link): cal.com/mohanlu
+- Portfolio: mohanlu.com
 - Typical response time: within 4 hours during NYC daytime
 
-## Tech (sorted by depth, not buzzword count)
-- Daily: TypeScript, Python, React, Tailwind
-- Actively building with: C++, PostgreSQL, Cloudflare Workers, Redis
-- Comfortable but occasional: Java, MongoDB, Arduino, Raspberry Pi, ROS, Blender
-- Currently learning (weekends): Rust — working through the book + small projects
+## Education
+- NYU Tandon School of Engineering: BS Computer Science, Sep 2021 – Dec 2025
+  - Minors: Cybersecurity and Game Design
+  - Dean's List: Academic Year 2024–2025
+- Columbia University: MS Computer Engineering, Sep 2026 – Dec 2027 (admitted, incoming)
+
+## Looking for (as of April 2026)
+- Open to summer 2026 internships (Dec 2025 graduation → Sep 2026 Columbia start)
+- Strong preference: full-stack or systems-leaning roles, AI infrastructure, supply-chain
+  security, distributed systems, generative AI
+- Open to: developer tooling, applied research engineering
+- Currently engaged across three concurrent positions (Italic, Aeyesafe, Furnishes)
+
+## Current roles (concurrent, all active)
+
+### Italic — Software Engineer (Aug 2025 – present, Los Angeles, remote)
+- Agentic operations platform for e-commerce
+- Built streaming chat with Next.js server components serving 1,000+ monthly active users
+  with persisted tool execution state
+- Implemented E2B sandboxes with HMAC-signed Bridge API for callbacks, logging execution
+  and bridge calls in Supabase Storage
+- Designed PostgreSQL multi-tenant schema with Row-Level Security isolating organizations,
+  runs, and approvals via Supabase Auth
+- Integrated Slack with webhook signature verification and Block Kit buttons, gating agent
+  execution on confirmed approvals
+- Orchestrated Mastra workflows chaining Shopify, Klaviyo, Recharge through Pipedream and
+  AI Gateway, isolating credentials per tenant
+
+### Aeyesafe — Software Engineer (Jul 2025 – present, Seattle, remote)
+- Senior health monitoring with wearable-free sensor platform
+- Architected distributed sensor ingestion using Python asyncio TCP client processing
+  20K daily readings from 200 facilities
+- Integrated vendor sleep API with HMAC-SHA1 auth and gzip decompression, extracting
+  30+ health metrics into DynamoDB
+- Reduced dashboard query load through multi-tier aggregation with EventBridge cron and
+  shared Lambda Layers
+- Designed sliding-window anomaly detection on MongoDB time-series aggregations,
+  substantially minimizing false positive alerts
+- Established observability with Prometheus and Grafana dashboards plus PagerDuty
+  escalation for rapid incident response
+
+### Furnishes — Cofounder & Chief Technology Officer (May 2024 – present, Singapore, remote)
+- Intelligent 3D interior design recommendation platform (her own company)
+- Built chat assistant with hybrid RAG retrieval grounded in live 3D scene state,
+  integrated with a text-to-3D furniture studio
+- Streamed 5-stage room generation through Flux and Hunyuan3D over SSE under 15 seconds
+  preview tier, isolating per-piece failures
+- Architected PostgreSQL + Prisma persistence across 60+ models covering conversations,
+  preferences, design docs, cost tracking
+- Trained conditional GAN on 10K+ designs for color generation, applied INT8 quantization
+  reducing inference model size 75%
+- Implemented PyTorch PPO reinforcement learning for furniture placement, improving user
+  acceptance rates 42% over baseline
+- Deployed Docker containers on AWS ECS with CloudFront and GitHub Actions CI/CD,
+  supporting 1,000+ concurrent users
+
+## Past role
+
+### NYU Research Technology Services — HPC Assistant (Feb 2024 – Dec 2025, NYC)
+Two distinct projects, both production-grade:
+
+**AI Tutoring Platform for University Courses**
+- Built tutor for instructors and students with FastAPI + Svelte TypeScript stack,
+  ingesting and generating personalized practice
+- Architected distributed Redis Queue worker pool in Python on OpenShift, scaling to
+  8 replicas under fault tolerance
+- Built coordinated delete cleanup across pgvector, PostgreSQL, and knowledge files,
+  preventing orphans from partial-failure rollbacks
+- Instrumented Queue workers with OpenTelemetry to trace LLM completions, embedding
+  generation, and pgvector retrieval
+- Implemented atomic Redis Lua scripts on shared pools, preventing read-modify-write
+  races across 8 replicas under Sentinel failover
+- Switched model authorization to deny-by-default with role and group scoping, closing
+  a leak that exposed unconfigured models platform-wide
+
+**NYU HPC Resource Allocation Assistant**
+- Built RAG pipeline on FastAPI + Streamlit answering researcher queries on cluster
+  access, job submission, and software modules
+- Engineered retrieval with FAISS HNSW + BM25 re-ranking through reciprocal rank fusion,
+  holding p99 latency under 2 seconds
+- Orchestrated Kubernetes StatefulSets on OpenShift with CPU and memory autoscaling
+- Cached embeddings in Redis through a LangChain retrieval layer, reducing repeat
+  embedding API calls
 
 ## Projects
-### Flareo (flagship project)
-- What: full-stack worker pipeline for processing and storing media at scale
-- Stack: Cloudflare Workers (compute), PostgreSQL (metadata), R2 (storage)
-- Throughput: ~20,000 jobs/day in current deployment
-- Key engineering: at-least-once processing with idempotent retries, edge-first architecture
-- Status: v1.2 shipped April 2026
+
+### Flareo (flagship)
+- Container supply-chain verification platform (May 2025 – April 2026)
+- Built a container marketplace spanning a Next.js web app and Node.js build worker
+  sharing a typed API contract
+- Build worker rejects critical/high CVEs via Trivy before keyless cosign signing,
+  with backoff to a dead-letter queue
+- Verifies arbitrary OCI images against Sigstore bundles, parsing v0.1 through v0.3
+  across Docker Hub, GHCR, and ECR Public
+- Shipped Kyverno and sigstore policy-controller policies blocking unsigned images,
+  defaulting to audit mode for rollout
+- Distributed a Rust CLI through Homebrew with GitHub device-code OAuth, running Trivy
+  locally as a second-opinion scan before pulls
+- Stack: TypeScript / Rust / Next.js / Postgres + Prisma / Sigstore / cosign / Kyverno
+- Repo: github.com/Yolo1105/flareo
+- Live preview: preview.flareo.dev
 - File: projects/flareo.md
-- Repo: github.com/mohanlu/flareo
-- Why she built it: every off-the-shelf job queue she tried either didn't run on the edge or required spinning up infra she didn't want to babysit
 
-### Particle Canvas
-- What: interactive WebGL particle system with cursor-based attraction
-- Particle count: 2000+ at 60fps
-- Key engineering: hand-rolled 2D physics, spatial-hash grid for O(n) neighbor lookup
-- File: projects/particle-canvas.md
-- Repo: github.com/mohanlu/particle-canvas
+### Furniture Arrangement Generator
+- Open-source surface of the Furnishes ML stack
+- PyTorch PPO reinforcement learning for furniture placement
+- Repo: github.com/Yolo1105/Furniture-Arrangement-Generator
+- File: projects/furniture-arrangement.md
 
-### Arduino Rover
-- What: autonomous rover with ultrasonic obstacle avoidance and Bluetooth control
-- Hardware: Arduino-based, separate power rails for motor + logic to avoid brownouts
-- Firmware: cooperative scheduler (no RTOS), state machine for behaviors
-- File: projects/arduino-rover.md
-- Repo: github.com/mohanlu/arduino-rover
+### Air Quality NYC
+- Civic data project visualizing NYC air quality
+- Repos: github.com/Yolo1105/Air-Quality-Map and github.com/Yolo1105/Air_Quality_New_York
+- File: projects/air-quality-nyc.md
+
+## Publication
+- Yiu, F., **Lu, M.**, Li, N., Joseph, K., Zhang, T., Togelius, J., Merino, T., & Earle, S. (2025).
+  "A Markovian Framing of WaveFunctionCollapse for Procedurally Generating Aesthetically
+  Complex Environments." Experimental AI in Games Workshop (EXAG '25), AIIDE 2025.
+- arXiv: arXiv:2509.09919
+- Mohan is second author on this paper, with Julian Togelius (NYU) and others.
+- File: achievements/aiide-2025.md
 
 ## Achievements
-- Dean's List, NYU Tandon (2025)
-- 2nd place, Best Use of Hardware, HackNYU (2024)
-- Tandon Scholarship recipient (2024)
-- Valedictorian, National Honor Society (high school, 2023)
-- AP Scholar with Distinction (2023)
-- Top 10% Regional Math Olympiad (2022)
+- Dean's List, NYU Tandon (Academic Year 2024–2025)
+- Columbia University MS Computer Engineering admission (Sep 2026 start)
+- AIIDE 2025 publication (second author, EXAG workshop)
+- AWS Cloud Support Associate certification
+- IBM AI Engineering certification
+- IBM DevOps and Software Engineering certification
+
+## Tech (sorted by depth, not buzzword count)
+
+**Frontend**: TypeScript, JavaScript, React, Next.js, React Native, Three.js, HTMX,
+HTML, CSS, Tailwind CSS
+
+**Backend**: Python, Go, Rust, FastAPI, Node.js, Express, WebSocket, GraphQL, NextAuth,
+Prisma, Supabase, Firebase, Streamlit
+
+**Database**: PostgreSQL (Row-Level Security, pgvector, Prisma at scale), MySQL, MongoDB,
+DynamoDB, SQLite, Redis (atomic Lua scripts, Sentinel failover, Queue), RabbitMQ
+
+**DevOps**: Docker, Kubernetes, OpenShift, Terraform, AWS (ECS, DynamoDB, EventBridge,
+Lambda Layers, CloudFront), GCP, GitHub Actions, Prometheus, Grafana, PagerDuty, Linux
+
+**AI/ML**: RAG (FAISS HNSW + BM25 reciprocal rank fusion), generative AI (Flux,
+Hunyuan3D, conditional GANs, INT8 quantization), reinforcement learning (PyTorch PPO),
+LangChain, OpenTelemetry tracing for LLM pipelines
+
+**Security**: Sigstore + cosign keyless signing, Trivy CVE scanning, Kyverno admission,
+HMAC signing, OAuth (including GitHub device-code flow), Row-Level Security, deny-by-default
+authorization patterns
 
 ## Working style
-- Direct, slightly playful, technically precise
-- Bias toward shipping over polishing forever
-- Reads code more than she writes it; cares about what the next person reads
-- Likes: tools that make hard things feel obvious, durable architecture over demoable cleverness
+- Direct, technically precise, slightly playful — bias toward shipping over polishing
+- Builds with security and observability from day one (HMAC, RLS, deny-by-default)
+- Decision gates with measurable trigger criteria over speculation
+- Documents the *why*, not just the *what* — reads code more than she writes it
 - Avoids: marketing-speak, premature abstraction, frameworks that hide too much
+- Note: she ships a lot but doesn't perform for an audience (4 GitHub followers, 56 repos)
 
 ═══════════════════════════════════════════════════════════════════════
 RESPONSE STYLE
@@ -5792,7 +6090,7 @@ export default function CursorIDEPortfolio() {
     else if (compound === 'git log') {
       result = [
         out('commit a1b2c3d (HEAD -> main, origin/main)', C.warn),
-        out('Author: Mohan Lu <mohan@example.com>'),
+        out('Author: Mohan Lu <mohan.lu1105@gmail.com>'),
         out('Date:   Sun Apr 26 2026'),
         out(''),
         out('    portfolio v2: shipped'),
@@ -5862,9 +6160,11 @@ export default function CursorIDEPortfolio() {
   const [chatMsgs, setChatMsgs] = useState([
     { role: 'user', text: 'what kind of projects has Mohan built?' },
     { role: 'assistant', parts: [
-      { type: 'text', text: "Mohan has shipped projects across full-stack web, embedded systems, and 3D, a few highlights:" },
-      { type: 'cite', path: 'projects/flareo.md', label: 'projects/flareo.md', note: 'full-stack worker pipeline w/ Postgres + R2' },
-      { type: 'text', text: "She's also worked on a particle-canvas web experiment and an Arduino rover. Want me to expand on any of these?" },
+      { type: 'text', text: "Mohan ships across three concurrent roles plus her own projects. Highlights:" },
+      { type: 'cite', path: 'projects/flareo.md', label: 'projects/flareo.md', note: 'flagship: container supply-chain platform (Sigstore + Trivy + Kyverno, Rust CLI)' },
+      { type: 'cite', path: 'experience/furnishes.md', label: 'experience/furnishes.md', note: 'her startup as cofounder/CTO — 3D interior design with PPO + cGAN' },
+      { type: 'cite', path: 'experience/italic.md', label: 'experience/italic.md', note: 'agentic e-commerce ops (1,000+ MAU)' },
+      { type: 'text', text: "Want me to dig into any of these?" },
     ]},
   ]);
   const [chatInput, setChatInput] = useState('');
@@ -5912,49 +6212,74 @@ export default function CursorIDEPortfolio() {
       followUps: ['What is she looking for?', 'When is she available?', 'How do I reach out?'],
     },
     {
-      keywords: ['flareo', 'worker', 'cloudflare', 'pipeline'],
+      keywords: ['flareo', 'supply chain', 'sigstore', 'cosign', 'trivy', 'kyverno', 'container'],
       parts: [
-        { type: 'text', text: "Flareo is her full-stack worker pipeline, handles async job processing with Postgres for state, R2 for blobs, and Cloudflare Workers for compute. Built with retries, observability, and graceful degradation in mind." },
-        { type: 'cite', path: 'projects/flareo.md', label: 'projects/flareo.md', note: 'architecture + tradeoffs' },
+        { type: 'text', text: "Flareo is her flagship — a container supply-chain verification platform. Submitters push a Dockerfile; the platform builds it deterministically, runs Trivy for CVE scanning, signs with Sigstore + cosign, pushes to ECR Public. There's a Rust CLI distributed via Homebrew that does GitHub OAuth device-code flow and runs Trivy locally as a second-opinion scan." },
+        { type: 'cite', path: 'projects/flareo.md', label: 'projects/flareo.md', note: 'architecture + Rust CLI' },
       ],
-      followUps: ['Why Cloudflare Workers?', 'Is it open source?', 'What scale does it handle?'],
+      followUps: ['Why Sigstore + cosign?', 'What about Kyverno?', 'Is there a live preview?'],
     },
     {
-      keywords: ['arduino', 'rover', 'embedded', 'hardware', 'robot'],
+      keywords: ['italic', 'agentic', 'e-commerce', 'agent'],
       parts: [
-        { type: 'text', text: "The Arduino rover was a hardware project, autonomous navigation with ultrasonic obstacle avoidance and remote control over Bluetooth. Wrote the firmware in C++ and the companion app for piloting it." },
-        { type: 'cite', path: 'projects/arduino-rover.md', label: 'projects/arduino-rover.md', note: 'hardware + firmware notes' },
+        { type: 'text', text: "Italic is one of her three current roles — software engineer on an agentic operations platform for e-commerce. She built streaming chat with Next.js server components serving 1,000+ MAU, E2B sandboxes with HMAC-signed bridge APIs, multi-tenant Postgres with row-level security, and Slack approval flows that gate agent execution." },
+        { type: 'cite', path: 'experience/italic.md', label: 'experience/italic.md', note: 'role detail' },
       ],
-      followUps: ['What sensors did she use?', 'Other hardware projects?', 'Does she know ROS?'],
+      followUps: ['What is E2B?', 'How does RLS work there?', 'What other roles does she have?'],
     },
     {
-      keywords: ['particle', 'canvas', 'visual', 'animation', 'web experiment'],
+      keywords: ['aeyesafe', 'sensor', 'health', 'monitoring', 'asyncio', 'time-series'],
       parts: [
-        { type: 'text', text: "The particle-canvas project explores interactive WebGL, a system where particles connect into constellations and respond to mouse movement. It's the same vibe behind the loading screen on this site, actually." },
-        { type: 'cite', path: 'projects/particle-canvas.md', label: 'projects/particle-canvas.md', note: 'interactive web canvas' },
+        { type: 'text', text: "Aeyesafe is wearable-free senior health monitoring. She built the distributed sensor ingestion — Python asyncio TCP processing 20K daily readings from 200 facilities, vendor sleep API integration with HMAC-SHA1 + gzip extracting 30+ health metrics into DynamoDB, sliding-window anomaly detection on MongoDB time-series. Plus full Prometheus + Grafana + PagerDuty observability." },
+        { type: 'cite', path: 'experience/aeyesafe.md', label: 'experience/aeyesafe.md', note: 'sensor pipeline detail' },
       ],
-      followUps: ['Other creative projects?', 'WebGL or Three.js?', 'What does she design with?'],
+      followUps: ['Why MongoDB time-series?', 'How big are the facilities?', 'Other production systems?'],
     },
     {
-      keywords: ['contact', 'reach', 'email', 'get in touch'],
+      keywords: ['furnishes', 'cofounder', 'cto', '3d', 'interior', 'design', 'ppo', 'gan'],
       parts: [
-        { type: 'text', text: "Best ways to reach her are email or LinkedIn. There's also a 15-min booking link if you'd rather chat live." },
-        { type: 'cite', path: 'contact.json', label: 'contact.json', note: 'email + socials' },
+        { type: 'text', text: "Furnishes is her own company — she's cofounder and CTO. It's a 3D interior design recommendation platform. Stack spans hybrid RAG grounded in live 3D scene state, Flux + Hunyuan3D for room generation under 15 seconds over SSE, conditional GAN with INT8 quantization (75% size reduction), and PyTorch PPO for furniture placement (42% improvement over baseline). 60+ Prisma models behind it on AWS ECS." },
+        { type: 'cite', path: 'experience/furnishes.md', label: 'experience/furnishes.md', note: 'CTO role + ML stack' },
       ],
-      followUps: ['Is she open to internships?', 'When is she available?', 'What is she looking for?'],
+      followUps: ['What does PPO do here?', 'How big is the team?', 'Why interior design?'],
     },
     {
-      keywords: ['education', 'school', 'university', 'nyu', 'tandon', 'degree'],
+      keywords: ['nyu', 'tandon', 'school', 'university', 'degree', 'columbia', 'education'],
       parts: [
-        { type: 'text', text: "She's an undergrad at NYU Tandon studying computer science. The full timeline of milestones is in the about folder." },
-        { type: 'cite', path: 'about/timeline.json', label: 'about/timeline.json', note: 'education + milestones' },
+        { type: 'text', text: "BS Computer Science at NYU Tandon, Sep 2021 – Dec 2025. Dual minors in Cybersecurity and Game Design. Dean's List 2024–2025. Then she's heading to Columbia for an MS in Computer Engineering, Sep 2026 – Dec 2027." },
+        { type: 'cite', path: 'experience/nyu.md', label: 'experience/nyu.md', note: 'NYU detail' },
+        { type: 'cite', path: 'experience/columbia.md', label: 'experience/columbia.md', note: 'Columbia incoming' },
       ],
-      followUps: ['When does she graduate?', 'What is she focused on?', 'Any hackathon wins?'],
+      followUps: ['Why CompE?', "What's the gap year about?", 'Any research published?'],
+    },
+    {
+      keywords: ['paper', 'publication', 'aiide', 'research', 'arxiv', 'wavefunction', 'togelius'],
+      parts: [
+        { type: 'text', text: "Yes — she's second author on a paper at AIIDE 2025 EXAG workshop: \"A Markovian Framing of WaveFunctionCollapse for Procedurally Generating Aesthetically Complex Environments.\" Coauthored with Julian Togelius and others. arXiv:2509.09919." },
+        { type: 'cite', path: 'achievements/aiide-2025.md', label: 'achievements/aiide-2025.md', note: 'paper details + arXiv' },
+      ],
+      followUps: ['What does the paper do?', 'Who is Togelius?', 'How does this connect to her startup?'],
+    },
+    {
+      keywords: ['contact', 'reach', 'email', 'get in touch', 'hire', 'recruiter'],
+      parts: [
+        { type: 'text', text: "Email is the right channel — mohan.lu1105@gmail.com. Response time is usually within 4 hours during NYC daytime. LinkedIn at linkedin.com/in/mohan-lu, GitHub at github.com/Yolo1105." },
+        { type: 'cite', path: 'about/contact.json', label: 'about/contact.json', note: 'all channels' },
+      ],
+      followUps: ['Is she looking for opportunities?', 'When is she available?', 'What is she looking for?'],
+    },
+    {
+      keywords: ['available', 'looking', 'opportunity', 'opportunities', 'hire', 'internship', 'job'],
+      parts: [
+        { type: 'text', text: "Open to summer 2026 internships — there's a real window between her Dec 2025 NYU graduation and Sep 2026 Columbia start. Strong preference for AI infrastructure, supply-chain security, distributed systems, generative AI, or applied research engineering. Currently engaged across Italic, Aeyesafe, and Furnishes simultaneously." },
+        { type: 'cite', path: 'now.md', label: 'now.md', note: 'current focus' },
+      ],
+      followUps: ['How do I reach out?', 'What roles fit best?', 'Why three jobs at once?'],
     },
     {
       keywords: ['who is', 'about her', 'who are you', 'who is mohan', 'tell me about'],
       parts: [
-        { type: 'text', text: "Mohan Lu, full-stack engineer, NYU Tandon undergrad. Builds across web, embedded, and 3D. Bias toward shipping." },
+        { type: 'text', text: "Mohan Lu, she/her. Graduating senior at NYU Tandon (BS CS, Dec 2025), heading to Columbia for an MS in Computer Engineering. Currently shipping at Italic (agentic e-commerce), Aeyesafe (sensor health monitoring), and as cofounder/CTO of Furnishes (3D interior design). Plus Flareo, her solo flagship — container supply-chain verification. Published at AIIDE 2025." },
         { type: 'cite', path: 'about/bio.sh', label: 'about/bio.sh', note: 'her bio' },
       ],
       followUps: ['What has she built?', 'What are her strongest skills?', 'Why hire her?'],
@@ -5962,12 +6287,14 @@ export default function CursorIDEPortfolio() {
     {
       keywords: ['project', 'projects', 'what has she built', 'work', 'portfolio'],
       parts: [
-        { type: 'text', text: "Three featured projects right now, Flareo (the full-stack worker pipeline), an interactive particle-canvas web experiment, and an autonomous Arduino rover. There's a folder for each:" },
-        { type: 'cite', path: 'projects/flareo.md', label: 'projects/flareo.md', note: 'distributed job pipeline' },
-        { type: 'cite', path: 'projects/particle-canvas.md', label: 'projects/particle-canvas.md', note: 'WebGL constellation' },
-        { type: 'cite', path: 'projects/arduino-rover.md', label: 'projects/arduino-rover.md', note: 'embedded + autonomous nav' },
+        { type: 'text', text: "Three concurrent roles plus a flagship solo project plus a publication. The full picture:" },
+        { type: 'cite', path: 'projects/flareo.md', label: 'projects/flareo.md', note: 'flagship: container supply-chain platform' },
+        { type: 'cite', path: 'experience/furnishes.md', label: 'experience/furnishes.md', note: 'her startup as cofounder/CTO' },
+        { type: 'cite', path: 'experience/italic.md', label: 'experience/italic.md', note: 'agentic e-commerce ops' },
+        { type: 'cite', path: 'experience/aeyesafe.md', label: 'experience/aeyesafe.md', note: 'health monitoring sensors' },
+        { type: 'cite', path: 'achievements/aiide-2025.md', label: 'achievements/aiide-2025.md', note: 'AIIDE 2025 publication' },
       ],
-      followUps: ['Tell me about Flareo', 'Tell me about the rover', "What's particle-canvas?"],
+      followUps: ['Tell me about Flareo', 'Tell me about Furnishes', 'What does she do at Italic?'],
     },
   ];
 
